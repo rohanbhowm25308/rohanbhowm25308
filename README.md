@@ -1,406 +1,476 @@
-<div align="center">
+<!-- =========================
+     ROHAN BHOWMIK — GITHUB PROFILE
+     ========================= -->
 
-# ⚡ ROHAN BHOWMIK
-
-### 🤖 AI/ML  •  📊 DATA SCIENCE  •  ✨ GENERATIVE AI  •  🧩 AI AGENTS  •  🌐 WEB DEVELOPMENT
-
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=21&duration=2800&pause=900&color=00D9FF&center=true&vCenter=true&width=800&lines=AI%2FML+Developer;Data+Science+Enthusiast;Generative+AI+Builder;AI+Agents+Explorer;Web+Development+Enthusiast;Building+Intelligent+Applications" />
-
-<p>
-  <b>Building intelligent systems that turn ideas into real-world applications.</b>
+<p align="center">
+  <img src="./assets/ai-header.gif" width="100%" alt="AI animated header">
 </p>
-
-<p>
-  <a href="https://github.com/rohanbhowm25308">
-    <img src="https://img.shields.io/badge/GitHub-Rohan%20Bhowmik-181717?style=for-the-badge&logo=github&logoColor=white">
-  </a>
-  <a href="https://www.linkedin.com/in/rohan-bhowmik-b014473a1/">
-    <img src="https://img.shields.io/badge/LinkedIn-Rohan%20Bhowmik-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white">
-  </a>
-</p>
-
-</div>
-
----
-
-# 🧠 ABOUT ME
-
-I'm **Rohan Bhowmik**, a Computer Science student passionate about building practical solutions across **Artificial Intelligence, Machine Learning, Data Science, Generative AI, AI Agents and Web Development**.
-
-I enjoy transforming ideas into working applications — from machine learning models and NLP systems to AI-powered recommendation engines, intelligent assistants and web applications.
-
-```text
-🎓 Computer Science Student
-
-🤖 AI / Machine Learning
-📊 Data Science
-✨ Generative AI
-🧩 AI Agents
-🌐 Web Development
-
-🚀 Learning by building real-world projects
-```
-
-> **Learn • Build • Experiment • Deploy • Improve**
-
----
-
-# ⚡ CURRENTLY BUILDING
-
-```text
-┌──────────────────────────────────────────────────────────────┐
-│                                                              │
-│  🤖 AI / ML              → Machine Learning & NLP            │
-│  📊 Data Science         → Data Analysis & Visualization     │
-│  ✨ Generative AI        → LLM-powered applications         │
-│  🧩 AI Agents            → Intelligent workflows             │
-│  🔗 RAG                 → Knowledge-based AI systems        │
-│  🌐 Web Development      → AI-powered web applications       │
-│                                                              │
-└──────────────────────────────────────────────────────────────┘
-```
-
----
-
-# 🛠️ TECH ARSENAL
-
-## 🤖 AI / MACHINE LEARNING
-
-<p>
-<img src="https://skillicons.dev/icons?i=python,tensorflow" />
-</p>
-
-**Machine Learning • NLP • Deep Learning • Scikit-learn • TensorFlow • Keras**
-
----
-
-## 📊 DATA SCIENCE
-
-**Pandas • NumPy • Matplotlib • Seaborn • SQL • Data Analysis • Data Visualization**
-
----
-
-## ✨ GENERATIVE AI
-
-**LLMs • Prompt Engineering • Hugging Face • RAG • AI Applications**
-
----
-
-## 🧩 AI AGENTS
-
-**AI Agents • Agentic AI • Intelligent Workflows • Tool-based AI Systems • AI Orchestration**
-
----
-
-## 🌐 WEB DEVELOPMENT
-
-<p>
-<img src="https://skillicons.dev/icons?i=html,css,js,bootstrap,flask" />
-</p>
-
-**HTML • CSS • JavaScript • Bootstrap • Flask • REST APIs • Streamlit**
-
----
-
-## 🔧 TOOLS & PLATFORMS
-
-<p>
-<img src="https://skillicons.dev/icons?i=git,github,vscode" />
-</p>
-
-**Git • GitHub • VS Code • Kaggle • Render**
-
----
-
-# 🚀 FEATURED PROJECTS
-
-<table>
-<tr>
-<td width="50%">
-
-### 🤖 Orchestrator AI
-
-AI-powered orchestration and decision-making system designed to coordinate tasks and intelligent workflows.
-
-**Tech**
-
-`Python` `Flask` `AI` `APIs`
-
-<a href="https://github.com/rohanbhowm25308">
-View Project →</a>
-
-</td>
-
-<td width="50%">
-
-### 🧠 Nova AI Career Recommendation Engine
-
-AI-powered career recommendation platform designed to analyze user information and generate personalized career insights.
-
-**Tech**
-
-`Python` `AI` `ML` `Web`
-
-<a href="https://github.com/rohanbhowm25308/Nova-AI-Career-Recommendation-Engine">
-View Project →</a>
-
-</td>
-</tr>
-
-<tr>
-<td width="50%">
-
-### 🧬 ProjectDNA AI Recommender
-
-AI-powered project recommendation system using Generative AI concepts to help users discover suitable project ideas.
-
-**Tech**
-
-`Python` `GenAI` `RAG` `APIs`
-
-<a href="https://github.com/rohanbhowm25308/ProjectDNA-AI-Recommender">
-View Project →</a>
-
-</td>
-
-<td width="50%">
-
-### 📊 Customer Segmentation
-
-Machine learning application using K-Means clustering to identify meaningful customer groups through interactive visualization.
-
-**Tech**
-
-`Python` `Pandas` `Scikit-learn` `Streamlit`
-
-<a href="https://github.com/rohanbhowm25308/Customer-Segmentation">
-View Project →</a>
-
-</td>
-</tr>
-
-<tr>
-<td width="50%">
-
-### 💬 Sentiment Analysis Dashboard
-
-NLP-powered dashboard that analyzes text sentiment using TF-IDF and Naive Bayes.
-
-**Tech**
-
-`Python` `NLP` `Flask` `TF-IDF`
-
-<a href="https://github.com/rohanbhowm25308/Sentiment-Analysis-Dashboard">
-View Project →</a>
-
-</td>
-
-<td width="50%">
-
-### 📚 NOVA AI Study Assistant
-
-AI-powered learning assistant designed to help students interact with educational content and learn more effectively.
-
-**Tech**
-
-`Python` `AI` `Flask` `GenAI`
-
-<a href="https://github.com/rohanbhowm25308/NOVA-AI-Study-Assistant">
-View Project →</a>
-
-</td>
-</tr>
-</table>
-
----
-
-# 🧩 WHAT I BUILD
-
-<table>
-<tr>
-<td align="center">🤖<br><b>AI / ML</b><br><sub>Intelligent Models</sub></td>
-<td align="center">📊<br><b>Data Science</b><br><sub>Data-driven Solutions</sub></td>
-<td align="center">✨<br><b>Generative AI</b><br><sub>LLM Applications</sub></td>
-</tr>
-
-<tr>
-<td align="center">🧩<br><b>AI Agents</b><br><sub>Autonomous Workflows</sub></td>
-<td align="center">🌐<br><b>Web Development</b><br><sub>Interactive Applications</sub></td>
-<td align="center">🔗<br><b>RAG Systems</b><br><sub>Knowledge-based AI</sub></td>
-</tr>
-</table>
-
----
-
-# 🧠 HOW I BUILD
-
-```text
-                         💡 IDEA
-                           │
-                           ▼
-                    🔍 PROBLEM STUDY
-                           │
-                           ▼
-                 📊 DATA / INFORMATION
-                           │
-                           ▼
-              ┌─────────────────────────┐
-              │       AI / ML            │
-              │   MODEL / INTELLIGENCE   │
-              └─────────────────────────┘
-                           │
-                           ▼
-                  🧩 AI / AGENT LOGIC
-                           │
-                           ▼
-                  🌐 APPLICATION
-                           │
-                           ▼
-                       🚀 DEPLOY
-                           │
-                           ▼
-                  🌎 REAL-WORLD USE
-```
-
-> **I don't just want to build models. I want to turn intelligence into useful applications.**
-
----
-
-# 🎯 MY AI / TECH ROADMAP
-
-```text
-                        🚀 MY JOURNEY
-                             │
-        ┌────────────────────┼────────────────────┐
-        │                    │                    │
-        ▼                    ▼                    ▼
-   🤖 AI / ML          📊 DATA SCIENCE      🌐 WEB DEVELOPMENT
-        │                    │                    │
-        ▼                    ▼                    ▼
-  Deep Learning        Data Analysis        Frontend
-        │                    │                    │
-        ▼                    ▼                    ▼
-       NLP             Visualization         Flask / APIs
-        │                    │                    │
-        └────────────────────┼────────────────────┘
-                             │
-                             ▼
-                     ✨ GENERATIVE AI
-                             │
-                             ▼
-                           LLMs
-                             │
-                             ▼
-                           RAG
-                             │
-                             ▼
-                       🧩 AI AGENTS
-                             │
-                             ▼
-                       AGENTIC AI
-                             │
-                             ▼
-                 🌎 INTELLIGENT SYSTEMS
-```
-
-### 🔭 Currently Exploring
-
-`Advanced ML` `Deep Learning` `NLP` `LLMs` `RAG` `AI Agents` `Agentic AI` `Production AI`
-
----
-
-# 📈 GITHUB STATS
-
-<div align="center">
-
-<img height="180" src="https://github-readme-stats.vercel.app/api?username=rohanbhowm25308&show_icons=true&theme=tokyonight&hide_border=true&rank_icon=github" />
-
-<img height="180" src="https://github-readme-stats.vercel.app/api/top-langs/?username=rohanbhowm25308&layout=compact&theme=tokyonight&hide_border=true" />
-
-</div>
-
----
-
-# 🔥 GITHUB STREAK
-
-<div align="center">
-
-<img src="https://streak-stats.demolab.com?user=rohanbhowm25308&theme=tokyonight&hide_border=true" />
-
-</div>
-
----
-
-# 🐍 CONTRIBUTION JOURNEY
-
-<div align="center">
-
-<img src="https://raw.githubusercontent.com/rohanbhowm25308/rohanbhowm25308/output/github-contribution-grid-snake.svg" alt="GitHub Contribution Snake">
-
-</div>
-
----
-
-# 📚 LEARNING BY BUILDING
-
-```python
-while True:
-
-    learn()
-    experiment()
-    build()
-    deploy()
-    improve()
-```
-
-### My philosophy
-
-> **Every project is an experiment.
-> Every experiment is a lesson.
-> Every lesson makes the next project better.**
-
----
-
-# 🏆 AREAS I'M BUILDING IN
-
-```text
-🤖 Artificial Intelligence
-🧠 Machine Learning
-📊 Data Science
-✨ Generative AI
-🧩 AI Agents
-🔗 RAG Applications
-💬 NLP Applications
-🌐 Web Development
-🚀 AI-powered Applications
-```
-
----
-
-# 🤝 LET'S CONNECT
-
-<div align="center">
-
-<a href="https://www.linkedin.com/in/rohan-bhowmik-b014473a1/">
-<img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white">
-</a>
-
-<a href="https://github.com/rohanbhowm25308">
-<img src="https://img.shields.io/badge/GitHub-Follow-181717?style=for-the-badge&logo=github&logoColor=white">
-</a>
-
-</div>
 
 <br>
 
-<div align="center">
+<h1 align="center">Hi 👋, I'm Rohan Bhowmik</h1>
 
-### ⭐ If you find my projects useful, consider giving them a star!
+<h3 align="center">
+  🤖 AI/ML &nbsp;•&nbsp;
+  📊 Data Science &nbsp;•&nbsp;
+  ✨ Generative AI &nbsp;•&nbsp;
+  🧩 AI Agents &nbsp;•&nbsp;
+  🌐 Web Development
+</h3>
+
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=2200&pause=700&color=58A6FF&center=true&vCenter=true&width=750&lines=AI%2FML+Developer;Data+Science+Enthusiast;Generative+AI+Builder;AI+Agents+Explorer;Web+Development;Building+Intelligent+Applications;Learn+%E2%80%A2+Build+%E2%80%A2+Experiment+%E2%80%A2+Deploy" alt="Typing animation">
+</p>
+
+<p align="center">
+  <a href="https://github.com/rohanbhowm25308">
+    <img src="https://img.shields.io/badge/GitHub-rohanbhowm25308-181717?style=for-the-badge&logo=github">
+  </a>
+  <a href="https://www.linkedin.com/in/rohan-bhowmik-b014473a1/">
+    <img src="https://img.shields.io/badge/LinkedIn-Rohan%20Bhowmik-0A66C2?style=for-the-badge&logo=linkedin">
+  </a>
+</p>
+
+---
+
+## 🧠 About Me
+
+```text
+🎓 B.Tech CSE Student
+🤖 Focused on AI/ML & Data Science
+✨ Exploring Generative AI & LLM Applications
+🧩 Building AI Agents and intelligent workflows
+🌐 Developing AI-powered web applications
+🚀 Turning ideas into practical, deployable projects
+```
+
+I enjoy combining **Artificial Intelligence, Machine Learning, Data Science, Generative AI,
+AI Agents and Web Development** to build practical applications that solve real-world problems.
+
+My approach:
+
+> **Learn → Build → Experiment → Deploy → Improve**
+
+---
+
+## ⚡ Currently Building
+
+```python
+class RohanBhowmik:
+
+    focus = [
+        "Artificial Intelligence",
+        "Machine Learning",
+        "Data Science",
+        "Generative AI",
+        "AI Agents",
+        "Web Development"
+    ]
+
+    mindset = "Build. Experiment. Learn. Repeat."
+
+    goal = "Build intelligent applications that create real-world impact."
+```
+
+---
+
+# 🛠️ Tech Arsenal
+
+### 🤖 AI / Machine Learning
+
+<p>
+  <img src="https://skillicons.dev/icons?i=python,tensorflow" />
+</p>
+
+`Machine Learning` • `NLP` • `Scikit-learn` • `TensorFlow` • `Keras`
+
+---
+
+### 📊 Data Science
+
+<p>
+  <img src="https://skillicons.dev/icons?i=python,mysql" />
+</p>
+
+`Python` • `Pandas` • `NumPy` • `Matplotlib` • `Seaborn` • `SQL`
+
+---
+
+### ✨ Generative AI
+
+`LLMs` • `Generative AI` • `RAG` • `Prompt Engineering` • `Hugging Face`
+
+---
+
+### 🧩 AI Agents
+
+`AI Agents` • `Agentic AI` • `Intelligent Workflows` • `AI Orchestration` • `Decision Systems`
+
+---
+
+### 🌐 Web Development
+
+<p>
+  <img src="https://skillicons.dev/icons?i=html,css,js,bootstrap,flask" />
+</p>
+
+`HTML` • `CSS` • `JavaScript` • `Bootstrap` • `Flask` • `REST APIs` • `Streamlit`
+
+---
+
+### 🔧 Tools & Platforms
+
+<p>
+  <img src="https://skillicons.dev/icons?i=git,github,vscode" />
+</p>
+
+`Git` • `GitHub` • `VS Code` • `Kaggle` • `Render`
+
+---
+
+# 🚀 Featured Projects
+
+<table>
+<tr>
+
+<td width="50%" valign="top">
+
+<h3 align="center">🧩 Orchestrator AI</h3>
+
+<p align="center">
+  <img src="./assets/projects/orchestrator.png" width="90%" alt="Orchestrator AI">
+</p>
+
+<p align="center">
+  AI-powered orchestration and decision-making system designed to coordinate intelligent workflows.
+</p>
+
+<p align="center">
+  <code>Python</code>
+  <code>Flask</code>
+  <code>AI</code>
+</p>
+
+</td>
+
+<td width="50%" valign="top">
+
+<h3 align="center">🚀 Nova AI Career Engine</h3>
+
+<p align="center">
+  <img src="./assets/projects/nova.png" width="90%" alt="Nova AI Career Recommendation Engine">
+</p>
+
+<p align="center">
+  AI-powered career recommendation platform that helps users discover suitable career directions.
+</p>
+
+<p align="center">
+  <code>AI</code>
+  <code>Python</code>
+  <code>Flask</code>
+</p>
+
+<p align="center">
+  <a href="https://nova-ai-career-recommendation-engine.onrender.com">
+    <b>🌐 Live Demo</b>
+  </a>
+  &nbsp;•&nbsp;
+  <a href="https://github.com/rohanbhowm25308/Nova-AI-Career-Recommendation-Engine">
+    <b>💻 Code</b>
+  </a>
+</p>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td width="50%" valign="top">
+
+<h3 align="center">✨ ProjectDNA AI</h3>
+
+<p align="center">
+  <img src="./assets/projects/projectdna.png" width="90%" alt="ProjectDNA AI Recommender">
+</p>
+
+<p align="center">
+  Generative AI-powered project recommendation system using intelligent recommendations and RAG-style concepts.
+</p>
+
+<p align="center">
+  <code>GenAI</code>
+  <code>RAG</code>
+  <code>Python</code>
+</p>
+
+<p align="center">
+  <a href="https://projectdna-ai-recommender.onrender.com">
+    <b>🌐 Live Demo</b>
+  </a>
+  &nbsp;•&nbsp;
+  <a href="https://github.com/rohanbhowm25308/ProjectDNA-AI-Recommender">
+    <b>💻 Code</b>
+  </a>
+</p>
+
+</td>
+
+<td width="50%" valign="top">
+
+<h3 align="center">📊 Customer Segmentation</h3>
+
+<p align="center">
+  <img src="./assets/projects/segmentation.png" width="90%" alt="Customer Segmentation">
+</p>
+
+<p align="center">
+  Machine Learning project using K-Means clustering to identify meaningful customer segments.
+</p>
+
+<p align="center">
+  <code>Python</code>
+  <code>K-Means</code>
+  <code>Streamlit</code>
+</p>
+
+<p align="center">
+  <a href="https://customer-segmentation-1-ifyr.onrender.com">
+    <b>🌐 Live Demo</b>
+  </a>
+  &nbsp;•&nbsp;
+  <a href="https://github.com/rohanbhowm25308/Customer-Segmentation">
+    <b>💻 Code</b>
+  </a>
+</p>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td width="50%" valign="top">
+
+<h3 align="center">💬 Sentiment Analysis</h3>
+
+<p align="center">
+  <img src="./assets/projects/sentiment.png" width="90%" alt="Sentiment Analysis Dashboard">
+</p>
+
+<p align="center">
+  NLP-powered sentiment analysis dashboard using TF-IDF and Naive Bayes with a Flask API.
+</p>
+
+<p align="center">
+  <code>NLP</code>
+  <code>TF-IDF</code>
+  <code>Flask</code>
+</p>
+
+<p align="center">
+  <a href="https://sentiment-analysis-dashboard-yote.onrender.com">
+    <b>🌐 Live Demo</b>
+  </a>
+  &nbsp;•&nbsp;
+  <a href="https://github.com/rohanbhowm25308/Sentiment-Analysis-Dashboard">
+    <b>💻 Code</b>
+  </a>
+</p>
+
+</td>
+
+<td width="50%" valign="top">
+
+<h3 align="center">📚 NOVA AI Study Assistant</h3>
+
+<p align="center">
+  <img src="./assets/projects/study-assistant.png" width="90%" alt="NOVA AI Study Assistant">
+</p>
+
+<p align="center">
+  AI-powered study assistant designed to make learning more interactive and intelligent.
+</p>
+
+<p align="center">
+  <code>AI</code>
+  <code>GenAI</code>
+  <code>Flask</code>
+</p>
+
+<p align="center">
+  <a href="https://nova-ai-study-assistant.onrender.com">
+    <b>🌐 Live Demo</b>
+  </a>
+  &nbsp;•&nbsp;
+  <a href="https://github.com/rohanbhowm25308/NOVA-AI-Study-Assistant">
+    <b>💻 Code</b>
+  </a>
+</p>
+
+</td>
+
+</tr>
+</table>
+
+---
+
+# 🧠 What I Build
+
+<table>
+<tr>
+<td align="center" width="20%">
+
+### 🤖
+
+**AI/ML**
+
+Machine Learning
+NLP
+Predictive Systems
+
+</td>
+
+<td align="center" width="20%">
+
+### 📊
+
+**Data Science**
+
+Data Analysis
+Visualization
+Clustering
+
+</td>
+
+<td align="center" width="20%">
+
+### ✨
+
+**GenAI**
+
+LLMs
+RAG
+AI Applications
+
+</td>
+
+<td align="center" width="20%">
+
+### 🧩
+
+**AI Agents**
+
+Agents
+Automation
+Orchestration
+
+</td>
+
+<td align="center" width="20%">
+
+### 🌐
+
+**Web**
+
+Flask
+APIs
+Interactive Apps
+
+</td>
+</tr>
+</table>
+
+---
+
+# 📈 GitHub Activity
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=rohanbhowm25308&show_icons=true&theme=tokyonight&hide_border=true&rank_icon=github" height="180">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=rohanbhowm25308&layout=compact&theme=tokyonight&hide_border=true" height="180">
+</p>
+
+<p align="center">
+  <img src="https://streak-stats.demolab.com?user=rohanbhowm25308&theme=tokyonight&hide_border=true" width="70%">
+</p>
+
+---
+
+# 🗺️ My AI Journey
+
+```text
+Python
+  │
+  ├── Machine Learning
+  │      ├── Supervised Learning
+  │      ├── Unsupervised Learning
+  │      └── NLP
+  │
+  ├── Data Science
+  │      ├── Data Analysis
+  │      ├── Visualization
+  │      └── Statistical Thinking
+  │
+  ├── Generative AI
+  │      ├── LLMs
+  │      ├── RAG
+  │      └── AI Applications
+  │
+  ├── AI Agents
+  │      ├── Agentic AI
+  │      ├── Orchestration
+  │      └── Intelligent Workflows
+  │
+  └── Web Development
+         ├── Flask
+         ├── REST APIs
+         └── AI-powered Applications
+```
+
+---
+
+# 💡 My Development Philosophy
+
+<p align="center">
+
+**LEARN** → **BUILD** → **EXPERIMENT** → **DEPLOY** → **IMPROVE**
+
+</p>
+
+I believe the best way to learn technology is to turn concepts into working projects,
+experiment with new ideas, deploy them, and continuously improve them.
+
+---
+
+# 🤝 Connect With Me
+
+<p align="center">
+
+<a href="https://www.linkedin.com/in/rohan-bhowmik-b014473a1/">
+<img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin">
+</a>
+
+<a href="https://github.com/rohanbhowm25308">
+<img src="https://img.shields.io/badge/GitHub-Follow-181717?style=for-the-badge&logo=github">
+</a>
+
+</p>
+
+---
+
+<p align="center">
+
+### 🚀 Building Intelligent Things, One Project at a Time.
 
 **Learn • Build • Experiment • Deploy • Improve**
 
 <br>
 
-**Developed by Rohan Bhowmik**
+⭐ If you find my projects useful, consider giving them a star!
 
-</div>
+<br><br>
+
+<sub>Developed by <b>Rohan Bhowmik</b> • AI/ML • Data Science • Generative AI • AI Agents • Web Development</sub>
+
+</p>
