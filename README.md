@@ -194,12 +194,84 @@ An AI-powered orchestration and decision-making system designed to coordinate in
 <img src="https://img.shields.io/badge/Render-0a0a0a?style=for-the-badge&logo=render&logoColor=EF4444" alt="Render" />
 </p>
 
+<h2 align="center"> Development Focus</h2>
+
+<p align="center">
+<sub>Primary technologies and development areas</sub>
+</p>
+
+<table width="85%" align="center" border="0">
+
+<tr>
+<td width="25%"><b>HTML</b></td>
+<td width="60%">
+███████████████████
+</td>
+<td width="15%" align="right"><b>95%</b></td>
+</tr>
+
+<tr>
+<td><b>CSS</b></td>
+<td>
+███████████████████
+</td>
+<td align="right"><b>95%</b></td>
+</tr>
+
+<tr>
+<td><b>JavaScript</b></td>
+<td>
+██████████████████
+</td>
+<td align="right"><b>93%</b></td>
+</tr>
+
+<tr>
+<td><b>Python</b></td>
+<td>
+███████████████████
+</td>
+<td align="right"><b>95%</b></td>
+</tr>
+
+<tr>
+<td><b>Flask</b></td>
+<td>
+███████████████████
+</td>
+<td align="right"><b>95%</b></td>
+</tr>
+
+<tr>
+<td><b>Jupyter Notebook</b></td>
+<td>
+█████████████████
+</td>
+<td align="right"><b>90%</b></td>
+</tr>
+
+<tr>
+<td><b>Other</b></td>
+<td>
+████████████████
+</td>
+<td align="right"><b>87%</b></td>
+</tr>
+
+<tr>
+<td colspan="3" align="center">
+<sub>C / C++ / Other Technologies</sub>
+</td>
+</tr>
+
+</table>
+
 <h2 align="center"> GitHub Analytics & Activity</h2>
 
 <p align="center">
 <img src="https://github-readme-stats-fast.vercel.app/api?username=rohanbhowm25308&show_icons=true&bg_color=0a0a0a&title_color=ef4444&text_color=f3f4f6&icon_color=ef4444&border_color=ef4444&border_radius=8" width="100%" style="max-width: 440px;" alt="GitHub Stats" />
 &nbsp;&nbsp;
-<img src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=rohanbhowm25308&layout=compact&langs_count=8&size_weight=0.5&count_weight=0.5&bg_color=0a0a0a&title_color=ef4444&text_color=f3f4f6&border_color=ef4444&border_radius=8" width="100%" style="max-width: 350px;" alt="Top Languages" />
+<img src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=rohanbhowm25308&layout=compact&langs_count=8&size_weight=0.5&count_weight=0.5&bg_color=0a0a0a&title_color=ef4444&text_color=f3f4f6&border_color=ef4444&border_radius=8" width="100%" style="max-width: 350px;" alt="GitHub Top Languages" />
 </p>
 
 <p align="center">
