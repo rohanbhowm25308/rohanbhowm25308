@@ -17,7 +17,7 @@
 <img src="https://img.shields.io/badge/GitHub-Follow-111111?style=for-the-badge&logo=github&logoColor=EF4444&labelColor=0a0a0a" alt="GitHub" />
 </a>
 &nbsp;
-<a href="mailto:bhowmikrohan83@gmail.com@gmail.com">
+<a href="mailto:YOUR_EMAIL@gmail.com">
 <img src="https://img.shields.io/badge/Email-Contact-DC2626?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0a0a0a" alt="Email" />
 </a>
 </p>
@@ -200,7 +200,6 @@ An AI-powered orchestration and decision-making system designed to coordinate in
 <img src="https://github-readme-stats-fast.vercel.app/api?username=rohanbhowm25308&show_icons=true&bg_color=0a0a0a&title_color=ef4444&text_color=f3f4f6&icon_color=ef4444&border_color=ef4444&border_radius=8" width="100%" style="max-width: 440px;" alt="GitHub Stats" />
 &nbsp;&nbsp;
 <img src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=rohanbhowm25308&layout=compact&langs_count=8&size_weight=0.5&count_weight=0.5&bg_color=0a0a0a&title_color=ef4444&text_color=f3f4f6&border_color=ef4444&border_radius=8" width="100%" style="max-width: 350px;" alt="Top Languages" />
-  username=rohanbhowm25308&layout=compact&bg_color=0a0a0a&title_color=ef4444&text_color=f3f4f6&border_color=ef4444&border_radius=8" width="100%" style="max-width: 350px;" alt="Top Languages" />
 </p>
 
 <p align="center">
@@ -247,7 +246,7 @@ An AI-powered orchestration and decision-making system designed to coordinate in
 </td>
 
 <td align="center" width="220" style="padding: 16px;">
-<a href="mailto:bhowmikrohan83@gmail.com@gmail.com">
+<a href="mailto:YOUR_EMAIL@gmail.com">
 <img src="https://skillicons.dev/icons?i=gmail" width="60" height="60" alt="Email" />
 <br /><br />
 <img src="https://img.shields.io/badge/Email-Contact_Me-DC2626?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0a0a0a" alt="Email" />
@@ -264,5 +263,5 @@ An AI-powered orchestration and decision-making system designed to coordinate in
 </p>
 
 <p align="center">
-<sub>Developed by <b>Rohan Bhowmik</b> • AI/ML • Data Science • Generative AI • Web Development</sub>
+<sub>Developed by <b>Rohan Bhowmik</b> • AI/ML • Data Science • Generative AI • AI Agents • Web Development</sub>
 </p>
