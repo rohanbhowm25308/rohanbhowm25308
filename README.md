@@ -1,90 +1,139 @@
 <div align="center">
 
-# 👋 Hi, I'm Rohan Bhowmik
+# ⚡ ROHAN BHOWMIK
 
-### 🤖 AI/ML • Data Science • Generative AI • Web Development
+### 🤖 AI/ML DEVELOPER • DATA SCIENCE • GENERATIVE AI
+
+**Building intelligent systems that turn ideas into real-world applications.**
 
 <p>
   <a href="https://github.com/rohanbhowm25308">
-    <img src="https://img.shields.io/badge/GitHub-rohanbhowm25308-181717?style=for-the-badge&logo=github&logoColor=white" />
+    <img src="https://img.shields.io/badge/GitHub-rohanbhowm25308-181717?style=for-the-badge&logo=github&logoColor=white">
   </a>
   <a href="https://www.linkedin.com/in/rohan-bhowmik-b014473a1/">
-    <img src="https://img.shields.io/badge/LinkedIn-Rohan%20Bhowmik-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" />
+    <img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white">
   </a>
-</p>
-
-<p>
-  <img src="https://komarev.com/ghpvc/?username=rohanbhowm25308&label=Profile%20Views&color=0e75b6&style=flat" />
-  <img src="https://img.shields.io/github/followers/rohanbhowm25308?label=Followers&style=flat" />
 </p>
 
 </div>
 
 ---
 
-## 🧠 About Me
+# 🧠 THE AI BUILDER
 
-I'm **Rohan Bhowmik**, a Computer Science student passionate about building practical solutions with **Artificial Intelligence, Machine Learning, Data Science and Generative AI**.
+Hey! I'm **Rohan Bhowmik** — a Computer Science student focused on **Artificial Intelligence, Machine Learning, Data Science and Generative AI**.
 
-I enjoy turning ideas into working applications — from machine learning models and NLP systems to AI-powered recommendation engines and intelligent applications.
+I enjoy taking an idea from **concept → model → application → deployment**.
 
-* 🎓 B.Tech CSE Student
-* 🤖 Focused on **AI/ML & Data Science**
-* 🧠 Exploring **Generative AI, RAG & AI Agents**
-* 🐍 Building primarily with **Python**
-* 🌐 Interested in AI-powered web applications
-* 🚀 Learning by building real-world projects
-* 💡 Always experimenting with new AI ideas
+My work combines machine learning, data, intelligent systems and web technologies to create applications that are not only experimental, but actually usable.
 
-> **Build. Learn. Experiment. Improve. Repeat.**
+### ⚡ Core Identity
 
----
-
-## 🚀 What I'm Working On
-
-```text
-🤖 Artificial Intelligence
-🧠 Machine Learning
-📊 Data Science
-✨ Generative AI
-🔗 RAG & LLM Applications
-🧩 AI Agents & Agentic AI
-🌐 AI-powered Web Applications
-```
+* 🤖 **AI/ML Developer** — Building practical machine learning solutions
+* 📊 **Data Science Explorer** — Working with data, patterns and predictive models
+* 🧠 **GenAI Builder** — Exploring LLMs, RAG and AI-powered applications
+* 🧩 **AI Systems Explorer** — Learning AI agents and agentic workflows
+* 🌐 **Full-Stack AI Builder** — Connecting intelligent models with web applications
+* 🎓 **Computer Science Student** — Continuously learning through projects
 
 ---
 
-## 🛠️ Tech Stack
+# 🚀 CURRENTLY BUILDING
 
-### 👨‍💻 Languages
+| Focus              | What I'm Exploring                                  |
+| ------------------ | --------------------------------------------------- |
+| 🤖 AI / ML         | Machine Learning • Deep Learning • NLP              |
+| 🧠 Generative AI   | LLMs • Prompt Engineering • AI Applications         |
+| 🔗 RAG             | Retrieval-Augmented Generation • Knowledge Systems  |
+| 🧩 AI Agents       | Tool Use • Workflows • Agentic Systems              |
+| 📊 Data Science    | Data Analysis • Visualization • Predictive Modeling |
+| 🌐 AI Applications | Flask • APIs • Streamlit • Web Interfaces           |
+
+---
+
+# 🔥 FEATURED BUILDS
+
+### 🤖 ORCHESTRATOR AI
+
+> **An AI-powered orchestration and decision-making system designed to coordinate tasks and intelligent workflows.**
+
+**Built With:** Python • Flask • AI • APIs
+
+---
+
+### 🧠 NOVA AI CAREER RECOMMENDATION ENGINE
+
+> **An AI-powered career recommendation platform designed to analyze user information and generate personalized career insights.**
+
+**Built With:** Python • AI • Machine Learning • Web Technologies
+
+---
+
+### 🧬 PROJECTDNA AI RECOMMENDER
+
+> **An AI-powered project recommendation system that helps users discover suitable project ideas using modern Generative AI concepts.**
+
+**Built With:** Python • Generative AI • RAG Concepts • APIs
+
+---
+
+### 📊 CUSTOMER SEGMENTATION
+
+> **A machine learning application that discovers customer groups using K-Means clustering and interactive data visualization.**
+
+**Built With:** Python • Pandas • NumPy • Scikit-learn • Streamlit
+
+---
+
+### 💬 SENTIMENT ANALYSIS DASHBOARD
+
+> **An NLP-powered application that analyzes text sentiment using TF-IDF and Naive Bayes with an interactive web interface.**
+
+**Built With:** Python • NLP • Flask • TF-IDF • Naive Bayes
+
+---
+
+### 📚 NOVA AI STUDY ASSISTANT
+
+> **An AI-powered learning assistant designed to help students interact with educational content and learn more effectively.**
+
+**Built With:** Python • AI • Flask • Generative AI
+
+---
+
+# 🛠️ TECH ARSENAL
+
+### 🤖 Artificial Intelligence & Machine Learning
 
 <p>
-<img src="https://skillicons.dev/icons?i=python,c,cpp,js,html,css" />
+<img src="https://skillicons.dev/icons?i=python,tensorflow" />
 </p>
 
-### 🤖 AI / Machine Learning
+**Machine Learning • Deep Learning • NLP • Scikit-learn • TensorFlow • Keras**
 
-<p>
-<img src="https://skillicons.dev/icons?i=tensorflow,sklearn" />
-</p>
-
-**Machine Learning • NLP • Deep Learning • Scikit-learn • TensorFlow • Keras**
+---
 
 ### 📊 Data Science
 
 **Pandas • NumPy • Matplotlib • Seaborn • SQL**
 
+---
+
 ### ✨ Generative AI
 
-**LLMs • RAG • AI Agents • Hugging Face • Prompt Engineering • AI Applications**
+**LLMs • RAG • AI Agents • Hugging Face • Prompt Engineering**
+
+---
 
 ### 🌐 Development
 
 <p>
-<img src="https://skillicons.dev/icons?i=flask,bootstrap" />
+<img src="https://skillicons.dev/icons?i=flask,html,css,js,bootstrap" />
 </p>
 
 **Flask • REST APIs • Streamlit • HTML • CSS • JavaScript**
+
+---
 
 ### 🔧 Tools & Platforms
 
@@ -96,57 +145,93 @@ I enjoy turning ideas into working applications — from machine learning models
 
 ---
 
-# 🚀 Featured Projects
+# 🧩 ENGINEERING APPROACH
 
-### 🤖 Orchestrator AI
+```text
+             IDEA
+               │
+               ▼
+          PROBLEM STUDY
+               │
+               ▼
+          DATA / LOGIC
+               │
+               ▼
+       ┌───────────────┐
+       │   AI / ML     │
+       │     MODEL     │
+       └───────────────┘
+               │
+               ▼
+       APPLICATION LAYER
+               │
+               ▼
+            DEPLOY
+               │
+               ▼
+         REAL-WORLD USE
+```
 
-An AI-powered orchestration and decision-making system designed to process tasks, coordinate logic and generate intelligent outcomes.
+I don't want to just **train models**.
 
-**Tech:** Python • Flask • AI • APIs
-
----
-
-### 🧠 Nova AI Career Recommendation Engine
-
-An AI-powered career recommendation platform designed to analyze user information and provide personalized career insights and recommendations.
-
-**Tech:** Python • AI • Machine Learning • Web Development
-
----
-
-### 🧬 ProjectDNA AI Recommender
-
-An AI-powered recommendation system that helps users discover suitable project ideas using modern AI and Generative AI concepts.
-
-**Tech:** Python • Generative AI • RAG Concepts • APIs
-
----
-
-### 📊 Customer Segmentation
-
-A machine learning application that uses **K-Means clustering** to identify meaningful customer groups based on demographic and behavioral data.
-
-**Tech:** Python • Pandas • NumPy • Scikit-learn • Streamlit
-
----
-
-### 💬 Sentiment Analysis Dashboard
-
-An NLP-powered application that analyzes text sentiment using **TF-IDF and Machine Learning** and presents the results through an interactive dashboard.
-
-**Tech:** Python • Flask • NLP • TF-IDF • Naive Bayes
+I want to understand how models can become **useful products and intelligent systems**.
 
 ---
 
-### 📚 NOVA AI Study Assistant
+# 🎯 AI / ML ROADMAP
 
-An AI-powered study assistant designed to help students interact with educational content and get intelligent assistance while learning.
+```text
+                    ARTIFICIAL INTELLIGENCE
+                             │
+             ┌───────────────┼───────────────┐
+             │               │               │
+       MACHINE LEARNING   DATA SCIENCE    GENERATIVE AI
+             │               │               │
+       Deep Learning     Analytics          LLMs
+             │               │               │
+            NLP          Visualization       RAG
+             │               │               │
+             └───────────────┼───────────────┘
+                             │
+                        AI AGENTS
+                             │
+                       AGENTIC AI
+                             │
+                   INTELLIGENT SYSTEMS
+```
 
-**Tech:** Python • AI • Flask • Generative AI
+### 🔭 Exploring Next
+
+* Advanced Machine Learning
+* Deep Learning
+* Natural Language Processing
+* Large Language Models
+* Retrieval-Augmented Generation
+* AI Agents
+* Agentic AI
+* Multi-step AI workflows
+* Production AI systems
 
 ---
 
-## 📈 My GitHub Stats
+# 📚 LEARNING BY BUILDING
+
+```python
+while True:
+    learn()
+    experiment()
+    build()
+    deploy()
+    improve()
+```
+
+My approach is simple:
+
+> **Learn something → Build something → Break something → Fix it → Build better.**
+
+---
+
+# 📊 GITHUB ACTIVITY
 
 <div align="center">
 
@@ -158,7 +243,7 @@ An AI-powered study assistant designed to help students interact with educationa
 
 ---
 
-## 🔥 GitHub Streak
+# 🔥 CONTRIBUTION STREAK
 
 <div align="center">
 
@@ -168,102 +253,41 @@ An AI-powered study assistant designed to help students interact with educationa
 
 ---
 
-## 🐍 Contribution Activity
+# 🐍 CONTRIBUTION JOURNEY
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/rohanbhowm25308/rohanbhowm25308/output/github-contribution-grid-snake.svg" alt="GitHub Contribution Snake" />
+<img src="https://raw.githubusercontent.com/rohanbhowm25308/rohanbhowm25308/output/github-contribution-grid-snake.svg" alt="GitHub Contribution Snake">
 
 </div>
 
 ---
 
-## 🎯 My Learning Roadmap
+# 🏆 WHAT I BUILD
 
 ```text
-                         AI / ML
-                            │
-          ┌─────────────────┼─────────────────┐
-          │                 │                 │
-     Machine Learning   Data Science     Generative AI
-          │                 │                 │
-     Deep Learning       Analytics          LLMs
-          │                 │                 │
-          └─────────────────┼─────────────────┘
-                            │
-                         RAG / NLP
-                            │
-                       AI Agents
-                            │
-                    Agentic AI Systems
+🤖 AI Applications
+🧠 Machine Learning Systems
+📊 Data Science Projects
+💬 NLP Applications
+✨ Generative AI Solutions
+🔗 RAG Applications
+🧩 AI Agent Experiments
+🌐 AI-powered Web Applications
 ```
 
-### Currently Exploring
-
-* 🔹 Advanced Machine Learning
-* 🔹 Deep Learning
-* 🔹 Natural Language Processing
-* 🔹 Large Language Models
-* 🔹 Retrieval-Augmented Generation
-* 🔹 AI Agents
-* 🔹 Agentic AI
-* 🔹 Production-ready AI applications
-
 ---
 
-## 🏆 Certifications & Learning
-
-My learning journey includes hands-on programs and certifications across:
-
-* 🤖 Artificial Intelligence
-* 🧠 Machine Learning
-* ✨ Generative AI
-* 📊 Data Science
-* ☁️ Cloud Computing
-* 🧩 Agentic AI
-* 🌐 Web Development
-
-> I believe certifications are valuable — but **building and deploying projects is where the real learning happens.**
-
----
-
-## 💻 My Development Philosophy
-
-```python
-while True:
-    learn()
-    build()
-    experiment()
-    fail()
-    improve()
-```
-
-I believe in learning through **consistent practice, experimentation and real-world projects**.
-
-Every project is an opportunity to understand something new.
-
----
-
-## 📊 GitHub Activity
-
-<div align="center">
-
-[![Rohan's Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=rohanbhowm25308\&theme=tokyo-night\&hide_border=true)](https://github.com/rohanbhowm25308)
-
-</div>
-
----
-
-## 🤝 Let's Connect
+# 🤝 CONNECT WITH ME
 
 <div align="center">
 
 <a href="https://www.linkedin.com/in/rohan-bhowmik-b014473a1/">
-<img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
+<img src="https://img.shields.io/badge/LinkedIn-Rohan%20Bhowmik-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white">
 </a>
 
 <a href="https://github.com/rohanbhowm25308">
-<img src="https://img.shields.io/badge/GitHub-Follow-181717?style=for-the-badge&logo=github&logoColor=white"/>
+<img src="https://img.shields.io/badge/GitHub-Rohan%20Bhowmik-181717?style=for-the-badge&logo=github&logoColor=white">
 </a>
 
 </div>
@@ -272,9 +296,9 @@ Every project is an opportunity to understand something new.
 
 <div align="center">
 
-### ⭐ If you find my projects useful, consider giving them a star!
+### ⭐ Building. Learning. Experimenting. Evolving.
 
-**Building AI. Learning continuously. Creating the future. 🚀**
+**If you find something useful here, consider giving the repository a ⭐**
 
 <br>
 
