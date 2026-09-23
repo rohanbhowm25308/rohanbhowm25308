@@ -199,7 +199,7 @@ An AI-powered orchestration and decision-making system designed to coordinate in
 <p align="center">
 <img src="https://github-readme-stats-fast.vercel.app/api?username=rohanbhowm25308&show_icons=true&bg_color=0a0a0a&title_color=ef4444&text_color=f3f4f6&icon_color=ef4444&border_color=ef4444&border_radius=8" width="100%" style="max-width: 440px;" alt="GitHub Stats" />
 &nbsp;&nbsp;
-<img src="./Screenshot%202026-09-23%20132830.png" width="100%" style="max-width: 620px;" alt="Most Used Languages" />
+<img src="most-used-languages.svg" width="100%" style="max-width: 620px;" alt="Most Used Languages" />
 </p>
 
 <p align="center">
