@@ -246,7 +246,7 @@ An AI-powered orchestration and decision-making system designed to coordinate in
 </td>
 
 <td align="center" width="220" style="padding: 16px;">
-<a href="mailto:YOUR_EMAIL@gmail.com">
+<a href="mailto:bhowmikrohan83@gmail.com@gmail.com">
 <img src="https://skillicons.dev/icons?i=gmail" width="60" height="60" alt="Email" />
 <br /><br />
 <img src="https://img.shields.io/badge/Email-Contact_Me-DC2626?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0a0a0a" alt="Email" />
@@ -263,5 +263,5 @@ An AI-powered orchestration and decision-making system designed to coordinate in
 </p>
 
 <p align="center">
-<sub>Developed by <b>Rohan Bhowmik</b> • AI/ML • Data Science • Generative AI • AI Agents • Web Development</sub>
+<sub>Developed by <b>Rohan Bhowmik</b> • AI/ML • Data Science • Generative AI • Web Development</sub>
 </p>
