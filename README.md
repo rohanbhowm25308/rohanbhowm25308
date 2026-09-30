@@ -1,5 +1,5 @@
 <p align="center">
-<img src="rohan1.png" width="100%" alt="Rohan Bhowmik Header" />
+<img src="rohan3.jpeg" width="100%" alt="Rohan Bhowmik Header" />
 </p>
 
 <p align="center">
@@ -207,7 +207,7 @@ An AI-powered orchestration and decision-making system designed to coordinate in
 </p>
 
 <p align="center">
-<img src="assets/quote.svg" width="100%" style="max-width: 720px;" alt="Code and Art Quote" />
+<img src="rohan2.jpeg" width="100%" style="max-width: 720px;" alt="Code and Art Quote" />
 </p>
 
 <h2 align="center"> Contribution Journey</h2>
@@ -259,7 +259,7 @@ An AI-powered orchestration and decision-making system designed to coordinate in
 </table>
 
 <p align="center">
-<img src="assets/footer.svg" width="100%" alt="Footer" />
+<img src="rohan1.jpeg" width="100%" alt="Footer" />
 </p>
 
 <p align="center">
