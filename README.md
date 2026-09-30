@@ -1,5 +1,5 @@
 <p align="center">
-<img src="rohan3.1.jpeg" width="100%" alt="Rohan Bhowmik Header" />
+<img src="rohan3.1.png" width="100%" alt="Rohan Bhowmik Header" />
 </p>
 
 <p align="center">
