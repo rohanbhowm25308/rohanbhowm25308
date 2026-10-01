@@ -42,7 +42,7 @@
 
 <p align="center">
 Hey! I'm <b>Rohan Bhowmik</b>, a passionate <b>B.Tech Computer Science Engineering student & developer</b> based in India.<br />
-I focus on <b>Artificial Intelligence, Machine Learning, Data Science, Generative AI and AI Agents</b>, while also building AI-powered web applications and practical software projects.
+I focus on <b>Artificial Intelligence, Machine Learning, Data Science, Generative AI, AI Agents and Web Devlopment</b>, while also building AI-powered web applications and practical software projects.
 </p>
 
 <p align="center">
