@@ -17,6 +17,10 @@
 <img src="https://img.shields.io/badge/GitHub-Follow-111111?style=for-the-badge&logo=github&logoColor=EF4444&labelColor=0a0a0a" alt="GitHub" />
 </a>
 &nbsp;
+<a href="https://www.instagram.com/YOUR_INSTAGRAM_ID/" target="_blank">
+  <img src="https://img.shields.io/badge/Instagram-Follow-E4405F?style=for-the-badge&logo=instagram&logoColor=white&labelColor=0a0a0a" alt="Instagram" />
+</a>
+&nbsp;  
 <a href="mailto:bhowmikrohan83@gmail.com">
 <img src="https://img.shields.io/badge/Email-Contact-DC2626?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0a0a0a" alt="Email" />
 </a>
