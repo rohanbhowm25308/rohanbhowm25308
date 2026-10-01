@@ -17,7 +17,7 @@
 <img src="https://img.shields.io/badge/GitHub-Follow-111111?style=for-the-badge&logo=github&logoColor=EF4444&labelColor=0a0a0a" alt="GitHub" />
 </a>
 &nbsp;
-<a href="https://www.instagram.com/YOUR_INSTAGRAM_ID/" target="_blank">
+<a href="https://www.instagram.com/rohan_._.bhowmik.84/" target="_blank">
   <img src="https://img.shields.io/badge/Instagram-Follow-E4405F?style=for-the-badge&logo=instagram&logoColor=white&labelColor=0a0a0a" alt="Instagram" />
 </a>
 &nbsp;  
@@ -248,6 +248,17 @@ An AI-powered orchestration and decision-making system designed to coordinate in
 <br />
 <sub><b>Projects & Code</b></sub>
 </td>
+
+<td align="center" width="220" style="padding: 16px;">
+<a href="https://www.instagram.com/YOUR_INSTAGRAM_ID/" target="_blank">
+<img src="https://skillicons.dev/icons?i=instagram" width="60" height="60" alt="Instagram" />
+<br /><br />
+<img src="https://img.shields.io/badge/Instagram-Follow-E4405F?style=for-the-badge&logo=instagram&logoColor=white&labelColor=0a0a0a" alt="Instagram" />
+</a>
+<br />
+<sub><b>Instagram</b></sub>
+</td>
+</tr>
 
 <td align="center" width="220" style="padding: 16px;">
 <a href="mailto:bhowmikrohan83@gmail.com">
