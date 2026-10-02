@@ -1,0 +1,63 @@
+<div align="center">
+
+<!-- 🎬 HERO — video intro + name -->
+<img src="./hero.svg?v={{V}}" alt="Hi, I'm {{NAME}} — {{ROLE}}" width="100%"/>
+
+<br/><br/>
+
+<!-- 🧠 LEFT: what I build   •   🎯 RIGHT: focus areas -->
+<img src="./about-life.svg?v={{V}}" alt="What I build and my focus areas" width="100%"/>
+
+<br/><br/>
+
+<!-- ⚛️ TECH STACK -->
+<img src="./stack.svg?v={{V}}" alt="Tech stack" width="100%"/>
+
+<br/><br/>
+
+<!-- 🪪 DEVELOPER ID + DASHBOARD -->
+<img src="./id-dashboard.svg?v={{V}}" alt="Developer ID and dashboard" width="100%"/>
+
+<br/><br/>
+
+</div>
+
+## 🚀 Featured project
+
+| Project | What it is | Stack |
+|:---|:---|:---|
+| [**Orchestrator AI**](https://github.com/{{USER}}) | An AI-powered orchestration and decision-making system that coordinates intelligent workflows and turns ideas into practical AI applications. | `Python` `GenAI` `AI Agents` |
+
+<!-- ➕ Add more rows here as you publish projects:
+| [**My Next Project**](https://github.com/{{USER}}/repo-name) | One-line description | `Python` `TensorFlow` |
+-->
+
+<div align="center">
+
+<br/>
+
+## 🌃 My contribution city
+
+*Every commit builds another tower — rebuilt automatically every day.*
+
+<img src="./profile-3d-contrib/profile-night-view.svg" alt="3D contribution city" width="100%"/>
+
+<br/><br/>
+
+<!-- 💌 LET'S CONNECT -->
+<img src="./connect.svg?v={{V}}" alt="Let's connect" width="100%"/>
+
+<a href="https://github.com/{{USER}}"><img src="https://img.shields.io/badge/GitHub-ef4444?style=for-the-badge&logo=github&logoColor=0d0e16" alt="GitHub"/></a>
+<a href="https://www.linkedin.com/in/{{LI}}/"><img src="https://img.shields.io/badge/LinkedIn-fb7185?style=for-the-badge&logo=linkedin&logoColor=0d0e16" alt="LinkedIn"/></a>
+<a href="mailto:{{EMAIL}}"><img src="https://img.shields.io/badge/Email-f59e0b?style=for-the-badge&logo=gmail&logoColor=0d0e16" alt="Email"/></a>
+<a href="https://www.instagram.com/{{IG}}/"><img src="https://img.shields.io/badge/Instagram-34d399?style=for-the-badge&logo=instagram&logoColor=0d0e16" alt="Instagram"/></a>
+
+<br/><br/>
+
+<img src="https://komarev.com/ghpvc/?username={{USER}}&color=ef4444&style=for-the-badge&label=PROFILE+VIEWS" alt="Profile views"/>
+
+<br/>
+
+**Learn, build, experiment, deploy — and continuously improve.** ❤️‍🔥
+
+</div>

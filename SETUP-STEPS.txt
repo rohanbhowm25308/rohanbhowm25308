@@ -1,0 +1,21 @@
+SETUP — 5 minutes
+=================
+1. Open your repo  github.com/rohanbhowm25308/rohanbhowm25308  -> "Add file" -> "Upload files".
+2. Drag in EVERYTHING from this folder (all .svg files, README.md, build.py, icons.json,
+   templates/, assets/, and the .github/ folder), then "Commit changes".
+   (If the web uploader skips the hidden .github folder, create the two workflow files by hand:
+    Add file -> Create new file -> name it  .github/workflows/profile-3d.yml  and paste the contents; same for refresh-dashboard.yml)
+3. Repo -> Settings -> Actions -> General -> Workflow permissions -> "Read and write permissions" -> Save.
+4. Repo -> Actions tab -> enable workflows -> run  "3D contribution city"  once, then  "Refresh live dashboard".
+   (~1 minute each. After that both refresh themselves every day.)
+5. Visit github.com/rohanbhowm25308 — your animated profile is live.
+
+ADD YOUR OWN FACE / VIDEO (optional, makes it yours)
+====================================================
+Put files in the assets/ folder, then run   python3 build.py   (needs: pip install pillow, and ffmpeg for video):
+   hello.mp4     2-second clip of you waving against a plain dark wall
+   portrait.jpg  head-and-shoulders photo for the ID badge
+   character.png transparent PNG of an AI-made "pointing" character (prompt B in the guide)
+Commit the regenerated .svg files.  No Python?  Upload the files to a Claude chat and ask it to run build.py for you.
+
+IF YOU EDIT AN SVG AND NOTHING CHANGES: GitHub caches images.  build.py already bumps ?v=DATE in README.md for you.
