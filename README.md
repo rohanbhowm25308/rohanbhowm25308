@@ -45,7 +45,7 @@
 <br/><br/>
 
 <!-- 💌 LET'S CONNECT -->
-<img src="./connect.svg?v=20261002" alt="Let's connect" width="100%"/>
+<img src="./connect (1).svg?v=20261002" alt="Let's connect" width="100%"/>
 
 <a href="https://github.com/rohanbhowm25308"><img src="https://img.shields.io/badge/GitHub-ef4444?style=for-the-badge&logo=github&logoColor=0d0e16" alt="GitHub"/></a>
 <a href="https://www.linkedin.com/in/rohan-bhowmik-b014473a1/"><img src="https://img.shields.io/badge/LinkedIn-fb7185?style=for-the-badge&logo=linkedin&logoColor=0d0e16" alt="LinkedIn"/></a>
