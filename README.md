@@ -65,7 +65,7 @@
 <a href="mailto:bhowmikrohan83@gmail.com"><img src="https://img.shields.io/badge/Email-f59e0b?style=for-the-badge&logo=gmail&logoColor=0d0e16" alt="Email"/></a>
 <a href="https://www.instagram.com/rohan_._.bhowmik.84/"><img src="https://img.shields.io/badge/Instagram-34d399?style=for-the-badge&logo=instagram&logoColor=0d0e16" alt="Instagram"/></a>
 
-<br/><br/>
+
 
 <img src="https://komarev.com/ghpvc/?username=rohanbhowm25308&color=ef4444&style=flat-square&label=PROFILE+VIEWS" alt="Profile views"/>
 
