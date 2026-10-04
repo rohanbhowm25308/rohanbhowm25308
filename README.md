@@ -67,6 +67,7 @@
 
 <br/>
 
-<img src="https://komarev.com/ghpvc/?username=rohanbhowm25308&color=ef4444&style=flat-square&label=PROFILE+VIEWS" alt="Profile views"/>
+<img src="./views.svg?v=20261004" alt="Profile views" width="46%"/>
+<img src="https://komarev.com/ghpvc/?username=rohanbhowm25308&label=views" alt="" width="1" height="1"/>
 
 </div>
