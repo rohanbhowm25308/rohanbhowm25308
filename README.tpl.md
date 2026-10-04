@@ -36,11 +36,19 @@
 
 <br/>
 
+## 📈 Activity & contribution graph
+
+*Real data from my GitHub — refreshed automatically every day.*
+
+<img src="./activity.svg?v={{V}}" alt="Activity and contribution graph" width="100%"/>
+
+<br/>
+
 ## 🌃 My contribution city
 
 *Every commit builds another tower — rebuilt automatically every day.*
 
-<img src="./profile-3d-contrib/profile-night-view.svg" alt="3D contribution city" width="100%"/>
+<img src="./city.svg?v={{V}}" alt="Animated contribution city" width="100%"/>
 
 <br/><br/>
 

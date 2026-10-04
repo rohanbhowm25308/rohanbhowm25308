@@ -1,0 +1,5 @@
+{
+  "seed": true,
+  "totals": {"commit": 357, "issue": 0, "pr": 0, "review": 0, "repo": 58, "total": 383, "stars": 1, "forks": 0},
+  "languages": [["Python", "#3572A5", 165], ["JavaScript", "#f1e05a", 80], ["Jupyter Notebook", "#DA5B0B", 72], ["HTML", "#e34c26", 8], ["CSS", "#563d7c", 7]]
+}

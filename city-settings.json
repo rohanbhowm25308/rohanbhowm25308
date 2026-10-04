@@ -1,0 +1,17 @@
+{
+  "type": "normal",
+  "fileName": "profile-red-city.svg",
+  "backgroundColor": "#0a0407",
+  "foregroundColor": "#ffe3dc",
+  "strongColor": "#ff4d5a",
+  "weakColor": "#b08a90",
+  "radarColor": "#ef4444",
+  "growingAnimation": true,
+  "contribColors": [
+    "#2b0b14",
+    "#8a1426",
+    "#d11a2f",
+    "#ff4d5a",
+    "#ffb347"
+  ]
+}

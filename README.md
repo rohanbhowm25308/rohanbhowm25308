@@ -1,22 +1,22 @@
 <div align="center">
 
 <!-- 🎬 HERO — video intro + name -->
-<img src="./hero 1.svg?v=20261002" alt="Hi, I'm Rohan Bhowmik — AI / ML Developer" width="100%"/>
+<img src="./hero.svg?v=20261004" alt="Hi, I'm Rohan Bhowmik — AI / ML Developer" width="100%"/>
 
 <br/><br/>
 
 <!-- 🧠 LEFT: what I build   •   🎯 RIGHT: focus areas -->
-<img src="./about-life.svg?v=20261002" alt="What I build and my focus areas" width="100%"/>
+<img src="./about-life.svg?v=20261004" alt="What I build and my focus areas" width="100%"/>
 
 <br/><br/>
 
 <!-- ⚛️ TECH STACK -->
-<img src="./stack.svg?v=20261002" alt="Tech stack" width="100%"/>
+<img src="./stack.svg?v=20261004" alt="Tech stack" width="100%"/>
 
 <br/><br/>
 
 <!-- 🪪 DEVELOPER ID + DASHBOARD -->
-<img src="./id-dashboard.svg?v=20261002" alt="Developer ID and dashboard" width="100%"/>
+<img src="./id-dashboard.svg?v=20261004" alt="Developer ID and dashboard" width="100%"/>
 
 <br/><br/>
 
@@ -36,16 +36,24 @@
 
 <br/>
 
+## 📈 Activity & contribution graph
+
+*Real data from my GitHub — refreshed automatically every day.*
+
+<img src="./activity.svg?v=20261004" alt="Activity and contribution graph" width="100%"/>
+
+<br/>
+
 ## 🌃 My contribution city
 
 *Every commit builds another tower — rebuilt automatically every day.*
 
-<img src="./profile-3d-contrib/profile-night-view.svg" alt="3D contribution city" width="100%"/>
+<img src="./city.svg?v=20261004" alt="Animated contribution city" width="100%"/>
 
 <br/><br/>
 
 <!-- 💌 LET'S CONNECT -->
-<img src="./connect (1).svg?v=20261002" alt="Let's connect" width="100%"/>
+<img src="./connect.svg?v=20261004" alt="Let's connect" width="100%"/>
 
 <a href="https://github.com/rohanbhowm25308"><img src="https://img.shields.io/badge/GitHub-ef4444?style=for-the-badge&logo=github&logoColor=0d0e16" alt="GitHub"/></a>
 <a href="https://www.linkedin.com/in/rohan-bhowmik-b014473a1/"><img src="https://img.shields.io/badge/LinkedIn-fb7185?style=for-the-badge&logo=linkedin&logoColor=0d0e16" alt="LinkedIn"/></a>
