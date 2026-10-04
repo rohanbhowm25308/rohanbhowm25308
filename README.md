@@ -55,14 +55,12 @@
 <!-- 💌 LET'S CONNECT -->
 <img src="./connect.svg?v=20261004" alt="Let's connect" width="100%"/>
 
-<br/>
+<a href="https://github.com/rohanbhowm25308"><img src="https://img.shields.io/badge/GitHub-ef4444?style=for-the-badge&logo=github&logoColor=0d0e16" alt="GitHub"/></a>
+<a href="https://www.linkedin.com/in/rohan-bhowmik-b014473a1/"><img src="https://img.shields.io/badge/LinkedIn-fb7185?style=for-the-badge&logo=linkedin&logoColor=0d0e16" alt="LinkedIn"/></a>
+<a href="mailto:bhowmikrohan83@gmail.com"><img src="https://img.shields.io/badge/Email-f59e0b?style=for-the-badge&logo=gmail&logoColor=0d0e16" alt="Email"/></a>
+<a href="https://www.instagram.com/rohan_._.bhowmik.84/"><img src="https://img.shields.io/badge/Instagram-34d399?style=for-the-badge&logo=instagram&logoColor=0d0e16" alt="Instagram"/></a>
 
-<a href="https://github.com/rohanbhowm25308"><img src="./btn-github.svg?v=20261004" alt="GitHub" width="48%"/></a>
-<a href="https://www.linkedin.com/in/rohan-bhowmik-b014473a1/"><img src="./btn-linkedin.svg?v=20261004" alt="LinkedIn" width="48%"/></a>
-<a href="mailto:bhowmikrohan83@gmail.com"><img src="./btn-email.svg?v=20261004" alt="Email" width="48%"/></a>
-<a href="https://www.instagram.com/rohan_._.bhowmik.84/"><img src="./btn-instagram.svg?v=20261004" alt="Instagram" width="48%"/></a>
-
-<br/>
+<br/><br/>
 
 <img src="./footer.svg?v=20261004" alt="Thanks for stopping by — see you in the next commit" width="100%"/>
 
