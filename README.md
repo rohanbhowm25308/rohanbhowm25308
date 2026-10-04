@@ -26,7 +26,7 @@
 
 | Project | What it is | Stack |
 |:---|:---|:---|
-| [**Orchestrator AI**](https://github.com/rohanbhowm25308) | An AI-powered orchestration and decision-making system that coordinates intelligent workflows and turns ideas into practical AI applications. | `Python` `GenAI` `AI Agents` |
+| [**NEXORA Intelligence**](https://github.com/rohanbhowm25308) | NEXORA Intelligence — An AI-powered Business Intelligence platform that transforms raw sales data into actionable insights through Data Science, Machine Learning, predictive analytics, customer intelligence, and interactive web dashboards—turning data into smarter business decisions. | `Python` `GenAI` `AI Agents` |
 
 <!-- ➕ Add more rows here as you publish projects:
 | [**My Next Project**](https://github.com/rohanbhowm25308/repo-name) | One-line description | `Python` `TensorFlow` |
