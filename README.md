@@ -48,7 +48,7 @@
 
 *Every commit builds another tower — rebuilt automatically every day.*
 
-<img src="./city.svg?v={{V}}" alt="Animated contribution city" width="100%"/>
+<img src="./city (1).svg?v={{V}}" alt="Animated contribution city" width="100%"/>
 
 <br/><br/>
 
