@@ -24,14 +24,26 @@
 
 ## 🚀 Featured project
 
-| Project | What it is | Stack |
-|:---|:---|:---|
-| [**NEXORA Intelligence**](https://github.com/rohanbhowm25308) | NEXORA Intelligence — An AI-powered Business Intelligence platform that transforms raw sales data into actionable insights through Data Science, Machine Learning, predictive analytics, customer intelligence, and interactive web dashboards—turning data into smarter business decisions. | `Python` `GenAI` `AI Agents` |
+<a href="https://github.com/rohanbhowm25308/nexora-ntelligence"><img src="./project-1.svg?v=20261007" alt="Featured project: NEXORA Intelligence" width="100%"/></a>
 
-<!-- ➕ Add more rows here as you publish projects:
-| [**My Next Project**](https://github.com/rohanbhowm25308/repo-name) | One-line description | `Python` `TensorFlow` |
--->
+<a href="https://nexora-ntelligence.onrender.com">🚀 <b>Live demo</b></a> &nbsp;·&nbsp; <a href="https://github.com/rohanbhowm25308/nexora-ntelligence">💻 <b>Source code</b></a>
 
+<br/>
+
+<a href="https://github.com/rohanbhowm25308/GrowthPilot-AI"><img src="./project-2.svg?v=20261007" alt="Featured project: GrowthPilot AI" width="100%"/></a>
+
+<a href="https://growthpilot-ai-oink.onrender.com/">🚀 <b>Live demo</b></a> &nbsp;·&nbsp; <a href="https://github.com/rohanbhowm25308/GrowthPilot-AI">💻 <b>Source code</b></a>
+
+<br/>
+
+<a href="https://github.com/rohanbhowm25308/BeyondTrip-AI"><img src="./project-3.svg?v=20261007" alt="Featured project: BeyondTrip AI" width="100%"/></a>
+
+<a href="https://beyondtrip-ai.onrender.com">🚀 <b>Live demo</b></a> &nbsp;·&nbsp; <a href="https://github.com/rohanbhowm25308/BeyondTrip-AI">💻 <b>Source code</b></a>
+
+<br/>
+
+
+</div>
 <div align="center">
 
 <br/>
