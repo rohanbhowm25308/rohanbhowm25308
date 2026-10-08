@@ -34,6 +34,32 @@ CFG = dict(
     connect_sub="Open to AI, data & web projects and learning opportunities.",
     # shown if live stats can't be fetched
     fallback_stats=dict(repos=0, stars=0, forks=0, followers=0),
+    # featured projects (shown as three cards). repo = where the card links; demo = live demo link.
+    projects=[
+        dict(name="NEXORA Intelligence", badge="FLAGSHIP", tag="Business Intelligence & Predictive Analytics",
+             desc=("An end-to-end Business Intelligence and Predictive Analytics platform that turns raw sales data into decisions - data cleaning, "
+                   "SQL analytics, RFM segmentation, ML forecasting, customer risk prediction, anomaly detection and automated executive reports."),
+             features=["Data quality engine", "RFM segmentation", "ML revenue forecast", "Customer risk prediction", "Anomaly detection"],
+             stack=[("Python", "python"), ("Flask", "flask"), ("scikit-learn", "scikitlearn"), ("Groq", "g:spark")],
+             repo="https://github.com/rohanbhowm25308/nexora-ntelligence", demo="https://nexora-ntelligence.onrender.com",
+             mock="nexora", url_label="nexora-ntelligence.onrender.com", flow=["Sales data", "Clean & model", "Predict", "Insights", "Dashboards"]),
+        dict(name="GrowthPilot AI", badge="PAYTM AI HACKATHON", tag="AI business partner for Paytm merchants",
+             desc=("Upload transaction data and a coordinated team of 8 AI agents diagnoses what is happening, forecasts revenue, designs campaigns with "
+                   "ROI estimates and sends growth actions to your approval. Built for the Paytm AI Hackathon, Track 1: Merchant Growth AI."),
+             features=["8-agent AI network", "Customer DNA", "Growth opportunity radar", "What-if & ROI simulator", "Approval-based action center"],
+             stack=[("Python", "python"), ("Flask", "flask"), ("Pandas", "pandas"), ("Groq", "g:spark")],
+             repo="https://github.com/rohanbhowm25308/GrowthPilot-AI", demo="https://growthpilot-ai-oink.onrender.com/",
+             mock="growth", url_label="growthpilot-ai-oink.onrender.com", flow=["Upload data", "8 AI agents", "Strategy + ROI", "You approve", "Measure"]),
+        dict(name="BeyondTrip AI", badge="HACKATHON BUILD", tag="AI-powered group travel optimizer",
+             desc=("An AI group travel optimizer that compares travel modes, calculates the true cost of a trip, balances every traveler's preferences, "
+                   "discovers hidden gems and explains its recommendation with a trip-aware AI assistant."),
+             features=["Multi-modal routes", "True trip cost", "Group consensus AI", "Hidden gems", "AI trip chatbot"],
+             stack=[("Python", "python"), ("Flask", "flask"), ("JavaScript", "javascript"), ("Groq", "g:spark")],
+             repo="https://github.com/rohanbhowm25308/BeyondTrip-AI", demo="https://beyondtrip-ai.onrender.com",
+             mock="trip", url_label="beyondtrip-ai.onrender.com", flow=["Trip details", "Compare modes", "True cost", "Group AI score", "Smart plan"]),
+    ],
+    # self-rated skill levels shown in the city's "Skill level" panel (edit the numbers any time)
+    skills=[("Python", 95, "#4b8bbe"), ("HTML", 95, "#e34c26"), ("CSS", 95, "#a78bfa"), ("JavaScript", 92, "#f1e05a"), ("Jupyter Notebook", 95, "#f9a03c")],
 )
 # brand ramp (red / black, matching your banner).  The original used cyan / violet / pink.
 PALETTE = {"#22d3ee": "#ef4444", "#a78bfa": "#fb7185", "#f472b6": "#f59e0b"}
@@ -1194,28 +1220,25 @@ def build_city():
     for (px_, py_) in poly: rad += f'<circle cx="{px_:.1f}" cy="{py_:.1f}" r="3.6" fill="#fff"><animate attributeName="r" values="3;5;3" dur="2s" repeatCount="indefinite"/></circle>'
     rad += "</g></g>"
     o.append(rad)
-    # donut
-    pcx, pcy, rm, sw = 150, 696, 67, 34; circ = 2 * m.pi * rm
-    o.append(f'<text class="jbb" x="40" y="{pcy - 108}" font-size="10.5" fill="{C3}" letter-spacing="2">// LANGUAGES · BY COMMITS</text>')
-    acc = 0
-    for i, (nm, col, v) in enumerate(langs):
-        seg = circ * v / ltot; gap = min(2.2, seg * .4)
-        o.append(f'<circle cx="{pcx}" cy="{pcy}" r="{rm}" fill="none" stroke="{col}" stroke-width="{sw}" transform="rotate(-90 {pcx} {pcy})" stroke-dasharray="0 {circ:.2f}" stroke-dashoffset="{-acc:.2f}">'
-                 f'<animate attributeName="stroke-dasharray" values="0 {circ:.2f};{seg - gap:.2f} {circ - seg + gap:.2f}" dur=".8s" begin="{1.0 + i * .25:.2f}s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".3 .7 .2 1"/></circle>')
-        acc += seg
-    o.append(f'<circle cx="{pcx}" cy="{pcy}" r="{rm + sw / 2 + 4}" fill="none" stroke="#fff" stroke-opacity=".1" stroke-dasharray="2 6"><animateTransform attributeName="transform" type="rotate" from="0 {pcx} {pcy}" to="360 {pcx} {pcy}" dur="40s" repeatCount="indefinite"/></circle>')
-    def counter(final, x, y, size, fill, d0, anchor="start"):
+    # skill gauges (replaces the commit-share donut)
+    def counter(final, x, y, size, fill, d0, anchor="start", suffix=""):
         vs = sorted({0, round(final * .3), round(final * .6), round(final * .85), final}); st = .18; dur = d0 + st * len(vs) + .2; s_ = ""
         for k, v in enumerate(vs):
             last = k == len(vs) - 1; a = (d0 + k * st) / dur; b = (d0 + (k + 1) * st) / dur
             kt, vv = (f"0;{a:.4f}", "0;1") if last else (f"0;{a:.4f};{b:.4f}", "0;1;0")
-            s_ += f'<text class="sg" x="{x}" y="{y}" font-size="{size}" text-anchor="{anchor}" fill="{fill}" opacity="{1 if last else 0}">{v}<animate attributeName="opacity" calcMode="discrete" values="{vv}" keyTimes="{kt}" dur="{dur:.2f}s" begin="0s" fill="freeze"/></text>'
+            s_ += f'<text class="sg" x="{x}" y="{y}" font-size="{size}" text-anchor="{anchor}" fill="{fill}" opacity="{1 if last else 0}">{v}{suffix}<animate attributeName="opacity" calcMode="discrete" values="{vv}" keyTimes="{kt}" dur="{dur:.2f}s" begin="0s" fill="freeze"/></text>'
         return s_
-    o.append(counter(tt["commit"], pcx, pcy + 6, 25, "#fff", 1.2, "middle") + f'<text class="jb" x="{pcx}" y="{pcy + 24}" font-size="10" text-anchor="middle" fill="#8d93ab" letter-spacing="1.5">COMMITS</text>')
-    for i, (nm, col, v) in enumerate(langs):
-        y = pcy - 56 + i * 27
-        o.append(f'<g class="lg" style="animation-delay:{1.2 + i * .15:.2f}s"><rect x="268" y="{y - 12}" width="14" height="14" rx="4" fill="{col}"/><text class="sg" x="292" y="{y}" font-size="14.5" fill="#eceef6">{esc(nm)}</text>'
-                 f'<text class="jb" x="470" y="{y}" font-size="12" text-anchor="end" fill="#8d93ab">{v / ltot * 100:.0f}%</text></g>')
+    o.append(f'<text class="jbb" x="40" y="614" font-size="10.5" fill="{C3}" letter-spacing="2">// SKILL LEVEL · SELF-RATED</text>')
+    gr, gsw = 36, 8; gc = 2 * m.pi * gr
+    for i, (nm, pct, col) in enumerate(CFG["skills"]):
+        gx, gy = 88 + i * 106, 690; seg = gc * pct / 100
+        o.append(f'<g class="lg" style="animation-delay:{.9 + i * .18:.2f}s">'
+                 f'<circle cx="{gx}" cy="{gy}" r="{gr + 10}" fill="none" stroke="#fff" stroke-opacity=".10" stroke-dasharray="2 6"><animateTransform attributeName="transform" type="rotate" from="0 {gx} {gy}" to="{360 if i % 2 == 0 else -360} {gx} {gy}" dur="{30 + i * 6}s" repeatCount="indefinite"/></circle>'
+                 f'<circle cx="{gx}" cy="{gy}" r="{gr}" fill="none" stroke="#fff" stroke-opacity=".07" stroke-width="{gsw}"/>'
+                 f'<circle cx="{gx}" cy="{gy}" r="{gr}" fill="none" stroke="{col}" stroke-width="{gsw + 6}" stroke-linecap="round" opacity=".28" filter="url(#gl3)" transform="rotate(-90 {gx} {gy})" stroke-dasharray="0 {gc:.2f}"><animate attributeName="stroke-dasharray" values="0 {gc:.2f};{seg:.2f} {gc - seg:.2f}" dur="1.3s" begin="{1.0 + i * .25:.2f}s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".3 .7 .2 1"/></circle>'
+                 f'<circle cx="{gx}" cy="{gy}" r="{gr}" fill="none" stroke="{col}" stroke-width="{gsw}" stroke-linecap="round" transform="rotate(-90 {gx} {gy})" stroke-dasharray="0 {gc:.2f}"><animate attributeName="stroke-dasharray" values="0 {gc:.2f};{seg:.2f} {gc - seg:.2f}" dur="1.3s" begin="{1.0 + i * .25:.2f}s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".3 .7 .2 1"/></circle>'
+                 + "".join(f'<text class="sg" x="{gx}" y="{gy + 68 + li * 16}" font-size="14" text-anchor="middle" fill="#eceef6">{esc(part)}</text>' for li, part in enumerate(nm.split(" ", 1) if len(nm) > 11 else [nm])) + '</g>')
+        o.append(counter(pct, gx, gy + 7, 20, "#fff", 1.2 + i * .25, "middle", "%"))
     # footer
     fy = 836; tot = tt["total"]
     o.append(counter(tot, 470, fy, 36, C3, 1.4, "end") + f'<text class="sgm" x="482" y="{fy - 2}" font-size="18" fill="#eceef6">contributions</text>')
@@ -1228,17 +1251,492 @@ def build_city():
             f'<rect x=".75" y=".75" width="{W - 1.5}" height="{H - 1.5}" rx="23.25" fill="none" stroke="url(#edge)" stroke-width="1.5"/>'
             f'<rect x="1" y="1" width="{W - 2}" height="{H - 2}" rx="23" fill="none" stroke="url(#sweep)" stroke-width="2.4" stroke-linecap="round" pathLength="1" stroke-dasharray=".1 .9"><animate attributeName="stroke-dashoffset" values="1;0" dur="12s" repeatCount="indefinite"/></rect></svg>')
 
+# ───────────────────────────── SOCIAL DOCK (animated link buttons) + FOOTER ─────────────────────────────
+def build_buttons():
+    W, H = 280, 76
+    specs = [("github", "GitHub", "@" + CFG["user"], C1, "btn-github.svg"),
+             ("linkedin", "LinkedIn", CFG["linkedin_path"].split("-b0")[0].replace("rohan-bhowmik", "rohan-bhowmik"), C2, "btn-linkedin.svg"),
+             ("gmail", "Email", CFG["email"], C3, "btn-email.svg"),
+             ("instagram", "Instagram", "@" + CFG["instagram"], "#34d399", "btn-instagram.svg")]
+    out = {}
+    for i, (slug, label, handle, col, fn) in enumerate(specs):
+        d0 = i * .9
+        css = ".fu{animation:fadeUp .6s cubic-bezier(.2,.8,.2,1) both}"
+        svg = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H + 8}" width="{W}" height="{H + 8}" role="img" aria-label="{label}"><title>{label}</title>'
+               f'<defs>{style_block(css)}'
+               f'<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1b1e33"/><stop offset="1" stop-color="#10121f"/></linearGradient>'
+               f'<linearGradient id="sw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{col}" stop-opacity="0"/><stop offset=".5" stop-color="#fff"/><stop offset="1" stop-color="{col}"/></linearGradient>'
+               f'<linearGradient id="shine" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".16"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>'
+               f'<radialGradient id="glow"><stop offset="0" stop-color="{col}" stop-opacity=".55"/><stop offset="1" stop-color="{col}" stop-opacity="0"/></radialGradient>'
+               f'<clipPath id="cl"><rect x="2" y="4" width="{W - 4}" height="{H - 4}" rx="20"/></clipPath></defs>'
+               f'<g class="fu" style="animation-delay:{i * .12:.2f}s"><g><animateTransform attributeName="transform" type="translate" values="0 0;0 -3;0 0" dur="4.2s" begin="{d0:.1f}s" repeatCount="indefinite" calcMode="spline" keyTimes="0;.5;1" keySplines=".45 0 .55 1;.45 0 .55 1"/>'
+               f'<ellipse cx="{W / 2}" cy="{H + 2}" rx="{W / 2 - 24}" ry="5" fill="{col}" opacity=".28" filter="blur(4px)"/>'
+               f'<rect x="2" y="4" width="{W - 4}" height="{H - 4}" rx="20" fill="url(#bg)" stroke="{col}" stroke-opacity=".45" stroke-width="1.4"/>'
+               f'<g clip-path="url(#cl)"><circle cx="44" cy="{H / 2 + 2}" r="70" fill="url(#glow)" opacity=".5"><animate attributeName="opacity" values=".3;.65;.3" dur="3s" begin="{d0:.1f}s" repeatCount="indefinite"/></circle>'
+               f'<rect x="-80" y="0" width="70" height="{H + 8}" fill="url(#shine)" transform="skewX(-20)"><animate attributeName="x" values="-90;-90;{W + 40};{W + 40}" keyTimes="0;.15;.5;1" dur="6s" begin="{d0 + 1:.1f}s" repeatCount="indefinite"/></rect></g>'
+               f'<rect x="3" y="5" width="{W - 6}" height="{H - 6}" rx="19" fill="none" stroke="url(#sw)" stroke-width="2.2" stroke-linecap="round" pathLength="1" stroke-dasharray=".14 .86"><animate attributeName="stroke-dashoffset" values="1;0" dur="5s" begin="{d0:.1f}s" repeatCount="indefinite"/></rect>'
+               f'<circle cx="44" cy="{H / 2 + 2}" r="25" fill="{col}" fill-opacity=".15" stroke="{col}" stroke-opacity=".6" stroke-width="1.4"/>'
+               f'<circle cx="44" cy="{H / 2 + 2}" r="25" fill="none" stroke="{col}" stroke-width="1.2" opacity="0"><animate attributeName="r" values="25;38" dur="2.6s" begin="{d0:.1f}s" repeatCount="indefinite"/><animate attributeName="opacity" values=".6;0" dur="2.6s" begin="{d0:.1f}s" repeatCount="indefinite"/></circle>'
+               f'<g transform="translate({44 - 12 * 1.05:.1f},{H / 2 + 2 - 12 * 1.05:.1f}) scale(1.05)"><path fill="{col}" d="{icon_path(slug)}"/></g>'
+               f'<text class="sg" x="86" y="{H / 2 - 2}" font-size="19" fill="#eceef6">{label}</text>'
+               f'<text class="jb" x="86" y="{H / 2 + 19}" font-size="11.5" fill="#8d93ab">{esc(handle)}</text>'
+               f'<g><animateTransform attributeName="transform" type="translate" values="0 0;3 -3;0 0" dur="1.8s" begin="{d0:.1f}s" repeatCount="indefinite"/>'
+               f'<path d="M{W - 40} {H / 2 + 8}L{W - 22} {H / 2 - 10}M{W - 36} {H / 2 - 10}H{W - 22}V{H / 2 + 4}" fill="none" stroke="{col}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g>'
+               f'</g></g></svg>')
+        out[fn] = svg
+    return out
+
+def build_footer():
+    import math as m
+    W, H = 1280, 252
+    A = ("M52 49H139C153 49 162 63 162 81C162 96 157 104 150 111L183 179H150L100 118L113 104L108 98H125"
+         "C133 98 137 92 137 85C137 78 133 72 125 72H74Z")
+    B = "M73 80L93 98L77 179H50Z"
+    base, x = 218, 40
+    d = f"M{x} {base}"
+    spikes = [(95, -30), (170, -10)]
+    seg = (W - 80) / 5
+    for k in range(5):
+        x0 = 40 + k * seg
+        d += f"H{x0 + seg * .30:.1f}l8 -10l8 14l10 -54l14 78l10 -44l8 16l8 0"
+        x = x0 + seg * .30 + 8 + 8 + 10 + 14 + 10 + 8 + 8
+    d += f"H{W - 40}"
+    css = ".fu{animation:fadeUp .8s cubic-bezier(.2,.8,.2,1) both}"
+    words = [("Learn", C1), ("Build", C3), ("Experiment", C2), ("Deploy", "#34d399")]
+    wx = 0; wtxt = ""
+    for i, (wd, col) in enumerate(words):
+        w = len(wd) * 14.2 + 34
+        wtxt += (f'<g transform="translate({wx:.0f},0)"><rect width="{w:.0f}" height="34" rx="17" fill="{col}" fill-opacity=".10" stroke="{col}" stroke-opacity=".5"><animate attributeName="fill-opacity" values=".1;.34;.1;.1" keyTimes="0;.08;.22;1" dur="6s" begin="{i * 1.5:.1f}s" repeatCount="indefinite"/></rect>'
+                 f'<text class="jbb" x="{w / 2:.0f}" y="22" font-size="14" text-anchor="middle" fill="{col}" letter-spacing=".5">{wd}</text></g>')
+        wx += w + 12
+        if i < 3: wtxt += f'<path d="M{wx - 9:.0f} 12l5 5-5 5" fill="none" stroke="#8d93ab" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>'; wx += 12
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Thanks for visiting"><title>Thanks for visiting</title>'
+            f'<defs>{style_block(css)}'
+            f'<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#171a2c"/><stop offset="1" stop-color="#0f1120"/></linearGradient>'
+            f'<linearGradient id="edge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{C1}" stop-opacity=".55"/><stop offset=".5" stop-color="#262a42"/><stop offset="1" stop-color="{C3}" stop-opacity=".55"/></linearGradient>'
+            f'<linearGradient id="sw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{C1}" stop-opacity="0"/><stop offset=".5" stop-color="#ffb199"/><stop offset="1" stop-color="{C3}"/></linearGradient>'
+            f'<linearGradient id="face" x1="0" y1="0" x2=".6" y2="1"><stop offset="0" stop-color="#ff7a66"/><stop offset=".4" stop-color="#ff1f33"/><stop offset="1" stop-color="#9a0b18"/></linearGradient>'
+            f'<linearGradient id="ecg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{C1}" stop-opacity="0"/><stop offset=".15" stop-color="{C1}"/><stop offset=".6" stop-color="{C3}"/><stop offset="1" stop-color="{C3}" stop-opacity="0"/></linearGradient>'
+            f'<radialGradient id="blob"><stop offset="0" stop-color="{C1}" stop-opacity=".28"/><stop offset="1" stop-color="{C1}" stop-opacity="0"/></radialGradient>'
+            f'<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="11" cy="11" r=".8" fill="#fff" fill-opacity=".05"/></pattern>'
+            f'<clipPath id="card"><rect width="{W}" height="{H}" rx="24"/></clipPath>'
+            f'<filter id="gl" x="-30%" y="-80%" width="160%" height="260%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>'
+            f'<rect width="{W}" height="{H}" rx="24" fill="url(#bg)"/><g clip-path="url(#card)"><circle cx="1080" cy="40" r="240" fill="url(#blob)"><animate attributeName="cx" values="1080;940;1080" dur="12s" repeatCount="indefinite"/></circle></g>'
+            f'<rect width="{W}" height="{H}" rx="24" fill="url(#dots)"/><rect x=".75" y=".75" width="{W - 1.5}" height="{H - 1.5}" rx="23.25" fill="none" stroke="url(#edge)" stroke-width="1.5"/>'
+            f'<rect x="1" y="1" width="{W - 2}" height="{H - 2}" rx="23" fill="none" stroke="url(#sw)" stroke-width="2.4" stroke-linecap="round" pathLength="1" stroke-dasharray=".1 .9"><animate attributeName="stroke-dashoffset" values="1;0" dur="11s" repeatCount="indefinite"/></rect>'
+            f'<g class="fu" style="animation-delay:.1s"><text class="jbb" x="48" y="52" font-size="12.5" fill="{C1}" letter-spacing="2.2">// THANKS FOR STOPPING BY</text>'
+            f'<text class="sg" x="48" y="94" font-size="34" fill="#eceef6" letter-spacing="-.6">See you in the next commit<tspan fill="{C3}">.</tspan></text></g>'
+            f'<g transform="translate(48,120)"><g class="fu" style="animation-delay:.4s">{wtxt}</g></g>'
+            f'<path d="{d}" fill="none" stroke="#fff" stroke-opacity=".07" stroke-width="2" stroke-linejoin="round"/>'
+            f'<path d="{d}" fill="none" stroke="url(#ecg)" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" pathLength="1000" stroke-dasharray="170 830" filter="url(#gl)"><animate attributeName="stroke-dashoffset" values="170;-1000" dur="6.5s" repeatCount="indefinite"/></path>'
+            f'<g transform="translate(1126,40) scale(.62)"><animateTransform attributeName="transform" type="translate" values="1126 40;1126 34;1126 40" dur="3.6s" repeatCount="indefinite" additive="replace"/>'
+            f'<g transform="scale(.62)"><g><animateTransform attributeName="transform" type="scale" values="1;1.06;1;1.035;1" keyTimes="0;.12;.24;.34;1" dur="1.6s" repeatCount="indefinite"/><circle cx="116" cy="114" r="104" fill="url(#blob)"/>'
+            f'<g fill="#3a0008" transform="translate(5 6)"><path d="{A}"/><path d="{B}"/></g><path d="{A}" fill="url(#face)"/><path d="{B}" fill="url(#face)"/>'
+            f'<g fill="none" stroke="#ffe3dc" stroke-opacity=".7" stroke-width="1.4" stroke-linejoin="round"><path d="{A}"/><path d="{B}"/></g></g></g></g></svg>')
+
+# ───────────────────────────── PROFILE VIEWS (odometer card) ─────────────────────────────
+def komarev_raw():
+    """One read of the komarev counter (this read itself adds a view on their side). Returns an int or None."""
+    req = urllib.request.Request(f"https://komarev.com/ghpvc/?username={CFG['user']}&label=Views", headers={"User-Agent": "Mozilla/5.0", "Cache-Control": "no-cache"})
+    svg = urllib.request.urlopen(req, timeout=25).read().decode("utf-8", "ignore")
+    for pat in (r'aria-label="[^"]*?:\s*([\d,]+)"', r"<title>[^<]*?:\s*([\d,]+)</title>", r">\s*([\d,]+)\s*</text>"):
+        nums = re.findall(pat, svg)
+        if nums: return int(nums[-1].replace(",", ""))
+    return None
+
+def fetch_views():
+    """Returns (views, fetched_at_iso).  The daily/3-hourly workflow reads the komarev counter; every read adds +1 on their side,
+    so we measure that once (self_inc) and subtract our own reads - the card then shows REAL visitors only."""
+    cache = os.path.join(HERE, "views-data.json")
+    try: d = json.load(open(cache))
+    except Exception: d = {"views": 232, "last_raw": None, "self_inc": None, "fetched_at": None}
+    if not OFFLINE:
+        try:
+            raw = komarev_raw()
+            if raw is None: raise RuntimeError("could not read a number from the counter badge")
+            reads = 1
+            if d.get("self_inc") is None:                        # first live run: measure whether our own read counts as a view
+                raw2 = komarev_raw(); reads = 2
+                d["self_inc"] = 1 if (raw2 is not None and raw2 - raw >= 1) else 0
+                raw = raw2 if raw2 is not None else raw
+            inc = d["self_inc"]
+            if d.get("last_raw") is None: d["views"] = max(d["views"], raw - reads * inc)
+            else: d["views"] = d["views"] + max(0, raw - d["last_raw"] - inc)
+            d["last_raw"] = raw
+            d["fetched_at"] = datetime.datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
+            json.dump(d, open(cache, "w"), indent=1); print(f"  views: live {d['views']} (raw {raw}, own reads count as {inc})")
+        except Exception as e:
+            print("  (views: live fetch failed - keeping the last known number)", e)
+    else: print("  views: cached", d.get("views"))
+    if d.get("views") is None: return None, None
+    return d["views"], d.get("fetched_at")
+
+def build_views():
+    v, ts = fetch_views()
+    if v is None: return None
+    digits = str(v); n = len(digits)
+    W, H = 460, 168
+    CWID, CHT, STEP = 44, 64, 50
+    x0 = 118 + (W - 24 - 118 - n * STEP + 6) / 2
+    y0 = 56
+    css = ".fu{animation:fadeUp .8s cubic-bezier(.2,.8,.2,1) both}"
+    cols = ""; defs_clip = ""
+    for i, ch in enumerate(digits):
+        d = int(ch); cx = x0 + i * STEP; col_h = CHT
+        defs_clip += f'<clipPath id="dc{i}"><rect x="{cx:.1f}" y="{y0}" width="{CWID}" height="{CHT}" rx="11"/></clipPath>'
+        nums = "".join(f'<text class="sg" x="{cx + CWID / 2:.1f}" y="{y0 + 47 + k * col_h}" font-size="42" text-anchor="middle" fill="#fff">{k}</text>' for k in range(10))
+        vals = f"0;{-d * col_h};{-d * col_h};{-d * col_h}"
+        cols += (f'<rect x="{cx:.1f}" y="{y0}" width="{CWID}" height="{CHT}" rx="11" fill="#0a0c19" stroke="{C1}" stroke-opacity=".45"/>'
+                 f'<g clip-path="url(#dc{i})"><g><animateTransform attributeName="transform" type="translate" values="0 0;0 {-d * col_h};0 {-d * col_h};0 0" keyTimes="0;.22;.94;1" dur="10s" begin="{.5 + i * .22:.2f}s" repeatCount="indefinite" calcMode="spline" keySplines=".2 .8 .2 1;0 0 1 1;.5 0 .5 1"/>{nums}</g>'
+                 f'<rect x="{cx:.1f}" y="{y0}" width="{CWID}" height="{CHT / 2}" fill="#fff" fill-opacity=".06"/><rect x="{cx:.1f}" y="{y0 + CHT / 2 - .5}" width="{CWID}" height="1" fill="#000" fill-opacity=".55"/></g>')
+    plate_w = n * STEP - 6
+    bars = "".join(f'<rect x="{W - 82 + k * 8}" y="{H - 40}" width="4" height="22" rx="2" fill="{C3}" opacity=".85"><animate attributeName="height" values="6;{12 + (k * 7) % 14};6" dur="{1 + (k % 4) * .22:.2f}s" begin="{k * .1:.1f}s" repeatCount="indefinite"/><animate attributeName="y" values="{H - 24};{H - 24 - (12 + (k * 7) % 14) + 0};{H - 24}" dur="{1 + (k % 4) * .22:.2f}s" begin="{k * .1:.1f}s" repeatCount="indefinite"/></rect>' for k in range(8))
+    try:
+        t_ = datetime.datetime.fromisoformat((ts or "").replace("Z", "")) + datetime.timedelta(hours=5, minutes=30)
+        updated = t_.strftime("%b %d, %Y · %I:%M %p IST").replace(" 0", " ").replace("· 0", "· ")
+    except Exception:
+        updated = "not synced yet"
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Profile views: {v}"><title>Profile views: {v}</title>'
+            f'<defs>{style_block(css)}{defs_clip}'
+            f'<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#171a2c"/><stop offset="1" stop-color="#0f1120"/></linearGradient>'
+            f'<linearGradient id="edge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{C1}" stop-opacity=".55"/><stop offset=".5" stop-color="#262a42"/><stop offset="1" stop-color="{C3}" stop-opacity=".55"/></linearGradient>'
+            f'<linearGradient id="sw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{C1}" stop-opacity="0"/><stop offset=".5" stop-color="#ffb199"/><stop offset="1" stop-color="{C3}"/></linearGradient>'
+            f'<radialGradient id="blob"><stop offset="0" stop-color="{C1}" stop-opacity=".3"/><stop offset="1" stop-color="{C1}" stop-opacity="0"/></radialGradient>'
+            f'<radialGradient id="iris" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#ff7a66"/><stop offset=".6" stop-color="#ef1b2d"/><stop offset="1" stop-color="#7a0010"/></radialGradient>'
+            f'<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="11" cy="11" r=".8" fill="#fff" fill-opacity=".05"/></pattern>'
+            f'<clipPath id="card"><rect width="{W}" height="{H}" rx="22"/></clipPath>'
+            f'<clipPath id="eyeC"><path d="M-30 0Q0 -27 30 0Q0 27 -30 0Z"/></clipPath></defs>'
+            f'<rect width="{W}" height="{H}" rx="22" fill="url(#bg)"/><g clip-path="url(#card)"><circle cx="70" cy="84" r="120" fill="url(#blob)"><animate attributeName="opacity" values=".6;1;.6" dur="3.6s" repeatCount="indefinite"/></circle></g>'
+            f'<rect width="{W}" height="{H}" rx="22" fill="url(#dots)"/><rect x=".75" y=".75" width="{W - 1.5}" height="{H - 1.5}" rx="21.25" fill="none" stroke="url(#edge)" stroke-width="1.5"/>'
+            f'<rect x="1" y="1" width="{W - 2}" height="{H - 2}" rx="21" fill="none" stroke="url(#sw)" stroke-width="2.4" stroke-linecap="round" pathLength="1" stroke-dasharray=".16 .84"><animate attributeName="stroke-dashoffset" values="1;0" dur="8s" repeatCount="indefinite"/></rect>'
+            # eye
+            f'<g class="fu" style="animation-delay:.1s"><circle cx="64" cy="84" r="36" fill="none" stroke="{C1}" stroke-opacity=".5" stroke-width="1.4"><animate attributeName="r" values="34;54" dur="2.6s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".6;0" dur="2.6s" repeatCount="indefinite"/></circle>'
+            f'<circle cx="64" cy="84" r="36" fill="#0a0c19" stroke="{C1}" stroke-opacity=".55" stroke-width="1.6"/>'
+            f'<g transform="translate(64 84)"><g><animateTransform attributeName="transform" type="scale" values="1 1;1 1;1 .06;1 1;1 1" keyTimes="0;.88;.92;.96;1" dur="5.5s" repeatCount="indefinite"/>'
+            f'<path d="M-30 0Q0 -27 30 0Q0 27 -30 0Z" fill="#fff" fill-opacity=".92"/>'
+            f'<g clip-path="url(#eyeC)"><g><animateTransform attributeName="transform" type="translate" values="-7 0;7 0;7 -2;-7 0;-7 0" keyTimes="0;.3;.5;.8;1" dur="5.5s" repeatCount="indefinite" calcMode="spline" keySplines=".5 0 .5 1;.5 0 .5 1;.5 0 .5 1;.5 0 .5 1"/>'
+            f'<circle r="13.5" fill="url(#iris)"/><circle r="6" fill="#16040a"/><circle cx="-4" cy="-4.5" r="2.6" fill="#fff" opacity=".9"/></g></g>'
+            f'<path d="M-30 0Q0 -27 30 0Q0 27 -30 0Z" fill="none" stroke="{C1}" stroke-width="2"/></g></g></g>'
+            # label + odometer
+            f'<g class="fu" style="animation-delay:.2s"><text class="jbb" x="{x0:.1f}" y="34" font-size="11.5" fill="{C1}" letter-spacing="2.6">// PROFILE VIEWS</text>'
+            f'<circle cx="{W - 30}" cy="30" r="4" fill="#34d399"><animate attributeName="opacity" values="1;.3;1" dur="1.4s" repeatCount="indefinite"/></circle><text class="jbb" x="{W - 40}" y="34" font-size="10" text-anchor="end" fill="#34d399" letter-spacing="1.4">SYNCS EVERY 3H</text></g>'
+            f'<g class="fu" style="animation-delay:.4s">{cols}</g>'
+            f'<text class="jb" x="{x0:.1f}" y="{y0 + CHT + 24}" font-size="11.5" fill="#8d93ab">visitors so far</text>'
+            f'<text class="jb" x="{x0:.1f}" y="{y0 + CHT + 40}" font-size="10" fill="#5d6483">updated {updated}</text>{bars}</svg>')
+
+# ───────────────────────────── FEATURED PROJECT SHOWCASE ─────────────────────────────
+def build_project(idx=0):
+    import math as m
+    P = CFG["projects"][idx]
+    W, H = 1280, 640
+    wx, wy, ww = 560, 40, 680
+    def wrap(t, n):
+        out, cur = [], ""
+        for w_ in t.split():
+            if len(cur) + len(w_) + 1 > n and cur: out.append(cur); cur = w_
+            else: cur = (cur + " " + w_).strip()
+        return out + ([cur] if cur else [])
+    css = ".fu{animation:fadeUp .8s cubic-bezier(.2,.8,.2,1) both}.chip{animation:chipIn .6s cubic-bezier(.2,.8,.2,1) both}@keyframes chipIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}"
+    def counter(final, x, y, size, fill, d0, prefix="", suffix="", anchor="start"):
+        vs = sorted({0, round(final * .3), round(final * .6), round(final * .85), final}); st = .18; dur = d0 + st * len(vs) + .2; s_ = ""
+        for k, v in enumerate(vs):
+            last = k == len(vs) - 1; a = (d0 + k * st) / dur; b = (d0 + (k + 1) * st) / dur
+            kt, vv = (f"0;{a:.4f}", "0;1") if last else (f"0;{a:.4f};{b:.4f}", "0;1;0")
+            s_ += f'<text class="sg" x="{x}" y="{y}" font-size="{size}" text-anchor="{anchor}" fill="{fill}" opacity="{1 if last else 0}">{prefix}{v:,}{suffix}<animate attributeName="opacity" calcMode="discrete" values="{vv}" keyTimes="{kt}" dur="{dur:.2f}s" begin="0s" fill="freeze"/></text>'
+        return s_
+    defs = (f'<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#171a2c"/><stop offset="1" stop-color="#0f1120"/></linearGradient>'
+            f'<linearGradient id="edge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{C1}" stop-opacity=".55"/><stop offset=".5" stop-color="#262a42"/><stop offset="1" stop-color="{C3}" stop-opacity=".55"/></linearGradient>'
+            f'<linearGradient id="sw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{C1}" stop-opacity="0"/><stop offset=".5" stop-color="#ffb199"/><stop offset="1" stop-color="{C3}"/></linearGradient>'
+            f'<linearGradient id="ttl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{C1}"/><stop offset=".6" stop-color="{C2}"/><stop offset="1" stop-color="{C3}"/></linearGradient>'
+            f'<linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{C1}" stop-opacity=".5"/><stop offset="1" stop-color="{C1}" stop-opacity="0"/></linearGradient>'
+            f'<linearGradient id="ln" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{C1}"/><stop offset="1" stop-color="{C3}"/></linearGradient>'
+            f'<radialGradient id="blob"><stop offset="0" stop-color="{C1}" stop-opacity=".28"/><stop offset="1" stop-color="{C1}" stop-opacity="0"/></radialGradient>'
+            f'<radialGradient id="orb" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="{C3}"/><stop offset=".55" stop-color="{C1}"/><stop offset="1" stop-color="#7f1d1d"/></radialGradient>'
+            f'<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="11" cy="11" r=".8" fill="#fff" fill-opacity=".05"/></pattern>'
+            f'<clipPath id="card"><rect width="{W}" height="{H}" rx="24"/></clipPath><clipPath id="win"><rect x="{wx}" y="{wy}" width="{ww}" height="462" rx="18"/></clipPath>'
+            f'<filter id="gl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>'
+            f'<filter id="gl3" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="6"/></filter>')
+    o = [f'<rect width="{W}" height="{H}" rx="24" fill="url(#bg)"/><g clip-path="url(#card)"><circle cx="300" cy="120" r="260" fill="url(#blob)"><animate attributeName="cx" values="300;420;300" dur="14s" repeatCount="indefinite"/></circle></g>',
+         f'<rect width="{W}" height="{H}" rx="24" fill="url(#dots)"/>']
+    # ---------- left column (generic) ----------
+    name1, _, name2 = P["name"].partition(" ")
+    lab = f"// FEATURED PROJECT · 0{idx + 1}/0{len(CFG['projects'])}"
+    pillx = 40 + len(lab) * 9.7 + 14; pillw = 28 + len(P["badge"]) * 7.8
+    o.append(f'<g class="fu" style="animation-delay:.1s"><text class="jbb" x="40" y="62" font-size="12.5" fill="{C1}" letter-spacing="2.2">{lab}</text>'
+             f'<rect x="{pillx:.0f}" y="48" width="{pillw:.0f}" height="22" rx="11" fill="{C3}" fill-opacity=".14" stroke="{C3}" stroke-opacity=".6"/><text class="jbb" x="{pillx + pillw / 2:.0f}" y="63" font-size="10.5" text-anchor="middle" fill="{C3}" letter-spacing="1.4">{esc(P["badge"])}</text>'
+             f'<text class="sg" x="40" y="124" font-size="52" letter-spacing="-1.2" fill="url(#ttl)" filter="url(#gl)">{esc(name1)}<tspan fill="#eceef6" filter="none"> {esc(name2)}</tspan></text>'
+             f'<rect x="40" y="140" width="0" height="3" rx="1.5" fill="url(#sw)"><animate attributeName="width" values="0;120" dur=".9s" begin=".5s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".2 .8 .2 1"/></rect>'
+             f'<text class="jbb" x="40" y="170" font-size="12" fill="#8d93ab" letter-spacing="2">{esc(P["tag"].upper())}</text></g>')
+    dl_ = wrap(P["desc"], 58)
+    if len(dl_) > 5: print(f"  ! project {idx + 1}: description is {len(dl_)} lines, only 5 fit - shorten it in CFG")
+    dl_ = dl_[:5]
+    for i, line in enumerate(dl_):
+        o.append(f'<text class="sgm fu" style="animation-delay:{.4 + i * .1:.2f}s" x="40" y="{198 + i * 24}" font-size="15.5" fill="#b3b8cf">{esc(line)}</text>')
+    fy = 198 + len(dl_) * 24 + 8
+    o.append(f'<text class="jbb" x="40" y="{fy}" font-size="10.5" fill="#8d93ab" letter-spacing="2">WHAT IT DOES</text>')
+    x = 40; y = fy + 12
+    for i, f_ in enumerate(P["features"]):
+        w = 34 + len(f_) * 6.95
+        if x + w > 538: x = 40; y += 34
+        col = [C1, C2, C3][i % 3]
+        o.append(f'<g class="chip" style="animation-delay:{.9 + i * .08:.2f}s"><rect x="{x}" y="{y}" width="{w:.0f}" height="28" rx="14" fill="{col}" fill-opacity=".10" stroke="{col}" stroke-opacity=".45"/><circle cx="{x + 12}" cy="{y + 14}" r="3" fill="{col}"/><text class="jb" x="{x + 22}" y="{y + 18}" font-size="11.5" fill="#eceef6">{esc(f_)}</text></g>')
+        x += w + 8
+    sy = y + 28 + 30
+    o.append(f'<text class="jbb" x="40" y="{sy - 8}" font-size="10.5" fill="#8d93ab" letter-spacing="2">STACK</text>')
+    x = 40
+    for i, (lb, slug) in enumerate(P["stack"]):
+        col = {"g:spark": C3, "g:bot": C2, "g:brain": C1, "g:rag": C1}.get(slug) or icon_color(slug)
+        ic = generic_icon(slug[2:], col) if slug.startswith("g:") else f'<path fill="{col}" d="{icon_path(slug)}"/>'
+        w = 44 + len(lb) * 8.4 + 10
+        o.append(f'<g class="chip" style="animation-delay:{1.1 + i * .1:.2f}s"><rect x="{x}" y="{sy}" width="{w:.0f}" height="38" rx="12" fill="{col}" fill-opacity=".08" stroke="{col}" stroke-opacity=".4">'
+                 f'<animate attributeName="stroke-opacity" values=".4;1;.4;.4" keyTimes="0;.1;.3;1" dur="5s" begin="{i * 1.2:.1f}s" repeatCount="indefinite"/></rect>'
+                 f'<g transform="translate({x + 11},{sy + 8}) scale(.9)">{ic}</g><text class="jb" x="{x + 38}" y="{sy + 24}" font-size="13.5" fill="#eceef6">{esc(lb)}</text></g>')
+        x += w + 10
+    cy_ = sy + 38 + 10
+    o.append(f'<g class="fu" style="animation-delay:1.5s"><rect x="40" y="{cy_}" width="190" height="36" rx="18" fill="url(#sw)" fill-opacity=".14" stroke="{C3}" stroke-opacity=".7" stroke-width="1.4"><animate attributeName="stroke-opacity" values=".7;1;.7" dur="2s" repeatCount="indefinite"/></rect>'
+             f'<text class="sg" x="62" y="{cy_ + 24}" font-size="15" fill="#eceef6">View project</text><g><animateTransform attributeName="transform" type="translate" values="0 0;3 -3;0 0" dur="1.6s" repeatCount="indefinite"/>'
+             f'<path d="M194 {cy_ + 23}L208 {cy_ + 9}M196 {cy_ + 9}H208V{cy_ + 21}" fill="none" stroke="{C3}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g></g>')
+    # ---------- window chrome ----------
+    def win_open(url):
+        return (f'<g class="fu" style="animation-delay:.3s"><rect x="{wx}" y="{wy}" width="{ww}" height="462" rx="18" fill="#0f1224"/><g clip-path="url(#win)">'
+                f'<rect x="{wx}" y="{wy}" width="{ww}" height="34" fill="#1c2036"/><circle cx="{wx + 20}" cy="{wy + 17}" r="5" fill="#ff5f57"/><circle cx="{wx + 36}" cy="{wy + 17}" r="5" fill="#febc2e"/><circle cx="{wx + 52}" cy="{wy + 17}" r="5" fill="#28c840"/>'
+                f'<rect x="{wx + 150}" y="{wy + 8}" width="380" height="18" rx="9" fill="#0b0d1b"/><text class="jb" x="{wx + 340}" y="{wy + 21}" font-size="11" text-anchor="middle" fill="#8d93ab">{esc(url)}</text>'
+                f'<rect x="{wx + 536}" y="{wy + 12}" width="1.5" height="11" fill="{C1}"><animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/></rect>'
+                f'<rect x="{wx}" y="{wy + 34}" width="{ww}" height="428" fill="url(#dots)"/>')
+    def win_close():
+        return (f'</g><rect x="{wx + .5}" y="{wy + .5}" width="{ww - 1}" height="461" rx="17.5" fill="none" stroke="#fff" stroke-opacity=".10"/>'
+                f'<text class="jb" x="{wx + ww - 18}" y="{wy + 456}" font-size="9.5" text-anchor="end" fill="#5d6483">illustrative preview</text></g>')
+    def panel(x, y, w, h, title, tx=None):
+        return (f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="14" fill="#000" fill-opacity=".25" stroke="#fff" stroke-opacity=".07"/>'
+                f'<text class="jbb" x="{x + 18}" y="{y + 23}" font-size="10" fill="#8d93ab" letter-spacing="1.8">{esc(title)}</text>')
+    def typed(x, y, msg, d0, boxw, tcol="#eceef6", size=12.5, cid="tp"):
+        tw = len(msg) * size * .6
+        return (f'<defs><clipPath id="{cid}"><rect x="{x}" y="{y - 16}" width="0" height="24"><animate attributeName="width" values="0;{tw + 20:.0f};{tw + 20:.0f};0" keyTimes="0;.4;.92;1" dur="11s" begin="{d0}s" repeatCount="indefinite"/></rect></clipPath></defs>'
+                f'<g clip-path="url(#{cid})"><text class="jb" x="{x}" y="{y}" font-size="{size}" fill="{tcol}">{esc(msg)}</text></g>'
+                f'<rect x="{x}" y="{y - 13}" width="1.6" height="15" fill="{C3}"><animate attributeName="x" values="{x};{x + tw:.0f};{x + tw:.0f};{x}" keyTimes="0;.4;.92;1" dur="11s" begin="{d0}s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0;1" dur=".9s" repeatCount="indefinite"/></rect>')
+
+    # ================= mockup 1: NEXORA (BI dashboard) =================
+    def mock_nexora():
+        o.append(win_open(P["url_label"]))
+        kpis = [("REVENUE", 1280, "$", "K", "+12.4%", C1), ("CUSTOMERS", 8420, "", "", "+6.1%", C2), ("ACCURACY", 94, "", "%", "+2.3%", "#34d399")]
+        for i, (lb, val, pre, suf, dl, col) in enumerate(kpis):
+            kx = wx + 20 + i * 220
+            o.append(f'<rect x="{kx}" y="{wy + 52}" width="200" height="74" rx="14" fill="{col}" fill-opacity=".08" stroke="{col}" stroke-opacity=".4"/>'
+                     f'<text class="jbb" x="{kx + 16}" y="{wy + 74}" font-size="9.5" fill="#8d93ab" letter-spacing="1.6">{lb}</text>'
+                     f'{counter(val, kx + 16, wy + 108, 28, "#eceef6", 1.0 + i * .2, pre, suf)}'
+                     f'<rect x="{kx + 124}" y="{wy + 60}" width="62" height="22" rx="11" fill="{col}" fill-opacity=".16"/><text class="jbb" x="{kx + 155}" y="{wy + 75}" font-size="11" text-anchor="middle" fill="{col}">↑ {dl}</text>')
+        px0, px1, py0, py1 = wx + 44, wx + 408, wy + 176, wy + 300
+        o.append(panel(wx + 20, wy + 140, 400, 212, "SALES · ACTUAL vs FORECAST") +
+                 f'<g transform="translate({wx + 320},{wy + 156})"><rect width="12" height="3" y="3" rx="1.5" fill="{C1}"/><text class="jb" x="18" y="9" font-size="9.5" fill="#8d93ab">actual</text><rect width="12" height="3" y="19" rx="1.5" fill="{C3}"/><text class="jb" x="18" y="25" font-size="9.5" fill="#8d93ab">forecast</text></g>')
+        act = [42, 48, 45, 56, 62, 60, 71, 78]; fc = [84, 91, 99, 108]; vmax = 124
+        xs_ = lambda i: px0 + i * (px1 - px0) / 11
+        ys_ = lambda v: py1 - v / vmax * (py1 - py0)
+        for gy in (py0, (py0 + py1) / 2, py1): o.append(f'<line x1="{px0 - 8}" y1="{gy:.0f}" x2="{px1 + 6}" y2="{gy:.0f}" stroke="#fff" stroke-opacity=".07" stroke-dasharray="3 5"/>')
+        def sm(pts):
+            d = f"M{pts[0][0]:.1f} {pts[0][1]:.1f}"
+            for i in range(len(pts) - 1):
+                p0 = pts[i - 1] if i else pts[i]; p1 = pts[i]; p2 = pts[i + 1]; p3 = pts[i + 2] if i + 2 < len(pts) else pts[i + 1]
+                d += f"C{p1[0] + (p2[0] - p0[0]) / 6:.1f} {p1[1] + (p2[1] - p0[1]) / 6:.1f} {p2[0] - (p3[0] - p1[0]) / 6:.1f} {p2[1] - (p3[1] - p1[1]) / 6:.1f} {p2[0]:.1f} {p2[1]:.1f}"
+            return d
+        ap = [(xs_(i), ys_(v)) for i, v in enumerate(act)]; fp = [ap[-1]] + [(xs_(8 + i), ys_(v)) for i, v in enumerate(fc)]
+        la, lf = sm(ap), sm(fp)
+        bu = [(x_, y_ - (8 + 4 * k)) for k, (x_, y_) in enumerate(fp)]; bd = [(x_, y_ + (8 + 4 * k)) for k, (x_, y_) in enumerate(fp)]
+        band = "M" + " L".join(f"{a:.1f} {b:.1f}" for a, b in bu) + " L" + " L".join(f"{a:.1f} {b:.1f}" for a, b in reversed(bd)) + "Z"
+        nx = ap[-1][0]
+        o.append(f'<defs><clipPath id="rv"><rect x="{px0 - 10}" y="{wy + 140}" width="0" height="212"><animate attributeName="width" values="0;{nx - px0 + 14}" dur="2s" begin=".9s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".3 .7 .2 1"/></rect></clipPath>'
+                 f'<clipPath id="rv2"><rect x="{nx - 2}" y="{wy + 140}" width="0" height="212"><animate attributeName="width" values="0;{px1 - nx + 20}" dur="1.4s" begin="3s" fill="freeze"/></rect></clipPath></defs>'
+                 f'<g clip-path="url(#rv)"><path d="{la}L{ap[-1][0]:.1f} {py1}L{ap[0][0]:.1f} {py1}Z" fill="url(#area)"/><path d="{la}" fill="none" stroke="url(#ln)" stroke-width="3" stroke-linecap="round" filter="url(#gl)"/></g>'
+                 f'<g clip-path="url(#rv2)"><path d="{band}" fill="{C3}" fill-opacity=".12"/><path d="{lf}" fill="none" stroke="{C3}" stroke-width="2.6" stroke-dasharray="6 6" stroke-linecap="round"><animate attributeName="stroke-dashoffset" values="0;-24" dur="1.2s" repeatCount="indefinite"/></path></g>'
+                 f'<g opacity="0"><animate attributeName="opacity" values="0;1" dur=".4s" begin="3s" fill="freeze"/><line x1="{nx:.1f}" y1="{py0 - 6}" x2="{nx:.1f}" y2="{py1}" stroke="#fff" stroke-opacity=".35" stroke-dasharray="2 4"/>'
+                 f'<rect x="{nx - 16:.1f}" y="{py0 - 22}" width="32" height="15" rx="7.5" fill="#fff" fill-opacity=".12"/><text class="jbb" x="{nx:.1f}" y="{py0 - 11}" font-size="8.5" text-anchor="middle" fill="#fff" letter-spacing=".8">NOW</text>'
+                 f'<circle cx="{nx:.1f}" cy="{ap[-1][1]:.1f}" r="5" fill="#fff"><animate attributeName="r" values="4;7;4" dur="1.6s" repeatCount="indefinite"/></circle><circle cx="{fp[-1][0]:.1f}" cy="{fp[-1][1]:.1f}" r="4" fill="{C3}"/></g>')
+        for i, mth in enumerate("JFMAMJJASOND"): o.append(f'<text class="jb" x="{xs_(i):.1f}" y="{py1 + 18}" font-size="9.5" text-anchor="middle" fill="#8d93ab">{mth}</text>')
+        dcx, dcy, dr, dw = wx + 540, wy + 236, 40, 15; circ = 2 * m.pi * dr
+        o.append(panel(wx + 436, wy + 140, 224, 212, "CUSTOMER SEGMENTS (RFM)"))
+        acc = 0
+        for i, (nm, pct, col) in enumerate([("VIP", 28, C3), ("Regular", 52, C1), ("At risk", 20, C2)]):
+            seg = circ * pct / 100
+            o.append(f'<circle cx="{dcx}" cy="{dcy}" r="{dr}" fill="none" stroke="{col}" stroke-width="{dw}" transform="rotate(-90 {dcx} {dcy})" stroke-dasharray="0 {circ:.1f}" stroke-dashoffset="{-acc:.1f}"><animate attributeName="stroke-dasharray" values="0 {circ:.1f};{seg - 2:.1f} {circ - seg + 2:.1f}" dur=".9s" begin="{1.4 + i * .3:.1f}s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".3 .7 .2 1"/></circle>')
+            acc += seg
+            o.append(f'<g class="fu" style="animation-delay:{1.8 + i * .15:.2f}s"><rect x="{wx + 456}" y="{wy + 302 + i * 16 - 8}" width="9" height="9" rx="3" fill="{col}"/><text class="jb" x="{wx + 472}" y="{wy + 302 + i * 16}" font-size="11" fill="#eceef6">{nm}</text><text class="jb" x="{wx + 640}" y="{wy + 302 + i * 16}" font-size="11" text-anchor="end" fill="#8d93ab">{pct}%</text></g>')
+        o.append(f'<text class="sg" x="{dcx}" y="{dcy + 4}" font-size="13" text-anchor="middle" fill="#eceef6">8.4K</text>')
+        iy = wy + 372
+        o.append(f'<g class="fu" style="animation-delay:.9s"><rect x="{wx + 20}" y="{iy}" width="640" height="60" rx="16" fill="{C1}" fill-opacity=".08" stroke="{C1}" stroke-opacity=".45"/>'
+                 f'<rect x="{wx + 34}" y="{iy + 13}" width="34" height="34" rx="11" fill="{C1}" fill-opacity=".18"/><g transform="translate({wx + 39},{iy + 18}) scale(.99)">{generic_icon("spark", "#ffd9d4")}</g>'
+                 f'<text class="jbb" x="{wx + 82}" y="{iy + 24}" font-size="10" fill="{C3}" letter-spacing="1.8">AI INSIGHT</text>'
+                 f'{typed(wx + 82, iy + 45, "Plan B demand +18% next month: raise stock, win back at-risk customers.", 2, 540)}</g>')
+        o.append(win_close())
+
+    # ================= mockup 2: GROWTHPILOT (8 agents + action center) =================
+    def mock_growth():
+        o.append(win_open(P["url_label"]))
+        lx, ly, lw, lh = wx + 20, wy + 52, 318, 276
+        o.append(panel(lx, ly, lw, lh, "8-AGENT NETWORK"))
+        cx, cy, R = lx + lw / 2, ly + 148, 76
+        names = [("Analyst", "BA", C3), ("Customer", "CI", C2), ("Forecast", "FC", C1), ("Strategy", "GS", "#34d399"), ("Marketing", "MK", C3), ("ROI", "RO", C2), ("Action", "AC", C1)]
+        pos = []
+        for i, (nm, ini, col) in enumerate(names):
+            a = m.radians(-90 + i * 360 / 7); pos.append((cx + R * m.cos(a), cy + R * m.sin(a), a, nm, ini, col))
+        for i, (ax, ay, a, nm, ini, col) in enumerate(pos):
+            o.append(f'<line x1="{ax:.1f}" y1="{ay:.1f}" x2="{cx}" y2="{cy}" stroke="{col}" stroke-opacity=".28" stroke-dasharray="3 5"><animate attributeName="stroke-dashoffset" values="0;-16" dur="1.2s" repeatCount="indefinite"/></line>')
+            b = i * .55
+            o.append(f'<g opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.02;.4;.44;1" dur="3.9s" begin="{b:.2f}s" repeatCount="indefinite"/>'
+                     f'<circle r="7" fill="{col}" opacity=".3"><animateMotion dur="3.9s" begin="{b:.2f}s" repeatCount="indefinite" path="M{ax:.1f} {ay:.1f}L{cx} {cy}" keyPoints="0;1;1" keyTimes="0;.42;1" calcMode="linear"/></circle>'
+                     f'<circle r="3" fill="#fff"><animateMotion dur="3.9s" begin="{b:.2f}s" repeatCount="indefinite" path="M{ax:.1f} {ay:.1f}L{cx} {cy}" keyPoints="0;1;1" keyTimes="0;.42;1" calcMode="linear"/></circle></g>')
+        o.append(f'<circle cx="{cx}" cy="{cy}" r="26" fill="none" stroke="{C1}" stroke-opacity=".5"><animate attributeName="r" values="26;44" dur="2.4s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".6;0" dur="2.4s" repeatCount="indefinite"/></circle>'
+                 f'<circle cx="{cx}" cy="{cy}" r="26" fill="url(#orb)"/><g transform="translate({cx - 12},{cy - 13})">{generic_icon("bot", "#fff")}</g>'
+                 f'<text class="jbb" x="{cx}" y="{cy + 40}" font-size="8" text-anchor="middle" fill="#ffd9d4" letter-spacing="1.2">ORCHESTRATOR</text>')
+        for (ax, ay, a, nm, ini, col) in pos:
+            tx = cx + (R + 22) * m.cos(a); ty = cy + (R + 22) * m.sin(a); c_ = m.cos(a)
+            anch = "middle" if abs(c_) < .3 else ("start" if c_ > 0 else "end")
+            o.append(f'<circle cx="{ax:.1f}" cy="{ay:.1f}" r="15" fill="#171a2c" stroke="{col}" stroke-width="1.7"/><text class="jbb" x="{ax:.1f}" y="{ay + 3.2:.1f}" font-size="9" text-anchor="middle" fill="{col}">{ini}</text>'
+                     f'<text class="jb" x="{tx:.1f}" y="{ty + 3.5:.1f}" font-size="9.5" text-anchor="{anch}" fill="#c9cde0">{nm}</text>')
+        # action center
+        ax0 = wx + 358; aw = 302
+        o.append(panel(ax0, ly, aw, lh, "ACTION CENTER · YOU APPROVE"))
+        acts = [("Win-back campaign", "₹50 cashback for at-risk", "ROI 3.2x", C1), ("Cross-sell bundle", "combo for repeat buyers", "ROI 2.4x", C2), ("Peak-hour offer", "boost the busiest hours", "ROI 1.9x", C3)]
+        T = 9.0
+        for i, (t1, t2, roi, col) in enumerate(acts):
+            yy = ly + 38 + i * 78; ta = (2.0 + i * 2.2) / T
+            o.append(f'<g class="fu" style="animation-delay:{1.0 + i * .2:.1f}s"><rect x="{ax0 + 16}" y="{yy}" width="{aw - 32}" height="68" rx="12" fill="{col}" fill-opacity=".08" stroke="{col}" stroke-opacity=".4">'
+                     f'<animate attributeName="stroke-opacity" values=".4;.4;1;.4;.4" keyTimes="0;{max(0, ta - .02):.3f};{ta:.3f};{ta + .08:.3f};1" dur="{T}s" repeatCount="indefinite"/></rect>'
+                     f'<text class="sg" x="{ax0 + 30}" y="{yy + 24}" font-size="14" fill="#eceef6">{t1}</text><text class="jb" x="{ax0 + 30}" y="{yy + 42}" font-size="9.5" fill="#8d93ab">{esc(t2)}</text>'
+                     f'<text class="jbb" x="{ax0 + 30}" y="{yy + 58}" font-size="10" fill="{col}">{roi}</text>'
+                     f'<g><animate attributeName="opacity" calcMode="discrete" values="1;0" keyTimes="0;{ta:.3f}" dur="{T}s" repeatCount="indefinite"/><rect x="{ax0 + aw - 108}" y="{yy + 20}" width="78" height="28" rx="14" fill="none" stroke="#fff" stroke-opacity=".45"/><text class="jbb" x="{ax0 + aw - 69}" y="{yy + 38}" font-size="10.5" text-anchor="middle" fill="#eceef6">Approve</text></g>'
+                     f'<g opacity="0"><animate attributeName="opacity" calcMode="discrete" values="0;1" keyTimes="0;{ta:.3f}" dur="{T}s" repeatCount="indefinite"/><rect x="{ax0 + aw - 108}" y="{yy + 20}" width="78" height="28" rx="14" fill="#34d399" fill-opacity=".2" stroke="#34d399"/><path d="M{ax0 + aw - 98} {yy + 34}l4 4 7 -8" fill="none" stroke="#34d399" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><text class="jbb" x="{ax0 + aw - 62}" y="{yy + 38}" font-size="10" text-anchor="middle" fill="#34d399">Done</text></g></g>')
+        # customer DNA
+        by = wy + 344
+        o.append(panel(wx + 20, by, 640, 100, "CUSTOMER DNA"))
+        segs = [("Loyal", 24, C3), ("Active", 30, C1), ("Deal seekers", 16, C2), ("Rising", 12, "#34d399"), ("At risk", 12, "#fb923c"), ("Lost", 6, "#6b7280")]
+        bx0, bw = wx + 38, 604
+        o.append(f'<defs><clipPath id="bar"><rect x="{bx0}" y="{by + 34}" width="{bw}" height="24" rx="12"/></clipPath></defs><g clip-path="url(#bar)"><rect x="{bx0}" y="{by + 34}" width="{bw}" height="24" fill="#fff" fill-opacity=".06"/>')
+        acc = 0
+        for i, (nm, pct, col) in enumerate(segs):
+            w_ = bw * pct / 100
+            o.append(f'<rect x="{bx0 + acc:.1f}" y="{by + 34}" width="0" height="24" fill="{col}"><animate attributeName="width" values="0;{w_ - 2:.1f}" dur=".9s" begin="{1.2 + i * .2:.1f}s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".3 .7 .2 1"/></rect>')
+            acc += w_
+        o.append('</g>')
+        lgx = bx0
+        for i, (nm, pct, col) in enumerate(segs):
+            o.append(f'<g class="fu" style="animation-delay:{1.6 + i * .1:.1f}s"><rect x="{lgx:.0f}" y="{by + 72}" width="9" height="9" rx="3" fill="{col}"/><text class="jb" x="{lgx + 14:.0f}" y="{by + 80.5}" font-size="10.5" fill="#eceef6">{nm} <tspan fill="#8d93ab">{pct}%</tspan></text></g>')
+            lgx += 14 + (len(nm) + len(str(pct)) + 2) * 6.5 + 20
+        o.append(win_close())
+
+    # ================= mockup 3: BEYONDTRIP (route map + scores) =================
+    def mock_trip():
+        o.append(win_open(P["url_label"]))
+        o.append(f'<g class="fu" style="animation-delay:.5s"><rect x="{wx + 20}" y="{wy + 48}" width="338" height="34" rx="17" fill="{C3}" fill-opacity=".10" stroke="{C3}" stroke-opacity=".5"/>'
+                 f'<circle cx="{wx + 40}" cy="{wy + 65}" r="4" fill="{C3}"/><path d="M{wx + 40} {wy + 69}v6" stroke="{C3}" stroke-width="1.6"/>'
+                 f'<text class="jb" x="{wx + 54}" y="{wy + 69}" font-size="11.5" fill="#eceef6">Delhi → Jaipur · 5 travelers · ₹30,000</text></g>')
+        for i, (lb, lo, hi, ph) in enumerate([("Budget ↔ Comfort", 0, 1, 0), ("Savings ↔ Speed", 0, 1, 1.4)]):
+            sx = wx + 392 + i * 136; sy = wy + 56
+            o.append(f'<text class="jb" x="{sx}" y="{sy + 4}" font-size="9" fill="#8d93ab">{lb}</text><rect x="{sx}" y="{sy + 12}" width="118" height="4" rx="2" fill="#fff" fill-opacity=".12"/>'
+                     f'<rect x="{sx}" y="{sy + 12}" width="40" height="4" rx="2" fill="{[C1, C3][i]}"><animate attributeName="width" values="30;100;30" dur="{5 + i}s" begin="{ph}s" repeatCount="indefinite" calcMode="spline" keyTimes="0;.5;1" keySplines=".45 0 .55 1;.45 0 .55 1"/></rect>'
+                     f'<circle cx="{sx + 40}" cy="{sy + 14}" r="6" fill="#fff"><animate attributeName="cx" values="{sx + 30};{sx + 100};{sx + 30}" dur="{5 + i}s" begin="{ph}s" repeatCount="indefinite" calcMode="spline" keyTimes="0;.5;1" keySplines=".45 0 .55 1;.45 0 .55 1"/></circle>')
+        # map panel
+        mx, my, mw, mh = wx + 20, wy + 96, 318, 242
+        o.append(panel(mx, my, mw, mh, "ROUTE · 4 TRAVEL MODES"))
+        A_, B_ = (mx + 34, my + 128), (mx + mw - 34, my + 84)
+        modes = [("Flight", C2, (mx + mw / 2, my + 28), 3.0), ("Train", C3, (mx + mw / 2, my + 100), 4.2), ("Car", C1, (mx + mw / 2, my + 140), 5.4), ("Bus", "#34d399", (mx + mw / 2, my + 172), 6.6)]
+        for nm, col, ctl, dur in modes:
+            d = f"M{A_[0]} {A_[1]}Q{ctl[0]:.1f} {ctl[1]:.1f} {B_[0]} {B_[1]}"
+            o.append(f'<path d="{d}" fill="none" stroke="{col}" stroke-opacity=".45" stroke-width="1.8" stroke-dasharray="{"2 5" if nm == "Flight" else "5 4"}"><animate attributeName="stroke-dashoffset" values="0;-18" dur="1.4s" repeatCount="indefinite"/></path>'
+                     f'<circle r="9" fill="{col}" opacity=".3"><animateMotion dur="{dur}s" repeatCount="indefinite" path="{d}"/></circle><circle r="4" fill="#fff"><animateMotion dur="{dur}s" repeatCount="indefinite" path="{d}"/></circle>')
+            px_ = .25 * A_[0] + .5 * ctl[0] + .25 * B_[0]; py_ = .25 * A_[1] + .5 * ctl[1] + .25 * B_[1]
+            o.append(f'<text class="jbb" x="{px_:.0f}" y="{py_ - 6 if nm in ("Flight", "Train") else py_ + 14:.0f}" font-size="9" text-anchor="middle" fill="{col}">{nm}</text>')
+        for (px_, py_), cn in ((A_, "DELHI"), (B_, "JAIPUR")):
+            o.append(f'<circle cx="{px_}" cy="{py_}" r="8" fill="none" stroke="#fff" stroke-opacity=".6"><animate attributeName="r" values="6;16" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".8;0" dur="2s" repeatCount="indefinite"/></circle><circle cx="{px_}" cy="{py_}" r="6" fill="#fff"/>'
+                     f'<text class="jbb" x="{px_}" y="{py_ + 24}" font-size="9" text-anchor="middle" fill="#eceef6" letter-spacing="1">{cn}</text>')
+        scores = [("Train", 88, C3), ("Car", 79, C1), ("Bus", 71, "#34d399"), ("Flight", 66, C2)]
+        for i, (nm, sc, col) in enumerate(scores):
+            yy = my + 192 + i * 12 - 4
+            o.append(f'<text class="jb" x="{mx + 18}" y="{yy + 7}" font-size="9.5" fill="#c9cde0">{nm}</text><rect x="{mx + 66}" y="{yy + 1}" width="178" height="7" rx="3.5" fill="#fff" fill-opacity=".08"/>'
+                     f'<rect x="{mx + 66}" y="{yy + 1}" width="0" height="7" rx="3.5" fill="{col}"><animate attributeName="width" values="0;{178 * sc / 100:.0f}" dur="1s" begin="{1.4 + i * .2:.1f}s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".3 .7 .2 1"/></rect>'
+                     f'<text class="jbb" x="{mx + 254}" y="{yy + 8}" font-size="9.5" fill="{col}">{sc}</text>')
+        o.append(f'<g class="fu" style="animation-delay:2.4s"><rect x="{mx + 278}" y="{my + 190}" width="30" height="13" rx="6.5" fill="{C3}" fill-opacity=".2" stroke="{C3}"/><text class="jbb" x="{mx + 293}" y="{my + 200}" font-size="7.5" text-anchor="middle" fill="{C3}">BEST</text></g>')
+        # score panel
+        sx0, sw_ = wx + 358, 302
+        o.append(panel(sx0, wy + 96, sw_, 242, "BEYONDTRIP SCORE"))
+        gcx, gcy, gr = sx0 + 62, wy + 96 + 128, 42; gc = 2 * m.pi * gr; seg = gc * .87
+        o.append(f'<circle cx="{gcx}" cy="{gcy}" r="{gr}" fill="none" stroke="#fff" stroke-opacity=".08" stroke-width="10"/>'
+                 f'<circle cx="{gcx}" cy="{gcy}" r="{gr}" fill="none" stroke="{C3}" stroke-width="16" opacity=".25" filter="url(#gl3)" transform="rotate(-90 {gcx} {gcy})" stroke-dasharray="0 {gc:.1f}"><animate attributeName="stroke-dasharray" values="0 {gc:.1f};{seg:.1f} {gc - seg:.1f}" dur="1.4s" begin="1s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".3 .7 .2 1"/></circle>'
+                 f'<circle cx="{gcx}" cy="{gcy}" r="{gr}" fill="none" stroke="url(#sw)" stroke-width="10" stroke-linecap="round" transform="rotate(-90 {gcx} {gcy})" stroke-dasharray="0 {gc:.1f}"><animate attributeName="stroke-dasharray" values="0 {gc:.1f};{seg:.1f} {gc - seg:.1f}" dur="1.4s" begin="1s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".3 .7 .2 1"/></circle>'
+                 f'{counter(87, gcx, gcy + 8, 26, "#fff", 1.1, anchor="middle")}<text class="jb" x="{gcx}" y="{gcy + 24}" font-size="9" text-anchor="middle" fill="#8d93ab">/ 100</text>'
+                 f'<text class="jb" x="{gcx}" y="{gcy + 70}" font-size="9" text-anchor="middle" fill="#8d93ab">explainable score</text>')
+        facts = [("Budget fit", 92, C3), ("Time", 85, C1), ("Group fit", 88, C2), ("Comfort", 80, "#34d399"), ("Experience", 90, C3), ("Hidden gems", 84, C2)]
+        for i, (nm, v, col) in enumerate(facts):
+            yy = wy + 96 + 42 + i * 30
+            o.append(f'<text class="jb" x="{sx0 + 130}" y="{yy}" font-size="9.5" fill="#c9cde0">{nm}</text><text class="jbb" x="{sx0 + sw_ - 18}" y="{yy}" font-size="9.5" text-anchor="end" fill="{col}">{v}</text>'
+                     f'<rect x="{sx0 + 130}" y="{yy + 6}" width="154" height="5" rx="2.5" fill="#fff" fill-opacity=".08"/><rect x="{sx0 + 130}" y="{yy + 6}" width="0" height="5" rx="2.5" fill="{col}"><animate attributeName="width" values="0;{154 * v / 100:.0f}" dur=".9s" begin="{1.3 + i * .15:.2f}s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".3 .7 .2 1"/></rect>')
+        # true cost + AI chat
+        by = wy + 350
+        o.append(f'<text class="jbb" x="{wx + 22}" y="{by + 12}" font-size="9.5" fill="#8d93ab" letter-spacing="1.6">TRUE TRIP COST · ₹30,000 · everything, not just the ticket</text>')
+        costs = [("Transport", 22, C1), ("Stay", 24, C2), ("Food", 16, C3), ("Local", 8, "#34d399"), ("Activities", 12, "#a78bfa"), ("Shopping", 10, "#fb923c"), ("Buffer", 8, "#94a3b8")]
+        bx0, bw = wx + 22, 636
+        o.append(f'<defs><clipPath id="cb"><rect x="{bx0}" y="{by + 20}" width="{bw}" height="22" rx="11"/></clipPath></defs><g clip-path="url(#cb)"><rect x="{bx0}" y="{by + 20}" width="{bw}" height="22" fill="#fff" fill-opacity=".06"/>')
+        acc = 0
+        for i, (nm, pct, col) in enumerate(costs):
+            w_ = bw * pct / 100
+            o.append(f'<rect x="{bx0 + acc:.1f}" y="{by + 20}" width="0" height="22" fill="{col}"><animate attributeName="width" values="0;{w_ - 2:.1f}" dur=".8s" begin="{1.4 + i * .15:.2f}s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".3 .7 .2 1"/></rect>'
+                     f'<text class="jbb" x="{bx0 + acc + w_ / 2:.1f}" y="{by + 35}" font-size="8.5" text-anchor="middle" fill="#0b0d1b" opacity="0">{nm}<animate attributeName="opacity" values="0;1" dur=".3s" begin="{2.4 + i * .15:.2f}s" fill="freeze"/></text>')
+            acc += w_
+        o.append('</g>')
+        o.append(f'<g class="fu" style="animation-delay:1s"><rect x="{wx + 20}" y="{by + 52}" width="640" height="42" rx="14" fill="{C1}" fill-opacity=".08" stroke="{C1}" stroke-opacity=".45"/>'
+                 f'<rect x="{wx + 32}" y="{by + 60}" width="26" height="26" rx="9" fill="{C1}" fill-opacity=".18"/><g transform="translate({wx + 35},{by + 63}) scale(.83)">{generic_icon("spark", "#ffd9d4")}</g>'
+                 f'<text class="jbb" x="{wx + 70}" y="{by + 70}" font-size="9" fill="{C3}" letter-spacing="1.6">AI</text>'
+                 f'{typed(wx + 94, by + 82 - 12, "Why train? Best balance of budget, comfort and time for your whole group.", 2, 560, size=12, cid="tpb")}</g>')
+        o.append(win_close())
+
+    {"nexora": mock_nexora, "growth": mock_growth, "trip": mock_trip}[P["mock"]]()
+    # ---------- pipeline ----------
+    T = 6.0; nodes = [(lbl, c) for lbl, c in zip(P["flow"], [C3, C2, C1, "#34d399", C3])]
+    py = 581; xs = [140 + i * 250 for i in range(5)]
+    def hl(wins, peak):
+        pts = [(0, 0)]
+        for s_, e_ in wins: pts += [(s_, 0), (s_ + .25, peak), (e_, peak), (e_ + .25, 0)]
+        pts.append((T, 0)); return f'values="{";".join(str(v) for _, v in pts)}" keyTimes="{";".join(f"{min(1, t / T):.4f}" for t, _ in pts)}"'
+    o.append(f'<g class="fu" style="animation-delay:1.2s"><rect x="40" y="524" width="1200" height="96" rx="20" fill="#000" fill-opacity=".22" stroke="#fff" stroke-opacity=".07"/>'
+             f'<text class="jbb" x="62" y="548" font-size="10" fill="#8d93ab" letter-spacing="2">HOW IT WORKS</text>')
+    for i in range(4):
+        a, b = xs[i] + 78, xs[i + 1] - 78; col = nodes[i + 1][1]; t0 = .3 + i * 1.3
+        o.append(f'<path d="M{a} {py}H{b}" stroke="{col}" stroke-opacity=".35" stroke-width="1.8" stroke-dasharray="4 5" fill="none"><animate attributeName="stroke-dashoffset" values="0;-18" dur="1.3s" repeatCount="indefinite"/></path>'
+                 f'<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;{t0 / T:.4f};{(t0 + .01) / T:.4f};{(t0 + 1) / T:.4f};{(t0 + 1.02) / T:.4f};1" dur="{T}s" repeatCount="indefinite"/>'
+                 f'<circle r="9" fill="{col}" opacity=".3"><animateMotion dur="{T}s" repeatCount="indefinite" path="M{a} {py}H{b}" keyPoints="0;0;1;1" keyTimes="0;{t0 / T:.4f};{(t0 + 1) / T:.4f};1" calcMode="linear"/></circle>'
+                 f'<circle r="3.6" fill="#fff"><animateMotion dur="{T}s" repeatCount="indefinite" path="M{a} {py}H{b}" keyPoints="0;0;1;1" keyTimes="0;{t0 / T:.4f};{(t0 + 1) / T:.4f};1" calcMode="linear"/></circle></g>')
+    for i, (lbl, col) in enumerate(nodes):
+        t0 = .3 + (i - 1) * 1.3 + 1.0 if i else 0
+        o.append(f'<g><rect x="{xs[i] - 78}" y="{py - 21}" width="156" height="42" rx="21" fill="{col}" opacity="0" filter="url(#gl3)"><animate attributeName="opacity" {hl([(max(0, t0), max(0, t0) + .7)], .6)} dur="{T}s" repeatCount="indefinite"/></rect>'
+                 f'<rect x="{xs[i] - 78}" y="{py - 21}" width="156" height="42" rx="21" fill="#171a2c" stroke="{col}" stroke-width="1.6"/>'
+                 f'<circle cx="{xs[i] - 56}" cy="{py}" r="9" fill="{col}" fill-opacity=".2" stroke="{col}"/><text class="jbb" x="{xs[i] - 56}" y="{py + 4}" font-size="10.5" text-anchor="middle" fill="{col}">{i + 1}</text>'
+                 f'<text class="sg" x="{xs[i] - 38}" y="{py + 5}" font-size="14" fill="#eceef6">{esc(lbl)}</text></g>')
+    o.append('</g>')
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Featured project: {esc(P["name"])}"><title>Featured project: {esc(P["name"])}</title>'
+            f'<defs>{style_block(css)}{defs}</defs>{"".join(o)}'
+            f'<rect x=".75" y=".75" width="{W - 1.5}" height="{H - 1.5}" rx="23.25" fill="none" stroke="url(#edge)" stroke-width="1.5"/>'
+            f'<rect x="1" y="1" width="{W - 2}" height="{H - 2}" rx="23" fill="none" stroke="url(#sw)" stroke-width="2.4" stroke-linecap="round" pathLength="1" stroke-dasharray=".1 .9"><animate attributeName="stroke-dashoffset" values="1;0" dur="12s" repeatCount="indefinite"/></rect></svg>')
+
+
 # ───────────────────────────── README ─────────────────────────────
+def projects_md(v):
+    parts = []
+    for i, p in enumerate(CFG["projects"]):
+        parts.append(f'<a href="{p["repo"]}"><img src="./project-{i + 1}.svg?v={v}" alt="Featured project: {p["name"]}" width="100%"/></a>\n\n'
+                     f'<a href="{p["demo"]}">🚀 <b>Live demo</b></a> &nbsp;·&nbsp; <a href="{p["repo"]}">💻 <b>Source code</b></a>\n\n<br/>\n')
+    return "\n".join(parts)
+
 def build_readme():
     t = open(os.path.join(HERE, "README.tpl.md"), encoding="utf-8").read()
     v = datetime.date.today().strftime("%Y%m%d")
     return t.replace("{{V}}", v).replace("{{USER}}", CFG["user"]).replace("{{NAME}}", CFG["name"]).replace("{{ROLE}}", CFG["role"]) \
-            .replace("{{EMAIL}}", CFG["email"]).replace("{{IG}}", CFG["instagram"]).replace("{{LI}}", CFG["linkedin_path"])
+            .replace("{{EMAIL}}", CFG["email"]).replace("{{IG}}", CFG["instagram"]).replace("{{LI}}", CFG["linkedin_path"])\
+            .replace("{{PROJECTS}}", projects_md(v))
 
 def main():
     print("Building profile for", CFG["user"], "(offline)" if OFFLINE else "")
     st = stats(); print("  stats:", {k: st[k] for k in ("repos", "stars", "forks", "followers", "live")})
-    out = {"hero.svg": build_hero(), "id-dashboard.svg": build_id(st), "connect.svg": build_connect(), "stack.svg": build_stack(), "about-life.svg": build_about(), "activity.svg": build_activity(), "city.svg": build_city()}
+    out = {"hero.svg": build_hero(), "id-dashboard.svg": build_id(st), "connect.svg": build_connect(), "stack.svg": build_stack(), "about-life.svg": build_about(), "activity.svg": build_activity(), "city.svg": build_city(), "footer.svg": build_footer(), "views.svg": build_views()}
+    out.update({f"project-{i + 1}.svg": build_project(i) for i in range(len(CFG["projects"]))})
+    out.update(build_buttons())
     for n, s in out.items():
         if s is None: continue
         left = re.findall(r"\{\{[^}]+\}\}", s)
