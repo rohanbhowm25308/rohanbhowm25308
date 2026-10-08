@@ -1,0 +1,38 @@
+name: Refresh live dashboard
+
+# Rebuilds every card (profile views, contribution graph, city, stats ...) and commits the result.
+# Runs every 3 hours, and you can also start it by hand from the Actions tab.
+on:
+  schedule:
+    - cron: "0 */3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-dashboard
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pillow
+      - name: Rebuild SVGs with live data
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 build.py
+      - name: Commit and push
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add -A .
+          if git commit -m "refresh dashboard (live views, stats, graphs)"; then
+            git pull --rebase origin main || true
+            git push
+          fi
