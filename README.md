@@ -76,10 +76,10 @@
 
 <br/>
 
-<a href="https://github.com/rohanbhowm25308"><img src="./btn-github.svg?v=20261009" alt="GitHub" width="36%"/></a>
-<a href="https://www.linkedin.com/in/rohan-bhowmik-b014473a1/"><img src="./btn-linkedin.svg?v=20261009" alt="LinkedIn" width="36%"/></a>
-<a href="mailto:bhowmikrohan83@gmail.com"><img src="./btn-email.svg?v=20261009" alt="Email" width="36%"/></a>
-<a href="https://www.instagram.com/rohan_._.bhowmik.84/"><img src="./btn-instagram.svg?v=20261009" alt="Instagram" width="36%"/></a>
+<a href="https://github.com/rohanbhowm25308"><img src="./btn-github.svg?v=20261009" alt="GitHub" width="26%"/></a>
+<a href="https://www.linkedin.com/in/rohan-bhowmik-b014473a1/"><img src="./btn-linkedin.svg?v=20261009" alt="LinkedIn" width="26%"/></a>
+<a href="mailto:bhowmikrohan83@gmail.com"><img src="./btn-email.svg?v=20261009" alt="Email" width="26%"/></a>
+<a href="https://www.instagram.com/rohan_._.bhowmik.84/"><img src="./btn-instagram.svg?v=20261009" alt="Instagram" width="26%"/></a>
 
 <br/>
 
