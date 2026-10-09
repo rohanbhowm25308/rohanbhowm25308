@@ -2,7 +2,7 @@
 """
 Animated GitHub profile builder  (Rohan Bhowmik)
 =================================================
-Generates hero.svg, about-life.svg, stack.svg, id-dashboard.svg, connect.svg and README.md.
+Generates hero 1.svg, about-life.svg, stack.svg, id-dashboard.svg, connect.svg and README.md.
 
   python3 build.py            -> build everything (pulls live GitHub stats if the API is reachable)
   python3 build.py --offline  -> never touch the network
