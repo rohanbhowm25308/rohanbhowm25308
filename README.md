@@ -67,6 +67,10 @@
 
 <br/><br/>
 
+<img src="./footer.svg?v=20261009" alt="Thanks for stopping by — see you in the next commit" width="100%"/>
+
+<br/><br/>
+
 <!-- 💌 LET'S CONNECT -->
 <img src="./connect.svg?v=20261009" alt="Let's connect" width="100%"/>
 
@@ -76,10 +80,6 @@
 <a href="https://www.linkedin.com/in/rohan-bhowmik-b014473a1/"><img src="./btn-linkedin.svg?v=20261009" alt="LinkedIn" width="48%"/></a>
 <a href="mailto:bhowmikrohan83@gmail.com"><img src="./btn-email.svg?v=20261009" alt="Email" width="48%"/></a>
 <a href="https://www.instagram.com/rohan_._.bhowmik.84/"><img src="./btn-instagram.svg?v=20261009" alt="Instagram" width="48%"/></a>
-
-<br/>
-
-<img src="./footer.svg?v=20261009" alt="Thanks for stopping by — see you in the next commit" width="100%"/>
 
 <br/>
 
