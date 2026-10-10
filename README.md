@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- 🎬 HERO — video intro + name -->
-<img src="./hero 1.svg?v=20261010" alt="Hi, I'm Rohan Bhowmik — AI / ML Developer" width="100%"/>
+<img src="./hero.svg?v=20261010" alt="Hi, I'm Rohan Bhowmik — AI / ML Developer" width="100%"/>
 
 <br/><br/>
 
@@ -16,7 +16,7 @@
 <br/><br/>
 
 <!-- 🪪 DEVELOPER ID + DASHBOARD -->
-<img src="./id-dashboard (1).svg?v=20261010" alt="Developer ID and dashboard" width="100%"/>
+<img src="./id-dashboard.svg?v=20261010" alt="Developer ID and dashboard" width="100%"/>
 
 <br/><br/>
 
