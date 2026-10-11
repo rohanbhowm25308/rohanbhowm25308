@@ -81,9 +81,9 @@
 <a href="mailto:bhowmikrohan83@gmail.com"><img src="./btn-email.svg?v=20261011" alt="Email" width="26%"/></a>
 <a href="https://www.instagram.com/rohan_._.bhowmik.84/"><img src="./btn-instagram.svg?v=20261011" alt="Instagram" width="26%"/></a>
 
-<br/><br/>
+<br/>
 
-<img src="./views.svg?v=20261011" alt="Profile views" width="26%"/>
+<img src="./views.svg?v=20261011" alt="Profile views" width="46%"/>
 <img src="https://komarev.com/ghpvc/?username=rohanbhowm25308&label=views" alt="" width="1" height="1"/>
 
 </div>
