@@ -69,7 +69,7 @@
 
 <img src="./footer.svg?v=20261019" alt="Thanks for stopping by — see you in the next commit" width="100%"/>
 
-<br/>
+<br/><br/>
 
 <!-- 💌 LET'S CONNECT -->
 <img src="./connect.svg?v=20261019" alt="Let's connect" width="100%"/>
