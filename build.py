@@ -2,7 +2,7 @@
 """
 Animated GitHub profile builder  (Rohan Bhowmik)
 =================================================
-Generates hero 1.svg, about-life.svg, stack.svg, id-dashboard.svg, connect.svg and README.md.
+Generates hero.svg, about-life.svg, stack.svg, id-dashboard.svg, connect.svg and README.md.
 
   python3 build.py            -> build everything (pulls live GitHub stats if the API is reachable)
   python3 build.py --offline  -> never touch the network
@@ -58,6 +58,8 @@ CFG = dict(
              repo="https://github.com/rohanbhowm25308/BeyondTrip-AI", demo="https://beyondtrip-ai.onrender.com",
              mock="trip", url_label="beyondtrip-ai.onrender.com", flow=["Trip details", "Compare modes", "True cost", "Group AI score", "Smart plan"]),
     ],
+    # repos listed in the ID dashboard's "most-starred projects" panel (edit the names any time)
+    dashboard_repos=["FraudX", "BeyondTrip-AI", "TalentMind-AI", "VeriScope-AI", "Econexa-AI"],
     # self-rated skill levels shown in the city's "Skill level" panel (edit the numbers any time)
     skills=[("Python", 95, "#4b8bbe"), ("HTML", 95, "#e34c26"), ("CSS", 95, "#a78bfa"), ("JavaScript", 92, "#f1e05a"), ("Jupyter Notebook", 95, "#f9a03c")],
 )
@@ -78,6 +80,7 @@ def _emb(name): return zlib.decompress(base64.b64decode(_EMB[name])).decode("utf
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OFFLINE = "--offline" in sys.argv
+LIVE = "--live" in sys.argv      # live-only mode: refresh just the data-driven images, never README.md or any design file
 C1, C2, C3 = "#ef4444", "#fb7185", "#f59e0b"
 ICONS = json.load(open(os.path.join(HERE, "icons.json"))) if os.path.exists(os.path.join(HERE, "icons.json")) else json.loads(_emb("icons.json"))
 
@@ -194,22 +197,31 @@ def gh(url):
     with urllib.request.urlopen(req, timeout=20) as r: return json.load(r)
 
 def stats():
-    fb = CFG["fallback_stats"]; out = dict(repos=fb["repos"], stars=fb["stars"], forks=fb["forks"], followers=fb["followers"], bars=None, live=False)
+    """Numbers + the project bars for the ID dashboard. Live from GitHub when possible; otherwise the last good copy in dashboard-data.json."""
+    cache = os.path.join(HERE, "dashboard-data.json")
+    fb = CFG["fallback_stats"]
+    try: c = json.load(open(cache))
+    except Exception: c = {}
+    out = dict(repos=c.get("repos", fb["repos"]), stars=c.get("stars", fb["stars"]), forks=c.get("forks", fb["forks"]), followers=c.get("followers", fb["followers"]), bars=None, live=False)
+    names = CFG.get("dashboard_repos") or []
+    if c.get("bars"): out["bars"] = ("MOST-STARRED PROJECTS", [tuple(r) for r in c["bars"]], "stars per repository")
     if OFFLINE: return out
     try:
         u = gh(f"https://api.github.com/users/{CFG['user']}")
         repos = [r for r in gh(f"https://api.github.com/users/{CFG['user']}/repos?per_page=100&type=owner") if not r["fork"]]
         out.update(repos=u["public_repos"], followers=u["followers"], stars=sum(r["stargazers_count"] for r in repos),
                    forks=sum(r["forks_count"] for r in repos), live=True)
-        top = sorted(repos, key=lambda r: -r["stargazers_count"])
-        if top and top[0]["stargazers_count"] > 0:
-            out["bars"] = ("MOST-STARRED PROJECTS", [(r["name"], r["stargazers_count"]) for r in top[:5]], "stars per repository")
+        if names:      # the projects I choose (CFG dashboard_repos); a repo that is not public yet simply shows 0 stars
+            by = {r["name"].lower(): r["stargazers_count"] for r in repos}
+            rows = sorted([(n, by.get(n.lower(), 0)) for n in names], key=lambda x: -x[1])
+            out["bars"] = ("MOST-STARRED PROJECTS", rows, "stars per repository")
         else:
-            from collections import Counter
-            c = Counter(r["language"] for r in repos if r["language"]).most_common(5)
-            if c: out["bars"] = ("REPOS BY LANGUAGE", c, "primary language of each public repo")
+            top = sorted(repos, key=lambda r: -r["stargazers_count"])
+            if top and top[0]["stargazers_count"] > 0:
+                out["bars"] = ("MOST-STARRED PROJECTS", [(r["name"], r["stargazers_count"]) for r in top[:5]], "stars per repository")
+        json.dump(dict(repos=out["repos"], stars=out["stars"], forks=out["forks"], followers=out["followers"], bars=[list(r) for r in out["bars"][1]] if out["bars"] else []), open(cache, "w"), indent=1)
     except Exception as e:
-        print("  (live stats unavailable, using fallback):", e)
+        print("  (live stats unavailable, using last known values):", e)
     return out
 
 # ───────────────────────────── shared svg pieces ─────────────────────────────
@@ -1745,17 +1757,23 @@ def build_readme():
             .replace("{{PROJECTS}}", projects_md(v))
 
 def main():
-    print("Building profile for", CFG["user"], "(offline)" if OFFLINE else "")
+    print("Building profile for", CFG["user"], "(offline)" if OFFLINE else "", "[live-only: README and design files are NOT touched]" if LIVE else "")
     st = stats(); print("  stats:", {k: st[k] for k in ("repos", "stars", "forks", "followers", "live")})
-    out = {"hero.svg": build_hero(), "id-dashboard.svg": build_id(st), "connect.svg": build_connect(), "stack.svg": build_stack(), "about-life.svg": build_about(), "activity.svg": build_activity(), "city.svg": build_city(), "footer.svg": build_footer(), "views.svg": build_views()}
-    out.update({f"project-{i + 1}.svg": build_project(i) for i in range(len(CFG["projects"]))})
-    out.update(build_buttons())
+    if LIVE:
+        # only the files whose content really changes with live data
+        out = {"id-dashboard.svg": build_id(st), "activity.svg": build_activity(), "city.svg": build_city(), "views.svg": build_views()}
+    else:
+        out = {"hero.svg": build_hero(), "id-dashboard.svg": build_id(st), "connect.svg": build_connect(), "stack.svg": build_stack(), "about-life.svg": build_about(),
+               "activity.svg": build_activity(), "city.svg": build_city(), "footer.svg": build_footer(), "views.svg": build_views()}
+        out.update({f"project-{i + 1}.svg": build_project(i) for i in range(len(CFG["projects"]))})
+        out.update(build_buttons())
     for n, s in out.items():
         if s is None: continue
         left = re.findall(r"\{\{[^}]+\}\}", s)
         assert not left, (n, left[:3])
         open(os.path.join(HERE, n), "w", encoding="utf-8").write(s); print(f"  wrote {n:18s} {len(s) / 1024:7.0f} KB")
-    open(os.path.join(HERE, "README.md"), "w", encoding="utf-8").write(build_readme()); print("  wrote README.md")
+    if not LIVE:
+        open(os.path.join(HERE, "README.md"), "w", encoding="utf-8").write(build_readme()); print("  wrote README.md")
 
 if __name__ == "__main__":
     main()
