@@ -1,11 +1,17 @@
 name: Refresh live dashboard
 
-# Rebuilds every card (profile views, contribution graph, city, stats ...) and commits the result.
-# Runs every 3 hours, and you can also start it by hand from the Actions tab.
+# Every 3 hours this refreshes ONLY the pictures that change with live data:
+#   views.svg, activity.svg, city.svg, id-dashboard.svg
+# It NEVER touches README.md, hero.svg, buttons, project cards or anything else you edit by hand.
 on:
   schedule:
     - cron: "0 */3 * * *"
   workflow_dispatch:
+    inputs:
+      rebuild_all:
+        description: "Rebuild EVERYTHING (hero, buttons, README ...). Leave OFF for normal updates - turning it on overwrites your hand edits."
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -23,16 +29,27 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install pillow
-      - name: Rebuild SVGs with live data
+      - name: Refresh live data
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python3 build.py
+        run: |
+          if [ "${{ inputs.rebuild_all }}" = "true" ]; then
+            python3 build.py
+          else
+            python3 build.py --live
+          fi
       - name: Commit and push
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add -A .
-          if git commit -m "refresh dashboard (live views, stats, graphs)"; then
+          if [ "${{ inputs.rebuild_all }}" = "true" ]; then
+            git add -A .
+          else
+            for f in views.svg views-data.json activity.svg activity-data.json city.svg city-data.json id-dashboard.svg dashboard-data.json; do
+              if [ -e "$f" ]; then git add "$f"; fi
+            done
+          fi
+          if git commit -m "refresh live data"; then
             git pull --rebase origin main || true
             git push
           fi
