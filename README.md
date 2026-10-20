@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- 🎬 HERO — video intro + name -->
-<img src="./hero.svg?v=20261020" alt="Hi, I'm Rohan Bhowmik — AI / ML Developer" width="100%"/>
+<img src="./hero 1.svg?v=20261020" alt="Hi, I'm Rohan Bhowmik — AI / ML Developer" width="100%"/>
 
 <br/><br/>
 
@@ -72,17 +72,17 @@
 
 <br/>
 
-<a href="https://github.com/rohanbhowm25308"><img src="./btn-github.svg?v=20261020" alt="GitHub" width="48%"/></a>
-<a href="https://www.linkedin.com/in/rohan-bhowmik-b014473a1/"><img src="./btn-linkedin.svg?v=20261020" alt="LinkedIn" width="48%"/></a>
-<a href="mailto:bhowmikrohan83@gmail.com"><img src="./btn-email.svg?v=20261020" alt="Email" width="48%"/></a>
-<a href="https://www.instagram.com/rohan_._.bhowmik.84/"><img src="./btn-instagram.svg?v=20261020" alt="Instagram" width="48%"/></a>
-<a href="https://venerable-lamington-90daf4.netlify.app/"><img src="./btn-portfolio.svg?v=20261020" alt="Portfolio" width="48%"/></a>
+<a href="https://github.com/rohanbhowm25308"><img src="./btn-github.svg?v=20261020" alt="GitHub" width="26%"/></a>
+<a href="https://www.linkedin.com/in/rohan-bhowmik-b014473a1/"><img src="./btn-linkedin.svg?v=20261020" alt="LinkedIn" width="26%"/></a>
+<a href="mailto:bhowmikrohan83@gmail.com"><img src="./btn-email.svg?v=20261020" alt="Email" width="26%"/></a>
+<a href="https://www.instagram.com/rohan_._.bhowmik.84/"><img src="./btn-instagram.svg?v=20261020" alt="Instagram" width="26%"/></a>
+<a href="https://venerable-lamington-90daf4.netlify.app/"><img src="./btn-portfolio.svg?v=20261020" alt="Portfolio" width="26%"/></a>
 
 <br/>
 
 <img src="./footer.svg?v=20261020" alt="Thanks for stopping by — see you in the next commit" width="100%"/>
 
-<br/>
+<br/><br/>
 
 <img src="./views.svg?v=20261020" alt="Profile views" width="46%"/>
 <img src="https://komarev.com/ghpvc/?username=rohanbhowm25308&label=views" alt="" width="1" height="1"/>
