@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- 🎬 HERO — video intro + name -->
-<img src="./hero.svg?v=20261025" alt="Hi, I'm Rohan Bhowmik — AI / ML Developer" width="100%"/>
+<img src="./hero 1.svg?v=20261025" alt="Hi, I'm Rohan Bhowmik — AI / ML Developer" width="100%"/>
 
 <br/><br/>
 
@@ -82,7 +82,7 @@
 
 <img src="./footer.svg?v=20261025" alt="Thanks for stopping by — see you in the next commit" width="100%"/>
 
-<br/>
+<br/><br/>
 
 <img src="./views.svg?v=20261025" alt="Profile views" width="46%"/>
 <img src="https://komarev.com/ghpvc/?username=rohanbhowm25308&label=views" alt="" width="1" height="1"/>
