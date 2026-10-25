@@ -80,7 +80,9 @@ def _emb(name): return zlib.decompress(base64.b64decode(_EMB[name])).decode("utf
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OFFLINE = "--offline" in sys.argv
-LIVE = "--live" in sys.argv      # live-only mode: refresh just the data-driven images, never README.md or any design file
+# SAFE BY DEFAULT: a plain  "python3 build.py"  only refreshes the 4 live-data images (views, activity, city, ID card) and NEVER touches README.md
+# or any file you edit by hand. Pass  --all  to rebuild EVERYTHING (hero, buttons, project cards, README ...).
+LIVE = "--all" not in sys.argv
 C1, C2, C3 = "#ef4444", "#fb7185", "#f59e0b"
 ICONS = json.load(open(os.path.join(HERE, "icons.json"))) if os.path.exists(os.path.join(HERE, "icons.json")) else json.loads(_emb("icons.json"))
 
