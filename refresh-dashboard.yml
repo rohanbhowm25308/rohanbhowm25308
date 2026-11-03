@@ -1,46 +1,52 @@
-name: Refresh live dashboard
+
+name: Refresh Live Dashboard
 
 on:
-  schedule:
-    - cron: '17 */3 * * *'
   workflow_dispatch:
+  schedule:
+    - cron: "0 */3 * * *"
 
 permissions:
   contents: write
 
-concurrency:
-  group: refresh-dashboard
-  cancel-in-progress: false
-
 jobs:
-  refresh:
+  refresh-dashboard:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Check out profile repository
+      - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          persist-credentials: true
-      - name: Set up Python
+
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
-      - name: Install requirements
-        run: python -m pip install pillow
-      - name: Refresh only live SVG cards
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PYTHONUNBUFFERED: '1'
-        run: python build.py --live
-      - name: Commit refreshed SVGs and JSON only
+          python-version: "3.11"
+
+      - name: Install dependencies
         run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          for f in views.svg views-data.json activity.svg activity-data.json city.svg city-data.json id-dashboard.svg dashboard-data.json; do
-            if test -f "$f"; then git add -- "$f"; fi
-          done
-          if git diff --cached --quiet; then
-            echo 'No dashboard changes to commit.'
-            exit 0
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
           fi
-          git commit -m 'Update live dashboard SVG and check time'
-          git push
+
+      - name: Generate updated SVG
+        env:
+          TZ: Asia/Kolkata
+        run: |
+          python build.py --live
+
+      - name: Commit updated SVG and data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add views.svg
+
+          if [ -f views-data.json ]; then
+            git add views-data.json
+          fi
+
+          if ! git diff --cached --quiet; then
+            git commit -m "Update profile views and IST timestamp"
+            git push
+          fi
