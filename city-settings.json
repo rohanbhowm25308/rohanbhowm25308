@@ -1,17 +1,17 @@
 {
   "type": "normal",
-  "fileName": "profile-red-city.svg",
-  "backgroundColor": "#0a0407",
-  "foregroundColor": "#ffe3dc",
-  "strongColor": "#ff4d5a",
-  "weakColor": "#b08a90",
-  "radarColor": "#ef4444",
+  "fileName": "profile-sapphire-city.svg",
+  "backgroundColor": "#080D14",
+  "foregroundColor": "#dbf7fe",
+  "strongColor": "#367BFF",
+  "weakColor": "#143560",
+  "radarColor": "#367BFF",
   "growingAnimation": true,
   "contribColors": [
-    "#2b0b14",
-    "#8a1426",
-    "#d11a2f",
-    "#ff4d5a",
-    "#ffb347"
+    "#091B33",
+    "#142D79",
+    "#286BFF",
+    "#367BFF",
+    "#A8CFFF"
   ]
 }

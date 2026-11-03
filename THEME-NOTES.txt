@@ -1,0 +1,5 @@
+COBALT CHROME — Premium blue GitHub profile
+
+Palette: obsidian #030713, midnight #050B20, cobalt #1C59EF, electric blue #367BFF, chrome ice blue #A8CFFF.
+
+Upload all files including .github folder. Scheduled builder colors updated too.

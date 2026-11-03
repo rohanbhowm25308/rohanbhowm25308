@@ -1,0 +1,1 @@
+Fixed star visibility in hero 1.svg and about-life.svg by placing the starfield above opaque card backgrounds and below foreground text. Other assets unchanged. SVG animations and original design preserved.

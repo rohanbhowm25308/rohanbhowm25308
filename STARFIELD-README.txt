@@ -1,0 +1,1 @@
+Only subtle star-like blue dots were added behind the SVG content. No binary text, orbital rings, rotating circles or other decorative objects. A few dots gently twinkle. Original Cobalt Chrome assets and README preserved. Regenerating SVGs with build.py may overwrite star dots.
