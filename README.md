@@ -84,7 +84,7 @@
 
 <br/><br/>
 
-<img src="./views_timestamp_fixed.svg?v=20261025" alt="Profile views" width="46%"/>
+<img src="./views.svg?v=20261025" alt="Profile views" width="46%"/>
 <img src="https://komarev.com/ghpvc/?username=rohanbhowm25308&label=views" alt="" width="1" height="1"/>
 
 </div>
