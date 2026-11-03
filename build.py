@@ -1,3 +1,22 @@
+                     f'<rect x="{sx}" y="{sy + 12}" width="40" height="4" rx="2" fill="{[C1, C3][i]}"><animate attributeName="width" values="30;100;30" dur="{5 + i}s" begin="{ph}s" repeatCount="indefinite" calcMode="spline" keyTimes="0;.5;1" keySplines=".45 0 .55 1;.45 0 .55 1"/></rect>'
+                     f'<circle cx="{sx + 40}" cy="{sy + 14}" r="6" fill="#fff"><animate attributeName="cx" values="{sx + 30};{sx + 100};{sx + 30}" dur="{5 + i}s" begin="{ph}s" repeatCount="indefinite" calcMode="spline" keyTimes="0;.5;1" keySplines=".45 0 .55 1;.45 0 .55 1"/></circle>')
+        # map panel
+        mx, my, mw, mh = wx + 20, wy + 96, 318, 242
+        o.append(panel(mx, my, mw, mh, "ROUTE · 4 TRAVEL MODES"))
+        A_, B_ = (mx + 34, my + 128), (mx + mw - 34, my + 84)
+        modes = [("Flight", C2, (mx + mw / 2, my + 28), 3.0), ("Train", C3, (mx + mw / 2, my + 100), 4.2), ("Car", C1, (mx + mw / 2, my + 140), 5.4), ("Bus", "#286BFF", (mx + mw / 2, my + 172), 6.6)]
+        for nm, col, ctl, dur in modes:
+            d = f"M{A_[0]} {A_[1]}Q{ctl[0]:.1f} {ctl[1]:.1f} {B_[0]} {B_[1]}"
+            o.append(f'<path d="{d}" fill="none" stroke="{col}" stroke-opacity=".45" stroke-width="1.8" stroke-dasharray="{"2 5" if nm == "Flight" else "5 4"}"><animate attributeName="stroke-dashoffset" values="0;-18" dur="1.4s" repeatCount="indefinite"/></path>'
+                     f'<circle r="9" fill="{col}" opacity=".3"><animateMotion dur="{dur}s" repeatCount="indefinite" path="{d}"/></circle><circle r="4" fill="#fff"><animateMotion dur="{dur}s" repeatCount="indefinite" path="{d}"/></circle>')
+            px_ = .25 * A_[0] + .5 * ctl[0] + .25 * B_[0]; py_ = .25 * A_[1] + .5 * ctl[1] + .25 * B_[1]
+            o.append(f'<text class="jbb" x="{px_:.0f}" y="{py_ - 6 if nm in ("Flight", "Train") else py_ + 14:.0f}" font-size="9" text-anchor="middle" fill="{col}">{nm}</text>')
+        for (px_, py_), cn in ((A_, "DELHI"), (B_, "JAIPUR")):
+            o.append(f'<circle cx="{px_}" cy="{py_}" r="8" fill="none" stroke="#fff" stroke-opacity=".6"><animate attributeName="r" values="6;16" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".8;0" dur="2s" repeatCount="indefinite"/></circle><circle cx="{px_}" cy="{py_}" r="6" fill="#fff"/>'
+                     f'<text class="jbb" x="{px_}" y="{py_ + 24}" font-size="9" text-anchor="middle" fill="#E8F1FF" letter-spacing="1">{cn}</text>')
+        scores = [("Train", 88, C3), ("Car", 79, C1), ("Bus", 71, "#286BFF"), ("Flight", 66, C2)]
+        for i, (nm, sc, col) in enumerate(scores):
+            yy = my + 192 + i * 12 - 4
             o.append(f'<text class="jb" x="{mx + 18}" y="{yy + 7}" font-size="9.5" fill="#9CC9FC">{nm}</text><rect x="{mx + 66}" y="{yy + 1}" width="178" height="7" rx="3.5" fill="#fff" fill-opacity=".08"/>'
                      f'<rect x="{mx + 66}" y="{yy + 1}" width="0" height="7" rx="3.5" fill="{col}"><animate attributeName="width" values="0;{178 * sc / 100:.0f}" dur="1s" begin="{1.4 + i * .2:.1f}s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".3 .7 .2 1"/></rect>'
                      f'<text class="jbb" x="{mx + 254}" y="{yy + 8}" font-size="9.5" fill="{col}">{sc}</text>')
@@ -81,11 +100,12 @@ def build_readme():
 
 def main():
     print("Building profile for", CFG["user"], "(offline)" if OFFLINE else "", "[live-only: README and design files are NOT touched]" if LIVE else "")
-    st = stats(); print("  stats:", {k: st[k] for k in ("repos", "stars", "forks", "followers", "live")})
     if LIVE:
-        # only the files whose content really changes with live data
-        out = {"id-dashboard.svg": build_id(st), "activity.svg": build_activity(), "city.svg": build_city(), "views.svg": build_views()}
+        # Live refresh updates only the views card and its JSON cache.
+        # This avoids unrelated GitHub API requests and keeps the design intact.
+        out = {"views.svg": build_views()}
     else:
+        st = stats(); print("  stats:", {k: st[k] for k in ("repos", "stars", "forks", "followers", "live")})
         out = {"hero.svg": build_hero(), "id-dashboard.svg": build_id(st), "connect.svg": build_connect(), "stack.svg": build_stack(), "about-life.svg": build_about(),
                "activity.svg": build_activity(), "city.svg": build_city(), "footer.svg": build_footer(), "views.svg": build_views()}
         out.update({f"project-{i + 1}.svg": build_project(i) for i in range(len(CFG["projects"]))})
