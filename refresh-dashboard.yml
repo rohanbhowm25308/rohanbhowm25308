@@ -5,7 +5,7 @@ name: Refresh live dashboard
 # It NEVER touches README.md, hero.svg, buttons, project cards or anything else you edit by hand.
 on:
   schedule:
-    - cron: "0 */3 * * *"
+    - cron: "17 */3 * * *"
   workflow_dispatch:
     inputs:
       rebuild_all:
