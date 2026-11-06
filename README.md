@@ -57,7 +57,7 @@
 
 *Real data from my GitHub — refreshed automatically every day.*
 
-<img src="./activity.svg?v=202611060534" alt="Activity and contribution graph" width="100%"/>
+<img src="./activity.svg?v=202611061152" alt="Activity and contribution graph" width="100%"/>
 
 <br/>
 
@@ -65,7 +65,7 @@
 
 *Every commit builds another tower — rebuilt automatically every day.*
 
-<img src="./city.svg?v=202611060534" alt="Animated contribution city" width="100%"/>
+<img src="./city.svg?v=202611061152" alt="Animated contribution city" width="100%"/>
 
 <br/><br/>
 
@@ -86,7 +86,7 @@
 
 <br/><br/>
 
-<img src="./views.svg?v=202611060534" alt="Profile views" width="46%"/>
+<img src="./views.svg?v=202611061152" alt="Profile views" width="46%"/>
 <img src="https://komarev.com/ghpvc/?username=rohanbhowm25308&label=views" alt="" width="1" height="1"/>
 
 </div>
