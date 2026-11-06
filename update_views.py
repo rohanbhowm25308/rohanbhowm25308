@@ -119,10 +119,9 @@ def main():
     d = load()
     try:
         d = refresh_count(d)
-    except Exception as e:                      # never crash the workflow: keep last number, still re-stamp nothing
-        print("WARNING live fetch failed, keeping last number:", e)
-        json.dump(d, open(DATA, "w"), indent=1)
-        sys.exit(0)
+    except Exception as e:                      # fail LOUDLY so the Actions tab shows a red X and the reason
+        print("ERROR: could not read the live counter from komarev.com:", repr(e))
+        sys.exit(1)
     if not d.get("fetched_at"):
         d["fetched_at"] = now_utc().isoformat() + "Z"
     json.dump(d, open(DATA, "w"), indent=1)
