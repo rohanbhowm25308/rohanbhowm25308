@@ -17,7 +17,7 @@
 
 <!-- 🪪 DEVELOPER ID + DASHBOARD -->
 
-<img src="./id-dashboard-fixed.svg?v=20261104" alt="Developer ID and dashboard" width="100%"/>
+<img src="./id-dashboard-fixed.svg?v=202611060527" alt="Developer ID and dashboard" width="100%"/>
 
 
 <br/><br/>
@@ -86,7 +86,7 @@
 
 <br/><br/>
 
-<img src="./views.svg?v=202611060513" alt="Profile views" width="46%"/>
+<img src="./views.svg?v=202611060527" alt="Profile views" width="46%"/>
 <img src="https://komarev.com/ghpvc/?username=rohanbhowm25308&label=views" alt="" width="1" height="1"/>
 
 </div>
