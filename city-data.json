@@ -1,12 +1,12 @@
 {
  "seed": false,
  "totals": {
-  "commit": 421,
+  "commit": 491,
   "issue": 0,
   "pr": 0,
   "review": 0,
-  "repo": 58,
-  "total": 479,
+  "repo": 60,
+  "total": 551,
   "stars": 1,
   "forks": 1
  },
@@ -14,7 +14,7 @@
   [
    "Python",
    "#1A3CA0",
-   257
+   327
   ],
   [
    "JavaScript",
