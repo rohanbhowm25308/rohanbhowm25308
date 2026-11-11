@@ -60,6 +60,9 @@ CFG = dict(
     ],
     # repos listed in the ID dashboard's "most-starred projects" panel (edit the names any time)
     dashboard_repos=["FraudX", "BeyondTrip-AI", "TalentMind-AI", "VeriScope-AI", "Econexa-AI"],
+    theme="cobalt",                              # "cobalt" = your blue theme, "red" = the original red one
+    id_card_file="id-dashboard-fixed.svg",       # the ID-card picture file your README uses (the refresh writes to this name)
+    repos_override=None,                         # e.g. 64 to show a fixed number (shown as TOTAL REPOS); None = live public count
     # self-rated skill levels shown in the city's "Skill level" panel (edit the numbers any time)
     skills=[("Python", 95, "#4b8bbe"), ("HTML", 95, "#e34c26"), ("CSS", 95, "#a78bfa"), ("JavaScript", 92, "#f1e05a"), ("Jupyter Notebook", 95, "#f9a03c")],
 )
@@ -224,6 +227,7 @@ def stats():
         json.dump(dict(repos=out["repos"], stars=out["stars"], forks=out["forks"], followers=out["followers"], bars=[list(r) for r in out["bars"][1]] if out["bars"] else []), open(cache, "w"), indent=1)
     except Exception as e:
         print("  (live stats unavailable, using last known values):", e)
+    if CFG.get("repos_override"): out["repos"] = CFG["repos_override"]
     return out
 
 # ───────────────────────────── shared svg pieces ─────────────────────────────
@@ -457,6 +461,7 @@ def build_id(st):
     bars = bars_markup(rows)
     if not st["bars"]: bars = bars.replace(">1<animate", "><animate")  # no fake numbers for the focus list
     s = fill(s, BARS=bars, BAR_TITLE=title, BAR_NOTE=esc(note))
+    if CFG.get("repos_override"): s = s.replace("PUBLIC REPOS", "TOTAL REPOS")
     return s
 
 # ───────────────────────────── CONNECT ─────────────────────────────
@@ -1400,7 +1405,7 @@ def fetch_views():
             print("  (views: live fetch failed - keeping the last known number)", e)
     else: print("  views: cached", d.get("views"))
     if d.get("views") is None: return None, None
-    return d["views"], d.get("fetched_at")
+    return d["views"], (d.get("fetched_at") or d.get("last_displayed_sync"))
 
 def build_views():
     v, ts = fetch_views()
@@ -1453,7 +1458,7 @@ def build_views():
             f'<circle cx="{W - 30}" cy="30" r="4" fill="#34d399"><animate attributeName="opacity" values="1;.3;1" dur="1.4s" repeatCount="indefinite"/></circle><text class="jbb" x="{W - 40}" y="34" font-size="10" text-anchor="end" fill="#34d399" letter-spacing="1.4">AUTO</text></g>'
             f'<g class="fu" style="animation-delay:.4s">{cols}</g>'
             f'<text class="jb" x="{x0:.1f}" y="{y0 + CHT + 24}" font-size="11.5" fill="#8d93ab">visitors so far</text>'
-            f'<text class="jb" x="{x0:.1f}" y="{y0 + CHT + 40}" font-size="10" fill="#5d6483">synced {updated}</text>{bars}</svg>')
+            f'<text class="jb" x="{x0:.1f}" y="{y0 + CHT + 40}" font-size="10" fill="#5d6483">last recorded: {updated}</text>{bars}</svg>')
 
 # ───────────────────────────── FEATURED PROJECT SHOWCASE ─────────────────────────────
 def build_project(idx=0):
@@ -1762,12 +1767,181 @@ def build_readme():
             .replace("{{EMAIL}}", CFG["email"]).replace("{{IG}}", CFG["instagram"]).replace("{{LI}}", CFG["linkedin_path"])\
             .replace("{{PROJECTS}}", projects_md(v))
 
+
+# ───────────────────────────── COMMITS AS A CITY (perspective skyline) ─────────────────────────────
+SKY_PAL = {
+    "cobalt": dict(bg1="#050b20", bg2="#03091d", e1="#367bff", e2="#102a4c", e3="#1c59ef", sweep="#94c5fc", text="#e8f1ff", muted="#b4d9ff", muted2="#4196f7",
+                   a1="#367bff", a2="#659eff", a3="#1c59ef", ok="#6aaaff", lv=["#07112d", "#142d79", "#215ef0", "#367bff", "#a8cfff"], tile="#08153a", tilestroke="#0d2158", panel="#06143a"),
+    "red": dict(bg1="#171a2c", bg2="#0f1120", e1="#ef4444", e2="#262a42", e3="#f59e0b", sweep="#ffb199", text="#eceef6", muted="#8d93ab", muted2="#5d6483",
+                a1="#ef4444", a2="#fb7185", a3="#f59e0b", ok="#34d399", lv=["#1f1822", "#6b1424", "#c81e2d", "#ff4d5a", "#ffb347"], tile="#2a111c", tilestroke="#1a0b12", panel="#0f1120"),
+}
+
+def build_skyline():
+    import math as m
+    days = fetch_contribs()
+    if not days: print("  ! no contribution data - commits.svg skipped"); return None
+    P_ = SKY_PAL["cobalt" if CFG.get("theme", "cobalt") == "cobalt" else "red"]
+    def mix(hx, other, f):
+        a = [int(hx[i:i + 2], 16) for i in (1, 3, 5)]; b = [int(other[i:i + 2], 16) for i in (1, 3, 5)]
+        return "#%02x%02x%02x" % tuple(round(a[k] * (1 - f) + b[k] * f) for k in range(3))
+    W, H = 1280, 612
+    pad = (datetime.date.fromisoformat(days[0][0]).weekday() + 1) % 7
+    grid = [None] * pad + days; weeks = (len(grid) + 6) // 7; grid += [None] * (weeks * 7 - len(grid))
+    total = sum(d[1] for d in days); active = sum(1 for d in days if d[1] > 0); best = max(days, key=lambda d: d[1]); maxc = max(1, best[1])
+    lg = run = 0
+    for d in days: run = run + 1 if d[1] > 0 else 0; lg = max(lg, run)
+    wd = [0] * 7
+    for k, c in enumerate(grid):
+        if c: wd[k % 7] += c[1]
+    WDN = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]; bw_i = max(range(7), key=lambda i: wd[i])
+    from collections import Counter
+    mo = Counter()
+    for d in days: mo[d[0][:7]] += d[1]
+    bm = mo.most_common(1)[0]; bm_name = datetime.date.fromisoformat(bm[0] + "-01").strftime("%B %Y")
+    bdate = datetime.date.fromisoformat(best[0]).strftime("%b %d, %Y").upper().replace(" 0", " ")
+    # ---- projection (cabinet): weeks run left->right, weekdays recede up-right (Sunday at the back)
+    PX, Ox, Oy, bx, by, wb, df = 16.5, 188.0, 446.0, 5.0, -11.5, 12.0, .62
+    P = lambda w, r: (Ox + w * PX + r * bx, Oy + r * by)
+    T, T0, STEP = 16.0, .8, .1
+    css = (".fu{animation:fadeUp .8s cubic-bezier(.2,.8,.2,1) both}")
+    defs = (f'<linearGradient id="cardbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{P_["bg1"]}"/><stop offset="1" stop-color="{P_["bg2"]}"/></linearGradient>'
+            f'<linearGradient id="edge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{P_["e1"]}" stop-opacity=".55"/><stop offset=".5" stop-color="{P_["e2"]}"/><stop offset="1" stop-color="{P_["e3"]}" stop-opacity=".55"/></linearGradient>'
+            f'<linearGradient id="sw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{P_["e1"]}" stop-opacity="0"/><stop offset=".5" stop-color="{P_["sweep"]}"/><stop offset="1" stop-color="{P_["e3"]}"/></linearGradient>'
+            f'<linearGradient id="beam" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="{P_["lv"][4]}"/><stop offset="1" stop-color="{P_["lv"][4]}" stop-opacity="0"/></linearGradient>'
+            f'<radialGradient id="haze" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="{P_["a1"]}" stop-opacity=".30"/><stop offset="1" stop-color="{P_["a1"]}" stop-opacity="0"/></radialGradient>'
+            f'<pattern id="dotsk" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="11" cy="11" r=".8" fill="#fff" fill-opacity=".05"/></pattern>'
+            f'<clipPath id="card"><rect width="{W}" height="{H}" rx="24"/></clipPath>'
+            f'<filter id="gl" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>')
+    o = [f'<rect width="{W}" height="{H}" rx="24" fill="url(#cardbg)"/>',
+         f'<g clip-path="url(#card)"><ellipse cx="640" cy="420" rx="520" ry="150" fill="url(#haze)"><animate attributeName="opacity" values=".6;1;.6" dur="7s" repeatCount="indefinite"/></ellipse></g>',
+         f'<rect width="{W}" height="{H}" rx="24" fill="url(#dotsk)"/>']
+    # ---- header
+    o.append(f'<g class="fu" style="animation-delay:.1s"><text class="jbb" x="40" y="54" font-size="12.5" fill="{P_["a1"]}" letter-spacing="2.2">// COMMITS AS A CITY</text>'
+             f'<text class="sg" x="40" y="92" font-size="29" fill="{P_["text"]}" letter-spacing="-.5">Every day becomes a building</text>'
+             f'<text class="jb" x="40" y="116" font-size="11.5" fill="{P_["muted"]}" fill-opacity=".8">One tower per day. Height = that day\'s contributions. The city rises from my first day to today.</text></g>')
+    lx = 1240 - 5 * 19 - 70
+    o.append(f'<g class="fu" style="animation-delay:.3s"><text class="jb" x="{lx}" y="58" font-size="10" fill="{P_["muted"]}" text-anchor="end">Less</text>'
+             + "".join(f'<rect x="{lx + 8 + i * 19}" y="48" width="14" height="14" rx="4" fill="{c}" stroke="#fff" stroke-opacity=".08"/>' for i, c in enumerate(P_["lv"]))
+             + f'<text class="jb" x="{lx + 8 + 5 * 19 + 4}" y="58" font-size="10" fill="{P_["muted"]}">More</text></g>')
+    # ---- floor slab
+    s1, s2, s3, s4 = P(-.8, -.5), P(weeks + .4, -.5), P(weeks + .4, 6.9), P(-.8, 6.9)
+    o.append(f'<polygon points="{" ".join(f"{x:.1f},{y:.1f}" for x, y in (s1, s2, s3, s4))}" fill="{P_["tile"]}" fill-opacity=".55" stroke="{P_["e1"]}" stroke-opacity=".28"/>')
+    # ---- tiles + towers, back row first
+    hk = 164.0; hmin = 6.0
+    heightof = lambda n: hmin + hk * (n / maxc) ** .62
+    pts = lambda *ps: " ".join(f"{x:.1f},{y:.1f}" for x, y in ps)
+    best_info = None; towers = ""; tiles = ""
+    for r in range(6, -1, -1):
+        d_ = 6 - r                              # weekday index (0 = Sunday)
+        for w in range(weeks):
+            c = grid[w * 7 + d_]
+            if not c: continue
+            Bx, By = P(w, r); dx, dy = bx * df, by * df
+            tiles += f'<polygon points="{pts((Bx, By), (Bx + wb, By), (Bx + wb + dx, By + dy), (Bx + dx, By + dy))}" fill="{P_["tile"]}" stroke="{P_["tilestroke"]}" stroke-width=".6"/>'
+            if c[1] <= 0: continue
+            h = heightof(c[1]); base = P_["lv"][max(1, c[2])]
+            fr, rt, tp = mix(base, "#000000", .16), mix(base, "#000000", .46), mix(base, "#ffffff", .30)
+            face = (f'<polygon points="{pts((Bx, By), (Bx + wb, By), (Bx + wb, By - h), (Bx, By - h))}" fill="{fr}"/>'
+                    f'<polygon points="{pts((Bx + wb, By), (Bx + wb + dx, By + dy), (Bx + wb + dx, By + dy - h), (Bx + wb, By - h))}" fill="{rt}"/>'
+                    f'<polygon points="{pts((Bx, By - h), (Bx + wb, By - h), (Bx + wb + dx, By + dy - h), (Bx + dx, By + dy - h))}" fill="{tp}"/>')
+            a = (T0 + w * STEP + (6 - r) * .012) / T; b = a + .9 / T; cc = 14.5 / T; dd = 15.2 / T
+            anim = (f'<animateTransform attributeName="transform" type="scale" values="1 0;1 0;1 1;1 1;1 0;1 0" keyTimes="0;{a:.4f};{b:.4f};{cc:.4f};{dd:.4f};1" dur="{T}s" repeatCount="indefinite" '
+                    f'calcMode="spline" keySplines="0 0 1 1;.2 .8 .2 1;0 0 1 1;.6 0 .8 .4;0 0 1 1"/>')
+            towers += f'<g transform="translate({Bx:.1f} {By:.1f})"><g>{anim}<g transform="translate({-Bx:.1f} {-By:.1f})">{face}</g></g></g>'
+            if c[0] == best[0]: best_info = (Bx + wb / 2 + dx / 2, By - h + dy / 2, a * T)
+    o.append(tiles + towers)
+    # ---- today marker (dashed ring on the last tile)
+    li = len(days) - 1 + pad; lw, lr = li // 7, 6 - (li % 7); Lx, Ly = P(lw, lr)
+    o.append(f'<polygon points="{pts((Lx - 2, Ly + 1), (Lx + wb + 2, Ly + 1), (Lx + wb + bx * df + 2, Ly + by * df - 1), (Lx + bx * df - 2, Ly + by * df - 1))}" fill="none" stroke="{P_["text"]}" stroke-width="1.3" stroke-dasharray="3 3"><animate attributeName="stroke-opacity" values=".9;.2;.9" dur="1.3s" repeatCount="indefinite"/></polygon>')
+    # ---- best-day callout (appears once the sweep reaches it, like the reference)
+    if best_info:
+        tx, ty, ta = best_info; k1 = (ta + 1.0) / T; k2 = (ta + 1.5) / T
+        o.append(f'<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;{k1:.4f};{k2:.4f};{14.4 / T:.4f};{14.9 / T:.4f};1" dur="{T}s" repeatCount="indefinite"/>'
+                 f'<line x1="{tx:.1f}" y1="{ty - 3:.1f}" x2="{tx:.1f}" y2="{ty - 74:.1f}" stroke="{P_["text"]}" stroke-opacity=".75" stroke-width="1.2"/>'
+                 f'<circle cx="{tx:.1f}" cy="{ty - 3:.1f}" r="3.4" fill="{P_["text"]}"><animate attributeName="r" values="3;5;3" dur="1.6s" repeatCount="indefinite"/></circle>'
+                 f'<text class="sg" x="{tx + 9:.1f}" y="{ty - 50:.1f}" font-size="30" fill="{P_["text"]}" letter-spacing="-.6">{best[1]}<tspan class="sgm" font-size="14" fill="{P_["muted"]}" dx="6">contributions</tspan></text>'
+                 f'<text class="jbb" x="{tx + 9:.1f}" y="{ty - 32:.1f}" font-size="10" fill="{P_["a2"]}" letter-spacing="1.6">{bdate} · BEST DAY</text></g>')
+    # ---- weekday + month labels
+    for d_, nm in enumerate(["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]):
+        px_, py_ = P(-.8, 6 - d_); o.append(f'<text class="jb" x="{px_ - 6:.1f}" y="{py_ - 3:.1f}" font-size="9.5" text-anchor="end" fill="{P_["muted"]}" fill-opacity=".75">{nm}</text>')
+    prev = -1; labs = []
+    for w in range(weeks):
+        fc = next((c for c in grid[w * 7:(w + 1) * 7] if c), None)
+        if not fc: continue
+        mm = int(fc[0][5:7])
+        if mm != prev: labs.append((w, mm))
+        prev = mm
+    if len(labs) > 1 and labs[1][0] - labs[0][0] < 3: labs.pop(0)
+    for w, mm in labs:
+        px_, py_ = P(w, -.5); o.append(f'<text class="jb" x="{px_:.1f}" y="{py_ + 20:.1f}" font-size="10" fill="{P_["muted"]}">{datetime.date(2000, mm, 1).strftime("%b").upper()}</text>')
+    o.append(f'<text class="jb" x="1240" y="{Oy + 34:.0f}" font-size="10" text-anchor="end" fill="{P_["muted2"]}">↻ replays automatically</text>')
+    # ---- stat tiles (counters + weekday mini-bars)
+    def counter(final, x, y, size, d0):
+        vs = sorted({0, round(final * .3), round(final * .6), round(final * .85), final}); st = .18; dur = d0 + st * len(vs) + .2; s_ = ""
+        for k, v in enumerate(vs):
+            last = k == len(vs) - 1; a = (d0 + k * st) / dur; b = (d0 + (k + 1) * st) / dur
+            kt, vv = (f"0;{a:.4f}", "0;1") if last else (f"0;{a:.4f};{b:.4f}", "0;1;0")
+            s_ += f'<text class="sg" x="{x}" y="{y}" font-size="{size}" fill="{P_["text"]}" opacity="{1 if last else 0}">{v}<animate attributeName="opacity" calcMode="discrete" values="{vv}" keyTimes="{kt}" dur="{dur:.2f}s" begin="0s" fill="freeze"/></text>'
+        return s_
+    tiles_ = [("TOTAL", total, "contributions · last year", P_["a1"]), ("ACTIVE DAYS", active, f"of {len(days)} days", P_["a2"]), ("BEST DAY", best[1], bdate.title() if False else datetime.date.fromisoformat(best[0]).strftime("%b %d").replace(" 0", " "), P_["a3"]),
+              ("LONGEST STREAK", lg, "days in a row", P_["ok"])]
+    tw_, ty0, th_ = 188, 484, 96
+    for i, (lab, val, sub, col) in enumerate(tiles_):
+        x = 40 + i * (tw_ + 14)
+        o.append(f'<g class="fu" style="animation-delay:{.8 + i * .1:.2f}s"><rect x="{x}" y="{ty0}" width="{tw_}" height="{th_}" rx="16" fill="{col}" fill-opacity=".08" stroke="{col}" stroke-opacity=".42"/>'
+                 f'<rect x="{x + 18}" y="{ty0 + 16}" width="24" height="3" rx="1.5" fill="{col}"/><text class="jbb" x="{x + 18}" y="{ty0 + 40}" font-size="10" fill="{P_["muted"]}" letter-spacing="1.6">{lab}</text>'
+                 f'{counter(val, x + 18, ty0 + 76, 34, 1.0 + i * .12)}<text class="jb" x="{x + 18}" y="{ty0 + 90}" font-size="10.5" fill="{P_["muted"]}">{esc(sub)}</text></g>')
+    # busiest weekday tile with 7 mini bars
+    x = 40 + 4 * (tw_ + 14); col = P_["a1"]; mxw = max(wd) or 1
+    o.append(f'<g class="fu" style="animation-delay:1.3s"><rect x="{x}" y="{ty0}" width="{tw_}" height="{th_}" rx="16" fill="{col}" fill-opacity=".08" stroke="{col}" stroke-opacity=".42"/>'
+             f'<rect x="{x + 18}" y="{ty0 + 16}" width="24" height="3" rx="1.5" fill="{col}"/><text class="jbb" x="{x + 18}" y="{ty0 + 40}" font-size="10" fill="{P_["muted"]}" letter-spacing="1.6">BUSIEST DAY</text>'
+             f'<text class="sg" x="{x + 18}" y="{ty0 + 66}" font-size="21" fill="{P_["text"]}">{WDN[bw_i]}</text><text class="jb" x="{x + 18}" y="{ty0 + 88}" font-size="10.5" fill="{P_["muted"]}">{wd[bw_i]} contributions</text>'
+             + "".join(f'<rect x="{x + 122 + i2 * 8}" y="{ty0 + 28 + (46 - max(4, 46 * v / mxw)):.1f}" width="5" height="{max(4, 46 * v / mxw):.1f}" rx="2" fill="{col if i2 == bw_i else P_["lv"][2]}" opacity="{1 if i2 == bw_i else .55}"/>' for i2, v in enumerate(wd))
+             + '</g>')
+    x = 40 + 5 * (tw_ + 14); col = P_["a2"]
+    o.append(f'<g class="fu" style="animation-delay:1.4s"><rect x="{x}" y="{ty0}" width="{tw_}" height="{th_}" rx="16" fill="{col}" fill-opacity=".08" stroke="{col}" stroke-opacity=".42"/>'
+             f'<rect x="{x + 18}" y="{ty0 + 16}" width="24" height="3" rx="1.5" fill="{col}"/><text class="jbb" x="{x + 18}" y="{ty0 + 40}" font-size="10" fill="{P_["muted"]}" letter-spacing="1.6">BUSIEST MONTH</text>'
+             f'<text class="sg" x="{x + 18}" y="{ty0 + 66}" font-size="21" fill="{P_["text"]}">{bm_name.split()[0]}</text><text class="jb" x="{x + 18}" y="{ty0 + 88}" font-size="10.5" fill="{P_["muted"]}">{bm[1]} in {bm_name.split()[1]}</text></g>')
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Commits as a city"><title>Commits as a city</title>'
+            f'<defs>{style_block(css)}{defs}</defs>{"".join(o)}'
+            f'<rect x=".75" y=".75" width="{W - 1.5}" height="{H - 1.5}" rx="23.25" fill="none" stroke="url(#edge)" stroke-width="1.5"/>'
+            f'<rect x="1" y="1" width="{W - 2}" height="{H - 2}" rx="23" fill="none" stroke="url(#sw)" stroke-width="2.4" stroke-linecap="round" pathLength="1" stroke-dasharray=".1 .9"><animate attributeName="stroke-dashoffset" values="1;0" dur="12s" repeatCount="indefinite"/></rect></svg>')
+
+
+# ───────────── COBALT CHROME theme: recolours the live images and adds the starfield, so every refresh keeps the blue look ─────────────
+_THEME_B64 = "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"
+_HEX = re.compile(r"#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?\b")
+def apply_theme(fname, svg, recolor=True):
+    """Cobalt Chrome: set CFG theme to "red" to switch it off."""
+    if CFG.get("theme", "cobalt") != "cobalt": return svg
+    th = json.loads(zlib.decompress(base64.b64decode(_THEME_B64)).decode("utf-8"))
+    cmap, glob, star = th["map"].get(fname, {}), th["glob"], (th["star"].get(fname) or (th["star"]["activity.svg"] if fname == "commits.svg" else None))
+    def repl(m):
+        tok = m.group(0); base, alpha = tok[:7].lower(), tok[7:]
+        pre = svg[max(0, m.start() - 40):m.start()]
+        a = re.search(r"([\w:-]+)\s*=\s*[\"']?$", pre) or re.search(r"([\w-]+)\s*:\s*$", pre)
+        key = (a.group(1) if a else "") + "|" + base
+        new = cmap.get(key) or glob.get(base)
+        return (new + alpha) if new else tok
+    out = _HEX.sub(repl, svg) if recolor else svg
+    if star:                                   # starfield goes right after the card background rect
+        anchor = star["anchor"]; idx = -1
+        for _ in range(star["nth"]): idx = out.find(anchor, idx + 1)
+        if idx >= 0: out = out[:idx + len(anchor)] + star["block"] + out[idx + len(anchor):]
+    return out
+
 def main():
     print("Building profile for", CFG["user"], "(offline)" if OFFLINE else "", "[live-only: README and design files are NOT touched]" if LIVE else "")
     st = stats(); print("  stats:", {k: st[k] for k in ("repos", "stars", "forks", "followers", "live")})
     if LIVE:
         # only the files whose content really changes with live data
-        out = {"id-dashboard.svg": build_id(st), "activity.svg": build_activity(), "city.svg": build_city(), "views.svg": build_views()}
+        raw = {"id-dashboard.svg": build_id(st), "activity.svg": build_activity(), "city.svg": build_city(), "views.svg": build_views()}
+        out = {}
+        for k_, v_ in raw.items():
+            if v_ is None: continue
+            out[CFG.get("id_card_file", k_) if k_ == "id-dashboard.svg" else k_] = apply_theme(k_, v_)
+        sky = build_skyline()
+        if sky: out["commits.svg"] = apply_theme("commits.svg", sky, recolor=False)
     else:
         out = {"hero.svg": build_hero(), "id-dashboard.svg": build_id(st), "connect.svg": build_connect(), "stack.svg": build_stack(), "about-life.svg": build_about(),
                "activity.svg": build_activity(), "city.svg": build_city(), "footer.svg": build_footer(), "views.svg": build_views()}
