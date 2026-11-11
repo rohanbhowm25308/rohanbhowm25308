@@ -67,7 +67,7 @@
 
 *Every commit builds another tower — rebuilt automatically every day.*
 
-<img src="./city.svg?v=202611110438" alt="Animated contribution city" width="100%"/>
+<img src="./city.svg?v=202611111332" alt="Animated contribution city" width="100%"/>
 
 <br/><br/>
 
@@ -88,7 +88,7 @@
 
 <br/><br/>
 
-<img src="./views.svg?v=202611110438" alt="Profile views" width="46%"/>
+<img src="./views.svg?v=202611111332" alt="Profile views" width="46%"/>
 <img src="https://komarev.com/ghpvc/?username=rohanbhowm25308&label=views" alt="" width="1" height="1"/>
 
 </div>
