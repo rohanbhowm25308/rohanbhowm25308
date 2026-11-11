@@ -57,7 +57,9 @@
 
 *Real data from my GitHub — refreshed automatically every day.*
 
-<img src="./activity.svg?v=202611110438" alt="Activity and contribution graph" width="100%"/>
+## 🏙️ My commits, as a city
+
+<img src="./commits.svg" alt="Commits as a city" width="100%"/>
 
 <br/>
 
