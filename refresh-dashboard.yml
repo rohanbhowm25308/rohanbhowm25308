@@ -1,36 +1,41 @@
-name: Refresh profile views
+name: Refresh live dashboard
 
+# Every 3 hours this refreshes ONLY the pictures that change with live data:
+#   views.svg, activity.svg, city.svg, commits.svg, id-dashboard-fixed.svg
+# It NEVER touches README.md or any file you edit by hand (hero, buttons, project cards ...).
 on:
   schedule:
-    - cron: "0 */3 * * *"      # every 3 hours
-  workflow_dispatch:            # lets you press "Run workflow" manually
+    - cron: "0 */3 * * *"
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: refresh-views
+  group: refresh-dashboard
   cancel-in-progress: false
 
 jobs:
   refresh:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Update views.svg
-        run: python3 update_views.py
+      - run: pip install pillow
+      - name: Refresh live data
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 build.py
       - name: Commit and push
         run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add views.svg views-data.json README.md
-          if git diff --cached --quiet; then
-            echo "nothing changed"
-          else
-            git commit -m "refresh profile views"
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          for f in views.svg views-data.json activity.svg activity-data.json city.svg city-data.json commits.svg id-dashboard-fixed.svg dashboard-data.json; do
+            if [ -e "$f" ]; then git add "$f"; fi
+          done
+          if git commit -m "refresh live data"; then
             git pull --rebase origin main || true
             git push
           fi
