@@ -1,12 +1,12 @@
 {
  "seed": false,
  "totals": {
-  "commit": 500,
+  "commit": 516,
   "issue": 0,
   "pr": 0,
   "review": 0,
   "repo": 62,
-  "total": 562,
+  "total": 578,
   "stars": 1,
   "forks": 1
  },
@@ -17,14 +17,14 @@
    331
   ],
   [
+   "Jupyter Notebook",
+   "#1C59EF",
+   77
+  ],
+  [
    "JavaScript",
    "#A8CFFF",
    75
-  ],
-  [
-   "Jupyter Notebook",
-   "#1C59EF",
-   61
   ],
   [
    "HTML",
