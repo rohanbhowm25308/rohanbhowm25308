@@ -1,8 +1,8 @@
 {
- "views": 679,
- "last_raw": 679,
+ "views": 680,
+ "last_raw": 680,
  "self_inc": 0,
- "fetched_at": "2026-11-18T11:06:04Z",
+ "fetched_at": "2026-11-18T19:57:09Z",
  "last_verified_date": "2026-11-03",
  "note": "455 was user-observed on Nov 3. Live refresh will fetch current raw counter.",
  "last_displayed_sync": "2026-11-03T05:19:00Z"
